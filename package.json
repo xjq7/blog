@@ -1,0 +1,21 @@
+{
+  "name": "vuedoc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress-plugin-cursor-effects": "^0.0.4",
+    "vuepress-plugin-dynamic-title": "^0.0.5",
+    "vuepress-plugin-reading-time": "^0.1.1",
+    "vuepress-plugin-ribbon": "^1.0.0"
+  },
+  "dependencies": {
+    "vuepress-plugin-awesome-gitalk": "^0.0.4"
+  }
+}
