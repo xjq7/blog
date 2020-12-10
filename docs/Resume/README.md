@@ -22,7 +22,7 @@ sidebar: auto
 
 - 熟悉 react, react-native,vue
 
-- 熟悉常用状态管理(redux、vuex、dva 等)
+- 熟悉常用状态管理库
 
 - 熟悉常用组件库
 
