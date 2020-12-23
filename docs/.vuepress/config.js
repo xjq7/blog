@@ -45,7 +45,6 @@ module.exports = {
           { text: '我的LeetCode', link: 'https://leetcode-cn.com/u/xjq_' },
         ],
       },
-      { text: 'Resume', link: '/Resume/' },
       {
         text: '友链',
         items: [{ text: '天真的小窝', link: 'http://bin.zmide.com/' }],
