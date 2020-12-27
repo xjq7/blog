@@ -73,7 +73,7 @@ module.exports = {
         'React-native',
         'Debug',
       ],
-      '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net'],
+      '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net','FrontEnd'],
       '/Other/': ['', 'Firewall'],
     },
   },
