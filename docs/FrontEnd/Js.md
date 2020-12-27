@@ -7,66 +7,6 @@ sidebarDepth: 3
 
 > [前端你应该了解的数据结构与算法](https://juejin.im/post/5b331bc7f265da598451fd88#comment)
 
-## 数据类型
-
-- **值类型(基本类型)：字符串(string)、数值(number)、布尔值(boolean)、undefined、空值(null)、symbol**
-
-  ```js
-  //string
-  var str = 'hello'
-
-  //number 另外NaN是个特殊的number,表示无法计算的结果
-  var num = 10
-  //NaN判断方法
-  isNaN(NaN) //true
-
-  //boolean
-  var bool1 = true
-  var bool2 = false
-
-  //null
-  var empty = null
-
-  //undefined 或者定义了变量未赋值
-  var a = undefined
-
-  //symbol
-  var s1 = Symbol()
-  var s2 = Symbol()
-  s1 === s2 //false
-  ```
-
-- **引用类型：对象（Object）、数组（Array）、函数（Function）**
-
-  ```js
-  //Object
-  var obj = {
-    name: 'xjq',
-  }
-
-  //Array
-  var arr = [1, 2, 3]
-
-  //Function
-  function fun() {
-    console.log('fun')
-  }
-  ```
-
-## 数据类型区别
-
-- **值类型**
-
-  占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何修改引用类型总会影响到其他指向这个地址的引用变量。）
-
-- **引用类型**
-
-  占用空间不固定，保存在堆中（当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。）
-
-  <div style="text-align: center;">
-    <img src="https://xjq-blog.oss-cn-shenzhen.aliyuncs.com/blog/typeOfData/reference-type.png"/>
-  </div>
-
 ## 类型判断
 
 - **typeof**
@@ -74,16 +14,16 @@ sidebarDepth: 3
   typeof 可以识别简单基本类型值(比如:number,string,boolean),但对于复合类型(Object,Array,Function)却只能识别 Function,
 
   ```js
-  typeof 10 //number
-  typeof '' //string
-  typeof true //boolean
-  typeof Array //object
-  typeof Object //object
-  typeof function () {} //function
-  typeof undefined //undefined
-  typeof {} // object
-  typeof [] // object
-  typeof null // object
+  typeof 10; //number
+  typeof ""; //string
+  typeof true; //boolean
+  typeof Array; //object
+  typeof Object; //object
+  typeof function () {}; //function
+  typeof undefined; //undefined
+  typeof {}; // object
+  typeof []; // object
+  typeof null; // object
   ```
 
 - **instanceof**
@@ -91,11 +31,11 @@ sidebarDepth: 3
   instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性
 
   ```js
-  console.log(Object instanceof Object) //true
-  console.log(Function instanceof Function) //true
-  console.log(Number instanceof Number) //false
-  console.log(String instanceof String) //false
-  console.log(Function instanceof Object) //true
+  console.log(Object instanceof Object); //true
+  console.log(Function instanceof Function); //true
+  console.log(Number instanceof Number); //false
+  console.log(String instanceof String); //false
+  console.log(Function instanceof Object); //true
   ```
 
 ## 作用域
@@ -117,11 +57,11 @@ sidebarDepth: 3
 2. 块级作用域:在 js 中也就是函数作用域,在声明他们的函数体以及这个函数体嵌套的任意函数体内有定义
 
 ```js
-var a = 'global'
+var a = "global";
 function block() {
-  console.log(a) //输出undefined,因为a在函数体内重新定义,在函数体内定义的a取代全局变量a
-  var a = 'block' //变量作用域提升到函数顶层,执行此行语句前为undefined,未赋值
-  console.log(a) //block
+  console.log(a); //输出undefined,因为a在函数体内重新定义,在函数体内定义的a取代全局变量a
+  var a = "block"; //变量作用域提升到函数顶层,执行此行语句前为undefined,未赋值
+  console.log(a); //block
 }
 ```
 
@@ -157,20 +97,20 @@ js 具有自动垃圾回收机制,执行环境负责管理代码执行过程中�
   //目标对象
   var foo = {
     value: 1,
-  }
+  };
   //目标函数
   var bar = function () {
-    console.log(this.value) //1
-  }
+    console.log(this.value); //1
+  };
   //call方法
   Function.property.call2 = function (context) {
     //这里this为bar函数
-    context.fn = this
-    context.fn()
-    delete context.fn
-  }
+    context.fn = this;
+    context.fn();
+    delete context.fn;
+  };
   //调用
-  bar.call2(foo)
+  bar.call2(foo);
   ```
 
 - #### 绑定参数
@@ -178,26 +118,26 @@ js 具有自动垃圾回收机制,执行环境负责管理代码执行过程中�
   ```js
   Function.prototype.call2 = function (context) {
     // 首先要获取调用call的函数，用this可以获取
-    console.log(arguments)
-    var args = []
+    console.log(arguments);
+    var args = [];
     for (var i = 0; i < arguments.length; i++) {
-      args.push(arguments[i + 1])
+      args.push(arguments[i + 1]);
     }
-    context.fn = this
-    context.fn(...args)
-    delete context.fn
-  }
+    context.fn = this;
+    context.fn(...args);
+    delete context.fn;
+  };
 
   // 测试一下
   var foo = {
     value: 1,
-  }
+  };
 
   function bar(a, b, c) {
-    console.log(this.value, a, b, c)
+    console.log(this.value, a, b, c);
   }
 
-  bar.call2(foo, 'a', 'b', 2)
+  bar.call2(foo, "a", "b", 2);
   ```
 
 ## 浅拷贝、深拷贝
@@ -208,23 +148,23 @@ js 具有自动垃圾回收机制,执行环境负责管理代码执行过程中�
 
 ```js
 //1.
-arr.concat()
+arr.concat();
 //2.
-arr.slice()
+arr.slice();
 ```
 
 2. #### 实现浅拷贝
 
 ```js
 function clone(obj) {
-  if (typeof obj != 'object') return obj
-  var res = obj instanceof Array ? [] : {}
+  if (typeof obj != "object") return obj;
+  var res = obj instanceof Array ? [] : {};
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
-      res[key] = obj[key]
+      res[key] = obj[key];
     }
   }
-  return res
+  return res;
 }
 ```
 
@@ -233,7 +173,7 @@ function clone(obj) {
 **1. 序列化对象实现深拷贝,不能识别函数**
 
 ```js
-JSON.parse(JSON.stringfy(obj))
+JSON.parse(JSON.stringfy(obj));
 ```
 
 **2. 手动实现,在浅拷贝的基础上递归即可**
@@ -241,19 +181,19 @@ JSON.parse(JSON.stringfy(obj))
 ```js
 //WeakMap解决对象循环引用问题
 function deepClone(obj, weakMap = new WeakMap()) {
-  if (typeof obj != 'object') return obj
-  var isArray = obj instanceof Array
-  var res = isArray ? [] : {}
+  if (typeof obj != "object") return obj;
+  var isArray = obj instanceof Array;
+  var res = isArray ? [] : {};
   if (!isArray) {
-    if (weakMap.get(obj)) return {}
-    weakMap.set(obj, {}.toString.call(obj))
+    if (weakMap.get(obj)) return {};
+    weakMap.set(obj, {}.toString.call(obj));
   }
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
-      res[key] = deepClone(obj[key], weakMap)
+      res[key] = deepClone(obj[key], weakMap);
     }
   }
-  return res
+  return res;
 }
 ```
 
@@ -284,6 +224,7 @@ function bubbleSort(arr){
 ### 快速排序
 
 ```js
+
 ```
 
 ### 选择排序
@@ -292,20 +233,20 @@ function bubbleSort(arr){
 
 ```js
 function selectSort(arr) {
-  let len = arr.length
-  let temp, minIdx
+  let len = arr.length;
+  let temp, minIdx;
   for (let i = 0; i < len - 1; i++) {
-    minIdx = i
+    minIdx = i;
     for (let j = i + 1; j < len; j++) {
       if (arr[minIdx] > arr[j]) {
-        minIdx = j
+        minIdx = j;
       }
     }
-    temp = arr[minIdx]
-    arr[minIdx] = arr[i]
-    arr[i] = temp
+    temp = arr[minIdx];
+    arr[minIdx] = arr[i];
+    arr[i] = temp;
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -317,18 +258,18 @@ function selectSort(arr) {
 
 ```js
 function insert(arr) {
-  let len = arr.length
-  let temp
+  let len = arr.length;
+  let temp;
   for (let i = 0; i < len - 1; i++) {
-    let preIdx = i
-    let current = arr[i + 1]
+    let preIdx = i;
+    let current = arr[i + 1];
     while (preIdx >= 0 && current < arr[preIdx]) {
-      arr[preIdx + 1] = arr[preIdx]
-      preIdx--
+      arr[preIdx + 1] = arr[preIdx];
+      preIdx--;
     }
-    arr[preIdx + 1] = current
+    arr[preIdx + 1] = current;
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -339,31 +280,31 @@ function insert(arr) {
 ```js
 //双重循环
 function unique(arr) {
-  let res = [arr[0]]
-  let len = arr.length
+  let res = [arr[0]];
+  let len = arr.length;
   for (let i = 1; i < len; i++) {
-    let flag = true
+    let flag = true;
     for (let j = 0; j < res.length; j++) {
       if (arr[i] === res[j]) {
-        flag = false
-        break
+        flag = false;
+        break;
       }
     }
     if (flag) {
-      res.push(arr[i])
+      res.push(arr[i]);
     }
   }
-  return res
+  return res;
 }
 //利用indexOf
 function unique(arr) {
-  let res = []
+  let res = [];
   for (let i = 0; i < arr.length; i++) {
     if (res.indexOf(arr[i]) === -1) {
-      res.push(arr[i])
+      res.push(arr[i]);
     }
   }
-  return res
+  return res;
 }
 ```
 
@@ -371,15 +312,15 @@ function unique(arr) {
 
 ```js
 function unique(arr) {
-  let len = arr.length
-  let res = []
-  let obj = {}
+  let len = arr.length;
+  let res = [];
+  let obj = {};
   for (let i = 0; i < len; i++) {
     if (!obj.hasOwnProperty(arr[i])) {
-      obj[arr[i]] = arr[i]
+      obj[arr[i]] = arr[i];
     }
   }
-  return Object.values(arr)
+  return Object.values(arr);
 }
 ```
 
@@ -414,54 +355,54 @@ function unique(arr) {
 - 实现
 
 ```js
-const PENDING = 'pending'
-const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
+const PENDING = "pending";
+const FULFILLED = "fulfilled";
+const REJECTED = "rejected";
 function MyPromise(fn) {
-  let self = this
-  self.value = null
-  self.error = null
-  self.status = PENDING
-  self.onFulfilled = null
-  self.onRejected = null
+  let self = this;
+  self.value = null;
+  self.error = null;
+  self.status = PENDING;
+  self.onFulfilled = null;
+  self.onRejected = null;
   function resolve(value) {
     if (self.status === PENDING) {
       setTimeout(() => {
-        this.status = FULFILLED
-        self.value = value
-        self.onFulfilled(self.value)
-      })
+        this.status = FULFILLED;
+        self.value = value;
+        self.onFulfilled(self.value);
+      });
     }
   }
 
   function reject(error) {
     if (self.status === PENDING) {
       setTimeout(() => {
-        console.log(self)
-        this.status = REJECTED
-        self.error = error
-        self.onRejected(self.error)
-      })
+        console.log(self);
+        this.status = REJECTED;
+        self.error = error;
+        self.onRejected(self.error);
+      });
     }
   }
-  fn(resolve, reject)
+  fn(resolve, reject);
 }
 
 MyPromise.prototype.then = function (onFulfilled) {
-  console.log(onFulfilled, onRejected)
+  console.log(onFulfilled, onRejected);
   if (this.status === PENDING) {
-    this.onFulfilled = onFulfilled
-    this.onRejected = onRejected
+    this.onFulfilled = onFulfilled;
+    this.onRejected = onRejected;
   } else if (this.status === FULFILLED) {
-    onFulfilled(this.value)
+    onFulfilled(this.value);
   } else {
-    onRejected(this.error)
+    onRejected(this.error);
   }
-  return this
-}
+  return this;
+};
 MyPromise.prototype.catch = function (onRejected) {
-  return this.then(null, onRejected)
-}
+  return this.then(null, onRejected);
+};
 ```
 
 > [JavaScript 深入之史上最全--5 种 this 绑定全面解析 #20](https://github.com/yygmind/blog/issues/20)
@@ -473,25 +414,25 @@ MyPromise.prototype.catch = function (onRejected) {
 ```js
 function baz() {
   // 当前调用栈是：baz
-  bar() // <-- bar的调用位置
+  bar(); // <-- bar的调用位置
 }
 
 function bar() {
   // 当前调用栈是：baz --> bar
   // 因此，当前调用位置在 baz 中
 
-  console.log('bar')
-  foo() // <-- foo 的调用位置
+  console.log("bar");
+  foo(); // <-- foo 的调用位置
 }
 
 function foo() {
   // 当前调用栈是：baz --> bar --> foo
   // 因此，当前调用位置在 bar 中
 
-  console.log('foo')
+  console.log("foo");
 }
 
-baz() // <-- baz 的调用位置
+baz(); // <-- baz 的调用位置
 ```
 
 **2. 隐式绑定:当函数引用有上下文对象时，隐式绑定规则会把函数中的 this 绑定到这个上下文对象。对象属性引用链中只有上一层或者说最后一层在调用中起作用。**
@@ -499,27 +440,27 @@ baz() // <-- baz 的调用位置
 ```js
 //在·对象中调用,指向对象,谁调用即指向谁
 function foo() {
-  console.log(this.a)
+  console.log(this.a);
 }
 
 var obj = {
   a: 2,
   foo: foo,
-}
+};
 
-obj.foo() // 2
+obj.foo(); // 2
 ```
 
 **3. 显示绑定:通过 call 或者 apply 方法。**
 
 ```js
 var foo = function () {
-  console.log(this.a) //1
-}
+  console.log(this.a); //1
+};
 var obj = {
   a: 1,
-}
-foo.call(obj)
+};
+foo.call(obj);
 ```
 
 **4. new 绑定**
@@ -546,7 +487,7 @@ foo.call(obj)
   1. 对象直接量
 
   ```js
-  var o1 = {}
+  var o1 = {};
   ```
 
   2. 关键字 new,实现一个 new,然后创建一个对象的过程
@@ -582,43 +523,43 @@ foo.call(obj)
   3. Object.create
 
   ```js
-  var o1 = Object.create({ a: 1, b: 2 })
+  var o1 = Object.create({ a: 1, b: 2 });
   //传入null可以创建没有原型的对象
-  var o2 = Object.creare(null)
+  var o2 = Object.creare(null);
   ```
 
 ## 观察者模式
 
 ```js
 function eventEmitter() {
-  this.handlers = {}
+  this.handlers = {};
 }
 
 eventEmitter.prototype.on = function (type, handle) {
   if (!this.handlers[type]) {
-    this.handlers[type] = []
+    this.handlers[type] = [];
   }
-  this.handlers[type].push(handle)
-}
+  this.handlers[type].push(handle);
+};
 
 eventEmitter.prototype.emit = function () {
-  var type = Array.prototype.shift.call(arguments)
+  var type = Array.prototype.shift.call(arguments);
   if (!this.handlers[type]) {
-    return
+    return;
   }
   this.handlers[type].forEach((item, index) => {
-    var handler = this.handlers[type][index]
-    handler.apply(this, arguments)
-  })
-}
+    var handler = this.handlers[type][index];
+    handler.apply(this, arguments);
+  });
+};
 
-const _ = new eventEmitter()
+const _ = new eventEmitter();
 
-_.on('test', function ({ a }) {
-  console.log('test' + a)
-})
+_.on("test", function ({ a }) {
+  console.log("test" + a);
+});
 
-_.emit('test', { a: 111 })
+_.emit("test", { a: 111 });
 ```
 
 ## 数组
@@ -629,15 +570,15 @@ _.emit('test', { a: 111 })
 
 ```js
 function flatten(arr) {
-  let res = []
+  let res = [];
   arr.forEach((item) => {
     if (Array.isArray(item)) {
-      res = [...res, flatten(item)]
+      res = [...res, flatten(item)];
     } else {
-      res.push(item)
+      res.push(item);
     }
-  })
-  return res
+  });
+  return res;
 }
 ```
 
@@ -646,83 +587,83 @@ function flatten(arr) {
 **1. join:将数组中的元素转化为字符串连接到一起**
 
 ```js
-var arr = [1, 2, 3]
-arr.join() //"1,2,3"
-arr.join('') //"123"
-arr.join(' ') //"1 2 3"
+var arr = [1, 2, 3];
+arr.join(); //"1,2,3"
+arr.join(""); //"123"
+arr.join(" "); //"1 2 3"
 ```
 
 **2. reverse:将数组中的元素颠倒顺序,返回逆序数组**
 
 ```js
-var arr = [1, 2, 3]
-arr.reverse() //[3,2,1]
+var arr = [1, 2, 3];
+arr.reverse(); //[3,2,1]
 ```
 
 **3. sort:返回排序后的数组**
 
 ```js
-var arr = ['cba', 'abc', 'bac']
+var arr = ["cba", "abc", "bac"];
 //不带参数时按字母表排序
-arr.sort() //["abc","bac","cba"]
+arr.sort(); //["abc","bac","cba"]
 
 //需要按其他方式排序时,需要传入比较方法,根据参数方法返回的值负数、0、正数决定排序顺序
-var arr = [123, 23, 3]
+var arr = [123, 23, 3];
 arr.sort(function (a, b) {
-  return a - b
-}) //[3,23,123]
+  return a - b;
+}); //[3,23,123]
 arr.sort(function (a, b) {
-  return b - a
-}) //[123,23,1]
+  return b - a;
+}); //[123,23,1]
 ```
 
 **4. concat:合并数组,具体使用如下**
 
 ```js
-var arr = [1, 2, 3]
+var arr = [1, 2, 3];
 
 //参数为非数组时
-arr.concat(4, 5) //[1,2,3,4,5]
+arr.concat(4, 5); //[1,2,3,4,5]
 
 //参数为数组时
-arr.concat([4, 5]) //[1,2,3,4,5]
+arr.concat([4, 5]); //[1,2,3,4,5]
 
 //多个参数都为数组时
-arr.concat([4, 5], [6, 7]) //[1,2,3,4,5,6,7]
+arr.concat([4, 5], [6, 7]); //[1,2,3,4,5,6,7]
 
 //多个参数数组与非数组都有时
-arr.concat(4, [5, [6, 7]]) //[1,2,3,4,5,[6,7]],这里不会递归扁平化数组
+arr.concat(4, [5, [6, 7]]); //[1,2,3,4,5,[6,7]],这里不会递归扁平化数组
 ```
 
 **5. slice:数组切片**
 
 ```js
-var arr = [1, 2, 3, 4, 5]
+var arr = [1, 2, 3, 4, 5];
 //两个参数,第一个为起始下标,第二个截止下标,左开右闭
-arr.slice(0, 3) //[1,2,3]
+arr.slice(0, 3); //[1,2,3]
 
 //一个参数,起始下标到数组尾部
-arr.slice(3) //[4,5]
+arr.slice(3); //[4,5]
 
 //
-arr.slice(1, -1) //[2,3,4]
-arr.slice(-3, -2) //[3]
+arr.slice(1, -1); //[2,3,4]
+arr.slice(-3, -2); //[3]
 ```
 
 **6. splice:往数组插入或删除元素,第三种情况多参数时稍微有点复杂**
 
 ```js
 //只有一个参数时,返回从指定数组中删除的元素数组,原来的数组会改变
-var arr = [1, 2, 3, 4, 5]
-arr.splice(3) //[5],arr为[1,2,3,4]
+var arr = [1, 2, 3, 4, 5];
+arr.splice(3); //[5],arr为[1,2,3,4]
 
 //两个参数时
-arr = [1, 2, 3, 4, 5]
-arr.splice(1, 3) //[2,3,4],arr为[1,5]
+arr = [1, 2, 3, 4, 5];
+arr.splice(1, 3); //[2,3,4],arr为[1,5]
 
 //三个参数以上,第一个参数决定删除元素起始下标,第二个决定删除个数,后面的删除是待插入数组,从第一个参数下标开始插入
-arr = [1, 2, 3, 4, 5, 6]
-arr.splice(1, 2, [2, 3], 0) //[2,3],arr为[1,[2,3],0,4,5,6]
+arr = [1, 2, 3, 4, 5, 6];
+arr.splice(1, 2, [2, 3], 0); //[2,3],arr为[1,[2,3],0,4,5,6]
 ```
 
 **7. 首尾插入删除方法:push、pop、shift、unshift**
@@ -730,12 +671,12 @@ arr.splice(1, 2, [2, 3], 0) //[2,3],arr为[1,[2,3],0,4,5,6]
 **8. toString:将每个元素转为字符串、并输出以逗号为分隔符的字符串列表**
 
 ```js
-var arr = [1, 2, 3]
-arr.toString() //"1,2,3"
+var arr = [1, 2, 3];
+arr.toString(); //"1,2,3"
 
 //递归转化
-arr = [1, 2, 4, [4, 5, [6, 7]]]
-arr.toString() //"1,2,4,4,5,6,7"
+arr = [1, 2, 4, [4, 5, [6, 7]]];
+arr.toString(); //"1,2,4,4,5,6,7"
 ```
 
 ### es5 中定义了 9 个新的数组方法来遍历、映射、过滤、检测、简化、检索数组
@@ -745,60 +686,60 @@ arr.toString() //"1,2,4,4,5,6,7"
 **2. map:将调用的数组的每个元素传给指定的函数,并返回一个新数组,不影响原数组(react 中经常使用)**
 
 ```js
-var arr = [1, 2, 4]
+var arr = [1, 2, 4];
 arr.map(function (x) {
-  return x * x
-}) //[1,4,16]
+  return x * x;
+}); //[1,4,16]
 ```
 
 **3. filter:filter 方法返回的数组元素是调用数组的一个子集,传递的函数用作逻辑判断,返回 true 或 false,true 则代表元素是子集成员**
 
 ```js
-var arr = [1, 2, 3, 4, 5]
+var arr = [1, 2, 3, 4, 5];
 arr.filter(function (x) {
-  return x < 3
-}) //[1,2]
+  return x < 3;
+}); //[1,2]
 ```
 
 **4. every 和 some:数组的逻辑判断,他们对数组元素应用指定的函数进行判断,返回 true 或 false,every 方法针对所有元素,当数组中所有元素调用函数返回 true 时才返回 true,some 只要有一个返回 true,即为 true**
 
 ```js
-var arr = [1, 2, 3, 4]
+var arr = [1, 2, 3, 4];
 arr.every(function (x) {
-  return x > 0
-}) //true
+  return x > 0;
+}); //true
 arr.some(function (x) {
-  return x > 3
-}) //true
+  return x > 3;
+}); //true
 ```
 
 **5. reduce:用指定的函数将数组元素进行组合,生成单个值,他有两个参数,第一个是处理函数,第二个是初始值,不传时默认数组第一个元素**
 
 ```js
-var arr = [1, 2, 3, 4]
+var arr = [1, 2, 3, 4];
 //求和操作
 arr.reduce(function (x, y) {
-  return x + y
-}, 0) //10
+  return x + y;
+}, 0); //10
 
 //求积
 arr.reduce(function (x, y) {
-  return x * y
-}, 1)
+  return x * y;
+}, 1);
 
 //求最大值
 arr.reduce(function (x, y) {
-  return x > y ? x : y
-})
+  return x > y ? x : y;
+});
 ```
 
 **6. indexOf 和 lastIndexOf:搜索数组中具有给定值的元素,有就返回第一个元素索引,没有就返回-1,lastIndexOf 是反向搜索**
 
 ```js
-var arr = [1, 2, 4, 3, 2]
+var arr = [1, 2, 4, 3, 2];
 
-arr.indexOf(2) //1
-arr.indexOf(9) //-1
+arr.indexOf(2); //1
+arr.indexOf(9); //-1
 ```
 
 ## 跨域
