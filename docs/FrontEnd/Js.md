@@ -326,30 +326,6 @@ function unique(arr) {
 
 > [Js 的事件循环(Event Loop)机制以及实例讲解](https://segmentfault.com/a/1190000015317434)
 
-## js 事件循环
-
-**js 是单线程语言,事件循环是为了协调事件、用户交互、脚本、UI 渲染和网络处理等行为，防止主线程阻塞**
-
-- **主线程**
-
-  一些具有回调函数的事件将进入执行栈中,等待主线程读取,等待主线程读取,遵循先进先出原则。主线程循环：即主线程会不停的从执行栈中读取事件，会执行完所有栈中的同步代码。当遇到一个异步事件后，并不会一直等待异步事件返回结果，而是会将这个事件挂在与执行栈不同的队列中，我们称之为任务队列(Task Queue)。当主线程将执行栈中所有的代码执行完之后，主线程将会去查看任务队列是否有任务。如果有，那么主线程会依次执行那些任务队列中的回调函数。
-
-- **宏任务与微任务**
-
-  异步任务分为 宏任务(macrotask) 与 微任务 (microtask)，
-
-  宏任务(macrotask):
-  script(整体代码)、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境)
-
-  微任务(microtask):
-  Promise、 MutaionObserver、process.nextTick(Node.js 环境)
-
-- **Event Loop(事件循环)**
-
-  1. 执行栈选择最先进入队列的宏任务
-  2. 然后执行微任务
-  3. ...循环执行完全部任务(宏任务-微任务-宏任务)
-
 ## Promise
 
 - 实现

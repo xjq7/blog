@@ -98,8 +98,186 @@ title: 前端
     <img src="https://xjq-blog.oss-cn-shenzhen.aliyuncs.com/blog/typeOfData/reference-type.png"/>
   </div>
 
+### 函数
+
+- 修改 this 指向
+
+  - call,绑定 this 调用 fn，以参数列表接收参数
+
+  ```js
+  fn.call(this, ...arguments);
+  ```
+
+  - apply，绑定 this 调用 fn，以数组形式提供参数
+
+  ```js
+  fn.apply(this, arguments);
+  ```
+
+  - bind
+
+  创建一个新的函数
+
+  ```js
+  var newFn = fn.bind(this, ...arguments);
+  newFn();
+  ```
+
+### js 事件循环
+
+**js 是单线程语言,事件循环是为了协调事件、用户交互、脚本、UI 渲染和网络处理等行为，防止主线程阻塞**
+
+- **主线程**
+
+  一些具有回调函数的事件将进入执行栈中,等待主线程读取,等待主线程读取,遵循先进先出原则。主线程循环：即主线程会不停的从执行栈中读取事件，会执行完所有栈中的同步代码。当遇到一个异步事件后，并不会一直等待异步事件返回结果，而是会将这个事件挂在与执行栈不同的队列中，我们称之为任务队列(Task Queue)。当主线程将执行栈中所有的代码执行完之后，主线程将会去查看任务队列是否有任务。如果有，那么主线程会依次执行那些任务队列中的回调函数。
+
+- **宏任务与微任务**
+
+  异步任务分为 宏任务(macrotask) 与 微任务 (microtask)，
+
+  宏任务(macrotask):
+  script(整体代码)、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境)
+
+  微任务(microtask):
+  Promise、 MutaionObserver、process.nextTick(Node.js 环境)
+
+- **Event Loop(事件循环)**
+
+  1. 执行栈选择最先进入队列的宏任务
+  2. 然后执行微任务
+  3. ...循环执行完全部任务(宏任务-微任务-宏任务)
+
+## ES6
+
+### 数据结构
+
+- Set
+
+  类数组，成员唯一,可遍历
+
+  - add
+
+  - delete
+
+  - has
+
+  - clear
+
+  - keys
+
+  - values
+
+  - forEach
+
+- WeakSet
+
+  只能存储对象，不可遍历，垃圾回收运行前后，部分成员可能被回收
+
+- Map
+
+  键值对
+
+  - size，成员总数
+
+  - set，设置键名对应的键值
+
+  - get，读取 key 对应的键值
+
+  - has，判断是否包含某个 key
+
+  - delete，删除某个键，如果删除失败，返回 false
+
+  - clear
+
+  - keys
+
+  - values
+
+  - entries
+
+  - forEach
+
+- WeakMap
+
+  只支持对象作为键名
+
+  - get
+
+  - set
+
+  - has
+
+  - delete
+
 ## 浏览器
 
 ## http 协议
 
-##
+## 框架
+
+### react
+
+#### diff 算法
+
+计算出 Virtual DOM 中真正变化的部分，并只针对该部分进行原生 DOM 操作，而非重新渲染整个页面
+
+- tree diff
+
+  两棵树只对同一层级节点进行比较，只要该节点不存在了，那么该节点与其所有子节点会被完全删除,不在进行进一步比较
+
+  只需要遍历一次，便完成对整个 DOM 树的比较
+
+- component diff
+
+  同类型组件，组件 A 转化为了组件 B，如果 virtual DOM 无变化，可以通过 shouldComponentUpdate()方法优化
+
+  不同类型的组件，那么 diff 算法会把要改变的组件判断为 dirty component,从而替换整个组件的所有节点
+
+- element diff
+
+  key 往前移动的节点不进行任何操作，所以当把最后一个节点移动到头部时，性能损耗最大
+
+  - 插入: 新的组件不在原来的集合中，而是全新的节点，则对集合进行插入操作
+
+  - 删除: 组件已经在集合中，但集合已经更新，此时节点就需要删除
+
+  - 移动: 组件已经存在于集合中，并且集合更新时，组件并没有发生更新，只是位置发生改变(同一层的节点添加唯一 key 进行区分，并且移动,当新集合中位置在旧集合之后时,需要移动)
+
+## util
+
+### 防抖
+
+触发高频事件 n 秒后执行，如果 n 秒内再次触发高频事件，则重新计时
+
+```js
+function debounce(fn, delay) {
+  let timer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(fn.bind(context, ...args), delay);
+  };
+}
+```
+
+### 节流
+
+高频事件触发，n 秒内只会执行一次
+
+```js
+function throttle(fn, time) {
+  let canCall = true;
+
+  return function () {
+    if (!canCall) return;
+    canCall = false;
+    const context = this;
+    const args = arguments;
+    fn.bind(this, ...arguments)();
+    setTimeout(() => {
+      canCall = true;
+    }, time);
+  };
+}
+```
