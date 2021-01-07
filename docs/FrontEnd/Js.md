@@ -397,58 +397,6 @@ foo.call(obj);
 
 ## 继承
 
-## 造世主 Object
-
-- **原型概念**
-
-  每一个 js 对象(除 null)都有另一个对象有关联,这里另一个对象就是原型,每个对象都从原型继承属属性
-
-- **对象创建方式**
-
-  1. 对象直接量
-
-  ```js
-  var o1 = {};
-  ```
-
-  2. 关键字 new,实现一个 new,然后创建一个对象的过程
-
-     1. 创建一个没有原型的对象
-
-     2. 将传入的构造函数的 prototype 绑定到创建的对象原型
-
-     3. 构造函数 this 指向创建的对象,附带我们传入的参数,没有这一步,我们 new 一个对象的时候就没有构造函数生成的属性
-
-  ```js
-  function newObject() {
-    //1.
-    var obj = Object.create(null)
-    //去除参数里的构造函数
-    Constructor = [].shift.call(arguments)
-    //2.
-    obj.__proto__ = Constructor.prototype
-    //3.
-    Constructor.apply(obj, arguments)
-
-    return obj
-  }
-
-  var factory = (name.age){
-    this.name=name
-    this.age=age
-  }
-
-  var obj = newObject(factory,'xjq',23)
-  ```
-
-  3. Object.create
-
-  ```js
-  var o1 = Object.create({ a: 1, b: 2 });
-  //传入null可以创建没有原型的对象
-  var o2 = Object.creare(null);
-  ```
-
 ## 观察者模式
 
 ```js

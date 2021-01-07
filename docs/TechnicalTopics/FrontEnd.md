@@ -108,12 +108,12 @@ title: 前端
   fn.call(this, ...arguments);
   // 实现call
   Function.prototype.call2 = function (context) {
-  // 首先要获取调用call的函数，用this可以获取 
-  context.fn = this;
-  const obj=[].shift.call(arguments);
-  obj.fn(...arguments);
-  delete obj.fn;
-};
+    // 首先要获取调用call的函数，用this可以获取
+    context.fn = this;
+    const obj = [].shift.call(arguments);
+    obj.fn(...arguments);
+    delete obj.fn;
+  };
   ```
 
   - apply，绑定 this 调用 fn，以数组形式提供参数
@@ -154,6 +154,40 @@ title: 前端
   1. 执行栈选择最先进入队列的宏任务
   2. 然后执行微任务
   3. ...循环执行完全部任务(宏任务-微任务-宏任务)
+
+### 继承
+
+### 原型
+
+每一个 js 对象(除 null)都有另一个对象有关联,这里另一个对象就是原型,每个对象都从原型继承属属性
+
+### new 的实现
+
+关键字 new,实现一个 new,然后创建一个对象的过程
+
+1. 创建一个没有原型的对象
+
+2. 将传入的构造函数的 prototype 绑定到创建的对象原型
+
+3. 构造函数 this 指向创建的对象,附带我们传入的参数,没有这一步,我们 new 一个对象的时候就没有构造函数生成的属性
+
+```js
+function newObject() {
+  var obj = Object.create(null);
+  //去除参数里的构造函数
+  const Constructor = [].shift.call(arguments);
+  obj.__proto__ = Constructor.prototype;
+  Constructor.apply(obj, arguments);
+  return obj;
+}
+
+function factory(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+var obj = newObject(factory, "xjq", 23);
+```
 
 ## ES6
 
@@ -216,6 +250,10 @@ title: 前端
   - has
 
   - delete
+
+### Promise
+
+### Async/Await
 
 ## 浏览器
 
