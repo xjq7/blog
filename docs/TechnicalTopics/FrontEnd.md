@@ -102,10 +102,18 @@ title: 前端
 
 - 修改 this 指向
 
-  - call,绑定 this 调用 fn，以参数列表接收参数
+  - call,绑定 this 调用 fn，以参数列表接收参数,call 的实现思路:当函数调用 call 的时候,将函数设置为对象的属性,执行函数后删除,执行时函数 this 已经指向 call 方法参数对象
 
   ```js
   fn.call(this, ...arguments);
+  // 实现call
+  Function.prototype.call2 = function (context) {
+  // 首先要获取调用call的函数，用this可以获取 
+  context.fn = this;
+  const obj=[].shift.call(arguments);
+  obj.fn(...arguments);
+  delete obj.fn;
+};
   ```
 
   - apply，绑定 this 调用 fn，以数组形式提供参数

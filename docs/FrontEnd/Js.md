@@ -85,61 +85,6 @@ js 具有自动垃圾回收机制,执行环境负责管理代码执行过程中�
 
 这种回收方式会出现一个问题,那就是循环引用,比如两个对象的属性互相引用,在自己递归实现深拷贝的时候有碰到,需要注意,因此这种回收方式很少用
 
-## call、apply、bind 实现
-
-### 1. call
-
-- **call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法**
-
-- **call 的实现思路:当函数调用 call 的时候,将函数设置为对象的属性,执行函数后删除,执行时函数 this 已经指向 call 方法参数对象**
-
-  ```js
-  //目标对象
-  var foo = {
-    value: 1,
-  };
-  //目标函数
-  var bar = function () {
-    console.log(this.value); //1
-  };
-  //call方法
-  Function.property.call2 = function (context) {
-    //这里this为bar函数
-    context.fn = this;
-    context.fn();
-    delete context.fn;
-  };
-  //调用
-  bar.call2(foo);
-  ```
-
-- #### 绑定参数
-
-  ```js
-  Function.prototype.call2 = function (context) {
-    // 首先要获取调用call的函数，用this可以获取
-    console.log(arguments);
-    var args = [];
-    for (var i = 0; i < arguments.length; i++) {
-      args.push(arguments[i + 1]);
-    }
-    context.fn = this;
-    context.fn(...args);
-    delete context.fn;
-  };
-
-  // 测试一下
-  var foo = {
-    value: 1,
-  };
-
-  function bar(a, b, c) {
-    console.log(this.value, a, b, c);
-  }
-
-  bar.call2(foo, "a", "b", 2);
-  ```
-
 ## 浅拷贝、深拷贝
 
 ### 浅拷贝
