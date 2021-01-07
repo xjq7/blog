@@ -189,6 +189,12 @@ function factory(name, age) {
 var obj = newObject(factory, "xjq", 23);
 ```
 
+### 观察者模式
+
+### 发布-订阅模式
+
+### 模块化
+
 ## ES6
 
 ### 数据结构
@@ -257,7 +263,17 @@ var obj = newObject(factory, "xjq", 23);
 
 ## 浏览器
 
+### 重绘、重排
+
+### 浏览器渲染机制
+
 ## http 协议
+
+### 三次握手，四次挥手
+
+## 状态管理
+
+### redux
 
 ## 框架
 
