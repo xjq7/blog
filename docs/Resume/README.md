@@ -9,9 +9,7 @@ sidebar: auto
 - 全日制统招本科 / 南华大学 / 网络工程
 - 工作经验 : 2 年
 - 技术博客 : [https://xjq.icu](https://xjq.icu)
-- 个人知识点(思维导图):[https://www.processon.com/view/link/5f4647640791297ca40fe328#map](https://www.processon.com/view/link/5f4647640791297ca40fe328#map)
 - 年龄 : 24
-- 手机/微信 : 15115438096
 - email : lebnizjoan@gmail.com
 
 ## 技术
