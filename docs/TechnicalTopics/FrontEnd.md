@@ -249,14 +249,6 @@ var obj = newObject(factory, "xjq", 23);
 
   只支持对象作为键名
 
-  - get
-
-  - set
-
-  - has
-
-  - delete
-
 ### Promise
 
 ### Async/Await
@@ -278,6 +270,34 @@ var obj = newObject(factory, "xjq", 23);
 ## 框架
 
 ### react
+
+#### 生命周期
+
+- 16.4 以后
+
+1. constructor
+
+   初始化 state
+
+2. getDerivedStateFromProps
+
+   第一次渲染和更新时会调用，静态函数，无法获取 this，根据 props 更新 state，不过会导致 state 来源不单一
+
+3. getSnapshotBeforeUpdate
+
+   在 dom 渲染前的快照，可以保存原来的 state，props
+
+4. componentDidMount
+
+   渲染真实 dom 树后调用
+
+5. componentDidUpdate
+
+   更新完成函数
+
+6. componentWillUnmount
+
+   组件卸载，清除定时器
 
 #### diff 算法
 
