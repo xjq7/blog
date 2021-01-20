@@ -10,27 +10,27 @@ title: 前端
 
   ```js
   //string
-  var str = "hello";
+  var str = 'hello'
 
   //number 另外NaN是个特殊的number,表示无法计算的结果
-  var num = 10;
+  var num = 10
   //NaN判断方法
-  isNaN(NaN); //true
+  isNaN(NaN) //true
 
   //boolean
-  var bool1 = true;
-  var bool2 = false;
+  var bool1 = true
+  var bool2 = false
 
   //null
-  var empty = null;
+  var empty = null
 
   //undefined 或者定义了变量未赋值
-  var a = undefined;
+  var a = undefined
 
   //symbol
-  var s1 = Symbol();
-  var s2 = Symbol();
-  s1 === s2; //false
+  var s1 = Symbol()
+  var s2 = Symbol()
+  s1 === s2 //false
   ```
 
 - 引用类型：对象（Object）、数组（Array）、函数（Function）
@@ -38,15 +38,15 @@ title: 前端
   ```js
   //Object
   var obj = {
-    name: "xjq",
-  };
+    name: 'xjq',
+  }
 
   //Array
-  var arr = [1, 2, 3];
+  var arr = [1, 2, 3]
 
   //Function
   function fun() {
-    console.log("fun");
+    console.log('fun')
   }
   ```
 
@@ -105,21 +105,21 @@ title: 前端
   - call,绑定 this 调用 fn，以参数列表接收参数,call 的实现思路:当函数调用 call 的时候,将函数设置为对象的属性,执行函数后删除,执行时函数 this 已经指向 call 方法参数对象
 
   ```js
-  fn.call(this, ...arguments);
+  fn.call(this, ...arguments)
   // 实现call
   Function.prototype.call2 = function (context) {
     // 首先要获取调用call的函数，用this可以获取
-    context.fn = this;
-    const obj = [].shift.call(arguments);
-    obj.fn(...arguments);
-    delete obj.fn;
-  };
+    context.fn = this
+    const obj = [].shift.call(arguments)
+    obj.fn(...arguments)
+    delete obj.fn
+  }
   ```
 
   - apply，绑定 this 调用 fn，以数组形式提供参数
 
   ```js
-  fn.apply(this, arguments);
+  fn.apply(this, arguments)
   ```
 
   - bind
@@ -127,8 +127,8 @@ title: 前端
   创建一个新的函数
 
   ```js
-  var newFn = fn.bind(this, ...arguments);
-  newFn();
+  var newFn = fn.bind(this, ...arguments)
+  newFn()
   ```
 
 ### js 事件循环
@@ -173,20 +173,20 @@ title: 前端
 
 ```js
 function newObject() {
-  var obj = Object.create(null);
+  var obj = Object.create(null)
   //去除参数里的构造函数
-  const Constructor = [].shift.call(arguments);
-  obj.__proto__ = Constructor.prototype;
-  Constructor.apply(obj, arguments);
-  return obj;
+  const Constructor = [].shift.call(arguments)
+  obj.__proto__ = Constructor.prototype
+  Constructor.apply(obj, arguments)
+  return obj
 }
 
 function factory(name, age) {
-  this.name = name;
-  this.age = age;
+  this.name = name
+  this.age = age
 }
 
-var obj = newObject(factory, "xjq", 23);
+var obj = newObject(factory, 'xjq', 23)
 ```
 
 ### 观察者模式
@@ -333,13 +333,13 @@ var obj = newObject(factory, "xjq", 23);
 
 ```js
 function debounce(fn, delay) {
-  let timer;
+  let timer
   return function () {
-    const context = this;
-    const args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(fn.bind(context, ...args), delay);
-  };
+    const context = this
+    const args = arguments
+    clearTimeout(timer)
+    timer = setTimeout(fn.bind(context, ...args), delay)
+  }
 }
 ```
 
@@ -349,18 +349,18 @@ function debounce(fn, delay) {
 
 ```js
 function throttle(fn, time) {
-  let canCall = true;
+  let canCall = true
 
   return function () {
-    if (!canCall) return;
-    canCall = false;
-    const context = this;
-    const args = arguments;
-    fn.bind(this, ...arguments)();
+    if (!canCall) return
+    canCall = false
+    const context = this
+    const args = arguments
+    fn.bind(this, ...arguments)()
     setTimeout(() => {
-      canCall = true;
-    }, time);
-  };
+      canCall = true
+    }, time)
+  }
 }
 ```
 
@@ -395,3 +395,15 @@ function throttle(fn, time) {
 - 使用通用技术与架构
 
 - 构建工具的选择
+
+## web 安全
+
+### XSS(跨站脚本攻击)
+
+页面可解析的数据直接插入在页面中解析导致
+
+#### 存储型 XSS
+
+前端提交的数据未经处理存储到数据库,在读取返回到页面上时引发问题,比如执行 js 代码
+
+#### 反射型 XSS
