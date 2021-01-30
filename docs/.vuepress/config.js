@@ -30,11 +30,6 @@ module.exports = {
         items: [
           { text: "图床", link: "https://img.xjq.icu" },
           {
-            text: "前端知识点",
-            link:
-              "https://www.processon.com/view/link/5f4647640791297ca40fe328",
-          },
-          {
             text: "http协议",
             link:
               "https://www.processon.com/view/link/5f47621df346fb3c83ca1407#map",
@@ -44,7 +39,6 @@ module.exports = {
             link: "https://github.com/SummerJoan3/awesome-study",
           },
           { text: "我的Github", link: "https://github.com/SummerJoan3" },
-          { text: "我的LeetCode", link: "https://leetcode-cn.com/u/xjq_" },
         ],
       },
       {
