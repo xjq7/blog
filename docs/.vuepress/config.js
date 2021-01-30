@@ -35,6 +35,11 @@ module.exports = {
               "https://www.processon.com/view/link/5f47621df346fb3c83ca1407#map",
           },
           {
+            text: "GC垃圾回收算法",
+            link:
+              "https://www.processon.com/view/link/5f92b3c9e401fd06fd9ec0cf",
+          },
+          {
             text: "AwesomeStudy",
             link: "https://github.com/SummerJoan3/awesome-study",
           },
