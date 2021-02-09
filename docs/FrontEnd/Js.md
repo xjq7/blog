@@ -14,16 +14,16 @@ sidebarDepth: 3
   typeof 可以识别简单基本类型值(比如:number,string,boolean),但对于复合类型(Object,Array,Function)却只能识别 Function,
 
   ```js
-  typeof 10; //number
-  typeof ""; //string
-  typeof true; //boolean
-  typeof Array; //object
-  typeof Object; //object
-  typeof function () {}; //function
-  typeof undefined; //undefined
-  typeof {}; // object
-  typeof []; // object
-  typeof null; // object
+  typeof 10 //number
+  typeof '' //string
+  typeof true //boolean
+  typeof Array //object
+  typeof Object //object
+  typeof function () {} //function
+  typeof undefined //undefined
+  typeof {} // object
+  typeof [] // object
+  typeof null // object
   ```
 
 - **instanceof**
@@ -31,11 +31,11 @@ sidebarDepth: 3
   instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性
 
   ```js
-  console.log(Object instanceof Object); //true
-  console.log(Function instanceof Function); //true
-  console.log(Number instanceof Number); //false
-  console.log(String instanceof String); //false
-  console.log(Function instanceof Object); //true
+  console.log(Object instanceof Object) //true
+  console.log(Function instanceof Function) //true
+  console.log(Number instanceof Number) //false
+  console.log(String instanceof String) //false
+  console.log(Function instanceof Object) //true
   ```
 
 ## 作用域
@@ -57,11 +57,11 @@ sidebarDepth: 3
 2. 块级作用域:在 js 中也就是函数作用域,在声明他们的函数体以及这个函数体嵌套的任意函数体内有定义
 
 ```js
-var a = "global";
+var a = 'global'
 function block() {
-  console.log(a); //输出undefined,因为a在函数体内重新定义,在函数体内定义的a取代全局变量a
-  var a = "block"; //变量作用域提升到函数顶层,执行此行语句前为undefined,未赋值
-  console.log(a); //block
+  console.log(a) //输出undefined,因为a在函数体内重新定义,在函数体内定义的a取代全局变量a
+  var a = 'block' //变量作用域提升到函数顶层,执行此行语句前为undefined,未赋值
+  console.log(a) //block
 }
 ```
 
@@ -85,115 +85,9 @@ js 具有自动垃圾回收机制,执行环境负责管理代码执行过程中�
 
 这种回收方式会出现一个问题,那就是循环引用,比如两个对象的属性互相引用,在自己递归实现深拷贝的时候有碰到,需要注意,因此这种回收方式很少用
 
-## 浅拷贝、深拷贝
-
-### 浅拷贝
-
-1. #### 数组的浅拷贝
-
-```js
-//1.
-arr.concat();
-//2.
-arr.slice();
-```
-
-2. #### 实现浅拷贝
-
-```js
-function clone(obj) {
-  if (typeof obj != "object") return obj;
-  var res = obj instanceof Array ? [] : {};
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      res[key] = obj[key];
-    }
-  }
-  return res;
-}
-```
-
-### 深拷贝
-
-**1. 序列化对象实现深拷贝,不能识别函数**
-
-```js
-JSON.parse(JSON.stringfy(obj));
-```
-
-**2. 手动实现,在浅拷贝的基础上递归即可**
-
-```js
-//WeakMap解决对象循环引用问题
-function deepClone(obj, weakMap = new WeakMap()) {
-  if (typeof obj != "object") return obj;
-  var isArray = obj instanceof Array;
-  var res = isArray ? [] : {};
-  if (!isArray) {
-    if (weakMap.get(obj)) return {};
-    weakMap.set(obj, {}.toString.call(obj));
-  }
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      res[key] = deepClone(obj[key], weakMap);
-    }
-  }
-  return res;
-}
-```
-
 ## 排序算法
 
 稳定性:待排序的记录中,存在多个具有相同关键字的记录,经过排序后,这些记录的相对序列保持不变,则称算法是稳定的,否则是不稳定的
-
-### 冒泡排序
-
-- **相邻元素两两比较**
-
-```js
-function bubbleSort(arr){
-  let len = arr.length
-  for(int i=0;i<len-1;i++){
-    for(int j=0;j<len-i;j++){
-      if(arr[j]>arr[j+1]){
-        let temp = arr[j]
-        arr[j]=arr[j+1]
-        arr[j+1]=temp
-      }
-    }
-  }
-  return arr
-}
-```
-
-### 快速排序
-
-```js
-
-```
-
-### 选择排序
-
-- **将每个元素 a 与其对应后面的元素比较,保存最小值的下标,与 a 对换**
-
-```js
-function selectSort(arr) {
-  let len = arr.length;
-  let temp, minIdx;
-  for (let i = 0; i < len - 1; i++) {
-    minIdx = i;
-    for (let j = i + 1; j < len; j++) {
-      if (arr[minIdx] > arr[j]) {
-        minIdx = j;
-      }
-    }
-    temp = arr[minIdx];
-    arr[minIdx] = arr[i];
-    arr[i] = temp;
-  }
-  return arr;
-}
-```
 
 ### 插入排序
 
@@ -201,130 +95,7 @@ function selectSort(arr) {
 最坏情况：T(n) = O(n2)
 平均情况：T(n) = O(n2)
 
-```js
-function insert(arr) {
-  let len = arr.length;
-  let temp;
-  for (let i = 0; i < len - 1; i++) {
-    let preIdx = i;
-    let current = arr[i + 1];
-    while (preIdx >= 0 && current < arr[preIdx]) {
-      arr[preIdx + 1] = arr[preIdx];
-      preIdx--;
-    }
-    arr[preIdx + 1] = current;
-  }
-  return arr;
-}
-```
-
-## 数组去重
-
-### 循环
-
-```js
-//双重循环
-function unique(arr) {
-  let res = [arr[0]];
-  let len = arr.length;
-  for (let i = 1; i < len; i++) {
-    let flag = true;
-    for (let j = 0; j < res.length; j++) {
-      if (arr[i] === res[j]) {
-        flag = false;
-        break;
-      }
-    }
-    if (flag) {
-      res.push(arr[i]);
-    }
-  }
-  return res;
-}
-//利用indexOf
-function unique(arr) {
-  let res = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (res.indexOf(arr[i]) === -1) {
-      res.push(arr[i]);
-    }
-  }
-  return res;
-}
-```
-
-### 对象属性去重
-
-```js
-function unique(arr) {
-  let len = arr.length;
-  let res = [];
-  let obj = {};
-  for (let i = 0; i < len; i++) {
-    if (!obj.hasOwnProperty(arr[i])) {
-      obj[arr[i]] = arr[i];
-    }
-  }
-  return Object.values(arr);
-}
-```
-
 > [Js 的事件循环(Event Loop)机制以及实例讲解](https://segmentfault.com/a/1190000015317434)
-
-## Promise
-
-- 实现
-
-```js
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
-function MyPromise(fn) {
-  let self = this;
-  self.value = null;
-  self.error = null;
-  self.status = PENDING;
-  self.onFulfilled = null;
-  self.onRejected = null;
-  function resolve(value) {
-    if (self.status === PENDING) {
-      setTimeout(() => {
-        this.status = FULFILLED;
-        self.value = value;
-        self.onFulfilled(self.value);
-      });
-    }
-  }
-
-  function reject(error) {
-    if (self.status === PENDING) {
-      setTimeout(() => {
-        console.log(self);
-        this.status = REJECTED;
-        self.error = error;
-        self.onRejected(self.error);
-      });
-    }
-  }
-  fn(resolve, reject);
-}
-
-MyPromise.prototype.then = function (onFulfilled) {
-  console.log(onFulfilled, onRejected);
-  if (this.status === PENDING) {
-    this.onFulfilled = onFulfilled;
-    this.onRejected = onRejected;
-  } else if (this.status === FULFILLED) {
-    onFulfilled(this.value);
-  } else {
-    onRejected(this.error);
-  }
-  return this;
-};
-MyPromise.prototype.catch = function (onRejected) {
-  return this.then(null, onRejected);
-};
-```
 
 > [JavaScript 深入之史上最全--5 种 this 绑定全面解析 #20](https://github.com/yygmind/blog/issues/20)
 
@@ -335,25 +106,25 @@ MyPromise.prototype.catch = function (onRejected) {
 ```js
 function baz() {
   // 当前调用栈是：baz
-  bar(); // <-- bar的调用位置
+  bar() // <-- bar的调用位置
 }
 
 function bar() {
   // 当前调用栈是：baz --> bar
   // 因此，当前调用位置在 baz 中
 
-  console.log("bar");
-  foo(); // <-- foo 的调用位置
+  console.log('bar')
+  foo() // <-- foo 的调用位置
 }
 
 function foo() {
   // 当前调用栈是：baz --> bar --> foo
   // 因此，当前调用位置在 bar 中
 
-  console.log("foo");
+  console.log('foo')
 }
 
-baz(); // <-- baz 的调用位置
+baz() // <-- baz 的调用位置
 ```
 
 **2. 隐式绑定:当函数引用有上下文对象时，隐式绑定规则会把函数中的 this 绑定到这个上下文对象。对象属性引用链中只有上一层或者说最后一层在调用中起作用。**
@@ -361,27 +132,27 @@ baz(); // <-- baz 的调用位置
 ```js
 //在·对象中调用,指向对象,谁调用即指向谁
 function foo() {
-  console.log(this.a);
+  console.log(this.a)
 }
 
 var obj = {
   a: 2,
   foo: foo,
-};
+}
 
-obj.foo(); // 2
+obj.foo() // 2
 ```
 
 **3. 显示绑定:通过 call 或者 apply 方法。**
 
 ```js
 var foo = function () {
-  console.log(this.a); //1
-};
+  console.log(this.a) //1
+}
 var obj = {
   a: 1,
-};
-foo.call(obj);
+}
+foo.call(obj)
 ```
 
 **4. new 绑定**
@@ -401,138 +172,120 @@ foo.call(obj);
 
 ```js
 function eventEmitter() {
-  this.handlers = {};
+  this.handlers = {}
 }
 
 eventEmitter.prototype.on = function (type, handle) {
   if (!this.handlers[type]) {
-    this.handlers[type] = [];
+    this.handlers[type] = []
   }
-  this.handlers[type].push(handle);
-};
+  this.handlers[type].push(handle)
+}
 
 eventEmitter.prototype.emit = function () {
-  var type = Array.prototype.shift.call(arguments);
+  var type = Array.prototype.shift.call(arguments)
   if (!this.handlers[type]) {
-    return;
+    return
   }
   this.handlers[type].forEach((item, index) => {
-    var handler = this.handlers[type][index];
-    handler.apply(this, arguments);
-  });
-};
+    var handler = this.handlers[type][index]
+    handler.apply(this, arguments)
+  })
+}
 
-const _ = new eventEmitter();
+const _ = new eventEmitter()
 
-_.on("test", function ({ a }) {
-  console.log("test" + a);
-});
+_.on('test', function ({ a }) {
+  console.log('test' + a)
+})
 
-_.emit("test", { a: 111 });
+_.emit('test', { a: 111 })
 ```
 
 ## 数组
-
-### 扁平化数组
-
-#### 递归
-
-```js
-function flatten(arr) {
-  let res = [];
-  arr.forEach((item) => {
-    if (Array.isArray(item)) {
-      res = [...res, flatten(item)];
-    } else {
-      res.push(item);
-    }
-  });
-  return res;
-}
-```
 
 ### es3 中的一些方法
 
 **1. join:将数组中的元素转化为字符串连接到一起**
 
 ```js
-var arr = [1, 2, 3];
-arr.join(); //"1,2,3"
-arr.join(""); //"123"
-arr.join(" "); //"1 2 3"
+var arr = [1, 2, 3]
+arr.join() //"1,2,3"
+arr.join('') //"123"
+arr.join(' ') //"1 2 3"
 ```
 
 **2. reverse:将数组中的元素颠倒顺序,返回逆序数组**
 
 ```js
-var arr = [1, 2, 3];
-arr.reverse(); //[3,2,1]
+var arr = [1, 2, 3]
+arr.reverse() //[3,2,1]
 ```
 
 **3. sort:返回排序后的数组**
 
 ```js
-var arr = ["cba", "abc", "bac"];
+var arr = ['cba', 'abc', 'bac']
 //不带参数时按字母表排序
-arr.sort(); //["abc","bac","cba"]
+arr.sort() //["abc","bac","cba"]
 
 //需要按其他方式排序时,需要传入比较方法,根据参数方法返回的值负数、0、正数决定排序顺序
-var arr = [123, 23, 3];
+var arr = [123, 23, 3]
 arr.sort(function (a, b) {
-  return a - b;
-}); //[3,23,123]
+  return a - b
+}) //[3,23,123]
 arr.sort(function (a, b) {
-  return b - a;
-}); //[123,23,1]
+  return b - a
+}) //[123,23,1]
 ```
 
 **4. concat:合并数组,具体使用如下**
 
 ```js
-var arr = [1, 2, 3];
+var arr = [1, 2, 3]
 
 //参数为非数组时
-arr.concat(4, 5); //[1,2,3,4,5]
+arr.concat(4, 5) //[1,2,3,4,5]
 
 //参数为数组时
-arr.concat([4, 5]); //[1,2,3,4,5]
+arr.concat([4, 5]) //[1,2,3,4,5]
 
 //多个参数都为数组时
-arr.concat([4, 5], [6, 7]); //[1,2,3,4,5,6,7]
+arr.concat([4, 5], [6, 7]) //[1,2,3,4,5,6,7]
 
 //多个参数数组与非数组都有时
-arr.concat(4, [5, [6, 7]]); //[1,2,3,4,5,[6,7]],这里不会递归扁平化数组
+arr.concat(4, [5, [6, 7]]) //[1,2,3,4,5,[6,7]],这里不会递归扁平化数组
 ```
 
 **5. slice:数组切片**
 
 ```js
-var arr = [1, 2, 3, 4, 5];
+var arr = [1, 2, 3, 4, 5]
 //两个参数,第一个为起始下标,第二个截止下标,左开右闭
-arr.slice(0, 3); //[1,2,3]
+arr.slice(0, 3) //[1,2,3]
 
 //一个参数,起始下标到数组尾部
-arr.slice(3); //[4,5]
+arr.slice(3) //[4,5]
 
 //
-arr.slice(1, -1); //[2,3,4]
-arr.slice(-3, -2); //[3]
+arr.slice(1, -1) //[2,3,4]
+arr.slice(-3, -2) //[3]
 ```
 
 **6. splice:往数组插入或删除元素,第三种情况多参数时稍微有点复杂**
 
 ```js
 //只有一个参数时,返回从指定数组中删除的元素数组,原来的数组会改变
-var arr = [1, 2, 3, 4, 5];
-arr.splice(3); //[5],arr为[1,2,3,4]
+var arr = [1, 2, 3, 4, 5]
+arr.splice(3) //[5],arr为[1,2,3,4]
 
 //两个参数时
-arr = [1, 2, 3, 4, 5];
-arr.splice(1, 3); //[2,3,4],arr为[1,5]
+arr = [1, 2, 3, 4, 5]
+arr.splice(1, 3) //[2,3,4],arr为[1,5]
 
 //三个参数以上,第一个参数决定删除元素起始下标,第二个决定删除个数,后面的删除是待插入数组,从第一个参数下标开始插入
-arr = [1, 2, 3, 4, 5, 6];
-arr.splice(1, 2, [2, 3], 0); //[2,3],arr为[1,[2,3],0,4,5,6]
+arr = [1, 2, 3, 4, 5, 6]
+arr.splice(1, 2, [2, 3], 0) //[2,3],arr为[1,[2,3],0,4,5,6]
 ```
 
 **7. 首尾插入删除方法:push、pop、shift、unshift**
@@ -540,12 +293,12 @@ arr.splice(1, 2, [2, 3], 0); //[2,3],arr为[1,[2,3],0,4,5,6]
 **8. toString:将每个元素转为字符串、并输出以逗号为分隔符的字符串列表**
 
 ```js
-var arr = [1, 2, 3];
-arr.toString(); //"1,2,3"
+var arr = [1, 2, 3]
+arr.toString() //"1,2,3"
 
 //递归转化
-arr = [1, 2, 4, [4, 5, [6, 7]]];
-arr.toString(); //"1,2,4,4,5,6,7"
+arr = [1, 2, 4, [4, 5, [6, 7]]]
+arr.toString() //"1,2,4,4,5,6,7"
 ```
 
 ### es5 中定义了 9 个新的数组方法来遍历、映射、过滤、检测、简化、检索数组
@@ -555,60 +308,60 @@ arr.toString(); //"1,2,4,4,5,6,7"
 **2. map:将调用的数组的每个元素传给指定的函数,并返回一个新数组,不影响原数组(react 中经常使用)**
 
 ```js
-var arr = [1, 2, 4];
+var arr = [1, 2, 4]
 arr.map(function (x) {
-  return x * x;
-}); //[1,4,16]
+  return x * x
+}) //[1,4,16]
 ```
 
 **3. filter:filter 方法返回的数组元素是调用数组的一个子集,传递的函数用作逻辑判断,返回 true 或 false,true 则代表元素是子集成员**
 
 ```js
-var arr = [1, 2, 3, 4, 5];
+var arr = [1, 2, 3, 4, 5]
 arr.filter(function (x) {
-  return x < 3;
-}); //[1,2]
+  return x < 3
+}) //[1,2]
 ```
 
 **4. every 和 some:数组的逻辑判断,他们对数组元素应用指定的函数进行判断,返回 true 或 false,every 方法针对所有元素,当数组中所有元素调用函数返回 true 时才返回 true,some 只要有一个返回 true,即为 true**
 
 ```js
-var arr = [1, 2, 3, 4];
+var arr = [1, 2, 3, 4]
 arr.every(function (x) {
-  return x > 0;
-}); //true
+  return x > 0
+}) //true
 arr.some(function (x) {
-  return x > 3;
-}); //true
+  return x > 3
+}) //true
 ```
 
 **5. reduce:用指定的函数将数组元素进行组合,生成单个值,他有两个参数,第一个是处理函数,第二个是初始值,不传时默认数组第一个元素**
 
 ```js
-var arr = [1, 2, 3, 4];
+var arr = [1, 2, 3, 4]
 //求和操作
 arr.reduce(function (x, y) {
-  return x + y;
-}, 0); //10
+  return x + y
+}, 0) //10
 
 //求积
 arr.reduce(function (x, y) {
-  return x * y;
-}, 1);
+  return x * y
+}, 1)
 
 //求最大值
 arr.reduce(function (x, y) {
-  return x > y ? x : y;
-});
+  return x > y ? x : y
+})
 ```
 
 **6. indexOf 和 lastIndexOf:搜索数组中具有给定值的元素,有就返回第一个元素索引,没有就返回-1,lastIndexOf 是反向搜索**
 
 ```js
-var arr = [1, 2, 4, 3, 2];
+var arr = [1, 2, 4, 3, 2]
 
-arr.indexOf(2); //1
-arr.indexOf(9); //-1
+arr.indexOf(2) //1
+arr.indexOf(9) //-1
 ```
 
 ## 跨域
@@ -638,3 +391,7 @@ arr.indexOf(9); //-1
 - **navigator:浏览器厂商和版本信息**
 
   这篇用到 navigator 对象,区分手机浏览器,[手机浏览器的识别](http://lxjq.icu/Javascript/Browser-identification.html)
+
+```
+
+```
