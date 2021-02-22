@@ -16,6 +16,37 @@ Promise.prototype.then = function (onFullfilled, onRejected) {
   });
 };
 
+Promise.prototype.resolve = function (value) {
+  if (value === undefined) {
+    return new Promise((resolve) => resolve());
+  }
+  if (value instanceof Promise) {
+    return value;
+  } else if (value instanceof Object && value.then instanceof Function) {
+    let then = value.then;
+    return new Promise((resolve) => {
+      then(resolve);
+    });
+  } else {
+    return new Promise((resolve) => {
+      resolve(value);
+    });
+  }
+};
+
+Promise.prototype.reject = function (value) {
+  if (value instanceof Object && value.then instanceof Function) {
+    let then = value.then;
+    return new Promise((resolve, reject) => {
+      then(reject);
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      reject(value);
+    });
+  }
+};
+
 Promise.prototype.catch = function (onError) {
   return this.then(null, onError);
 };
