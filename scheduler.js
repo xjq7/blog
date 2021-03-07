@@ -1,12 +1,26 @@
 class Scheduler {
   constructor() {
-    this.count = 2
+    this.runQueue = []
     this.queue = []
-    this.run = []
+    this.count = 2
   }
 
-  add(task) {
-    // ...
+  addTask(task) {
+    this.queue.push(task)
+    return this.run()
+  }
+
+  run() {
+    if (this.runQueue.length < this.count && this.queue.length) {
+      const task = this.queue.shift()
+      const promise = task().then(() => {
+        this.runQueue.splice(this.runQueue.indexOf(promise), 1)
+      })
+      this.runQueue.push(promise)
+      return promise
+    } else {
+      return Promise.race(this.runQueue).then(() => this.run())
+    }
   }
 }
 
@@ -16,19 +30,15 @@ const timeout = (time) =>
   })
 
 const scheduler = new Scheduler()
-
 const addTask = (time, order) => {
-  scheduler.add(() => timeout(time)).then(() => console.log(order))
+  scheduler
+    .addTask(() => timeout(time))
+    .then(() => {
+      console.log(order)
+    })
 }
 
-addTask(1000, '1')
-addTask(500, '2')
-addTask(300, '3')
-addTask(400, '4')
-// output: 2 3 1 4
-
-// 一开始，1、2两个任务进入队列
-// 500ms时，2完成，输出2，任务3进队
-// 800ms时，3完成，输出3，任务4进队
-// 1000ms时，1完成，输出1
-// 1200ms时，4完成，输出4
+addTask(10000, '1')
+addTask(5000, '2')
+addTask(3000, '3')
+addTask(4000, '4')
