@@ -41,6 +41,10 @@ module.exports = {
             text: 'AwesomeStudy',
             link: 'https://github.com/SummerJoan3/awesome-study',
           },
+          {
+            text: 'AwesomeStudy',
+            link: 'https://github.com/SummerJoan3/awesome-study',
+          },
           { text: '我的Github', link: 'https://github.com/SummerJoan3' },
         ],
       },
