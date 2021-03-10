@@ -38,7 +38,7 @@ jobs:
           FOLDER: ./docs/.vuepress/dist # 要推送的文件夹，路径相对于代码仓库的根目录
           SERVER_IP: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名（IP或者域名domain.com）
           USERNAME: ${{ secrets.SSH_USER }} # 引用配置，服务器登录名
-          SERVER_DESTINATION: /root/project/blog/ # 部署到目标文件夹
+          SERVER_DESTINATION: /root/project/blog1/ # 部署到目标文件夹
 
       - name: Restart server # 第三步，重启服务
         uses: appleboy/ssh-action@master
