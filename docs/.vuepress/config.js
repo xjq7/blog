@@ -16,15 +16,15 @@ module.exports = {
     activeHeaderLinks: false,
 
     nav: [
-      {
-        text: "blog日常",
-        items: [
-          { text: "前端", link: "/FrontEnd/" },
-          { text: "技术专题", link: "/TechnicalTopics/" },
-          { text: "其他", link: "/Other/" },
-          { text: "读书笔记", link: "/Notes/" },
-        ],
-      },
+      // {
+      //   text: "blog日常",
+      //   items: [
+      //     { text: "前端", link: "/FrontEnd/" },
+      //     { text: "技术专题", link: "/TechnicalTopics/" },
+      //     { text: "其他", link: "/Other/" },
+      //     { text: "读书笔记", link: "/Notes/" },
+      //   ],
+      // },
       {
         text: "个人领地",
         items: [
