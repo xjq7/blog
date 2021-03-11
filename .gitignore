@@ -5,6 +5,6 @@ package-lock.json
 yarn.lock
 
 
-# /docs/.vuepress/dist
+/docs/.vuepress/dist
 
 .DS_Store
