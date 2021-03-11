@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>常用内置函数 | 个人学习经历分享</title>
+    <meta name="description" content="project documentation">
+    <meta name="generator" content="VuePress 1.3.0">
+    <link rel="icon" href="/study.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.9927d980.css" as="style"><link rel="preload" href="/assets/js/app.0e564a1d.js" as="script"><link rel="preload" href="/assets/js/2.e9ce5888.js" as="script"><link rel="preload" href="/assets/js/6.c02ee8cb.js" as="script"><link rel="prefetch" href="/assets/js/10.68b1bf41.js"><link rel="prefetch" href="/assets/js/11.cdc9ba21.js"><link rel="prefetch" href="/assets/js/12.489e9fa1.js"><link rel="prefetch" href="/assets/js/13.62c85013.js"><link rel="prefetch" href="/assets/js/14.55bf01d1.js"><link rel="prefetch" href="/assets/js/15.b8f83717.js"><link rel="prefetch" href="/assets/js/16.2fdc8e61.js"><link rel="prefetch" href="/assets/js/17.24f8e8a2.js"><link rel="prefetch" href="/assets/js/18.25a7f3b0.js"><link rel="prefetch" href="/assets/js/19.7fcf1590.js"><link rel="prefetch" href="/assets/js/20.aa26ccb5.js"><link rel="prefetch" href="/assets/js/21.04ef8e87.js"><link rel="prefetch" href="/assets/js/22.766f7bb7.js"><link rel="prefetch" href="/assets/js/23.4b6062bf.js"><link rel="prefetch" href="/assets/js/24.30d2484a.js"><link rel="prefetch" href="/assets/js/25.ad13dea0.js"><link rel="prefetch" href="/assets/js/26.bcb6a3c5.js"><link rel="prefetch" href="/assets/js/27.277ae829.js"><link rel="prefetch" href="/assets/js/28.ade11267.js"><link rel="prefetch" href="/assets/js/29.fae5077d.js"><link rel="prefetch" href="/assets/js/3.4a4e3c0f.js"><link rel="prefetch" href="/assets/js/30.41feecde.js"><link rel="prefetch" href="/assets/js/31.5fd817c5.js"><link rel="prefetch" href="/assets/js/32.ce56acdf.js"><link rel="prefetch" href="/assets/js/33.98f91629.js"><link rel="prefetch" href="/assets/js/34.bfa4895b.js"><link rel="prefetch" href="/assets/js/35.f9cc99cf.js"><link rel="prefetch" href="/assets/js/36.79fa3d8e.js"><link rel="prefetch" href="/assets/js/37.990e8991.js"><link rel="prefetch" href="/assets/js/38.830ab156.js"><link rel="prefetch" href="/assets/js/39.df99958a.js"><link rel="prefetch" href="/assets/js/4.7c86344c.js"><link rel="prefetch" href="/assets/js/40.10b1bdcb.js"><link rel="prefetch" href="/assets/js/41.fcf6c1a2.js"><link rel="prefetch" href="/assets/js/42.e59ff838.js"><link rel="prefetch" href="/assets/js/43.657d4c16.js"><link rel="prefetch" href="/assets/js/44.d032253c.js"><link rel="prefetch" href="/assets/js/45.b627e2e3.js"><link rel="prefetch" href="/assets/js/46.3f04bd17.js"><link rel="prefetch" href="/assets/js/47.26053783.js"><link rel="prefetch" href="/assets/js/48.82e9f3da.js"><link rel="prefetch" href="/assets/js/49.d7d2c0a5.js"><link rel="prefetch" href="/assets/js/5.68087fd6.js"><link rel="prefetch" href="/assets/js/50.a5910fa6.js"><link rel="prefetch" href="/assets/js/51.fed72572.js"><link rel="prefetch" href="/assets/js/52.9b04c0ff.js"><link rel="prefetch" href="/assets/js/53.113f07fb.js"><link rel="prefetch" href="/assets/js/7.d27a26fa.js"><link rel="prefetch" href="/assets/js/8.aea46bcc.js"><link rel="prefetch" href="/assets/js/9.0de219bc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9927d980.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">个人学习经历分享</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Blog" class="dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/SummerJoan3" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="/FrontEnd/" class="nav-link">
+  FrontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/React-native/" class="nav-link">
+  React-native
+</a></li><li class="dropdown-item"><!----> <a href="/Leetcode/" class="nav-link">
+  Leetcode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Guide" class="dropdown-title"><span class="title">Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Javascript/" class="nav-link">
+  Javascript
+</a></li><li class="dropdown-item"><!----> <a href="/C/" class="nav-link router-link-exact-active router-link-active">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/Git/" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/Hook/" class="nav-link">
+  Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/Other/" class="nav-link">
+  Other
+</a></li><li class="dropdown-item"><!----> <a href="/InterView/" class="nav-link">
+  InterView
+</a></li><li class="dropdown-item"><!----> <a href="/DesignPattern/" class="nav-link">
+  DesignPattern
+</a></li></ul></div></div><div class="nav-item"><a href="/Resume/" class="nav-link">
+  Resume
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="友链" class="dropdown-title"><span class="title">友链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://bin.zmide.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  天真的小窝
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Blog" class="dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/SummerJoan3" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="/FrontEnd/" class="nav-link">
+  FrontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/React-native/" class="nav-link">
+  React-native
+</a></li><li class="dropdown-item"><!----> <a href="/Leetcode/" class="nav-link">
+  Leetcode
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Guide" class="dropdown-title"><span class="title">Guide</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/Javascript/" class="nav-link">
+  Javascript
+</a></li><li class="dropdown-item"><!----> <a href="/C/" class="nav-link router-link-exact-active router-link-active">
+  C
+</a></li><li class="dropdown-item"><!----> <a href="/Git/" class="nav-link">
+  Git
+</a></li><li class="dropdown-item"><!----> <a href="/Hook/" class="nav-link">
+  Hooks
+</a></li><li class="dropdown-item"><!----> <a href="/Linux/" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/Other/" class="nav-link">
+  Other
+</a></li><li class="dropdown-item"><!----> <a href="/InterView/" class="nav-link">
+  InterView
+</a></li><li class="dropdown-item"><!----> <a href="/DesignPattern/" class="nav-link">
+  DesignPattern
+</a></li></ul></div></div><div class="nav-item"><a href="/Resume/" class="nav-link">
+  Resume
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="友链" class="dropdown-title"><span class="title">友链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://bin.zmide.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  天真的小窝
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/C/" class="active sidebar-link">常用内置函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/C/#ctype-h" class="sidebar-link">ctype.h</a></li><li class="sidebar-sub-header"><a href="/C/#math-h" class="sidebar-link">math.h</a></li><li class="sidebar-sub-header"><a href="/C/#随机数" class="sidebar-link">随机数</a></li><li class="sidebar-sub-header"><a href="/C/#字符串处理" class="sidebar-link">字符串处理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/C/#strcpy-将一个字符串内容复制到一个字符串数组中" class="sidebar-link">strcpy:将一个字符串内容复制到一个字符串数组中</a></li><li class="sidebar-sub-header"><a href="/C/#strlen-获取字符数组中字符串长度" class="sidebar-link">strlen:获取字符数组中字符串长度</a></li><li class="sidebar-sub-header"><a href="/C/#strcat-合并两个字符数组" class="sidebar-link">strcat:合并两个字符数组</a></li><li class="sidebar-sub-header"><a href="/C/#atio-字符串转整形" class="sidebar-link">atio:字符串转整形</a></li><li class="sidebar-sub-header"><a href="/C/#strcmp-字符串比较" class="sidebar-link">strcmp:字符串比较</a></li></ul></li></ul></li><li><a href="/C/LinearTable.html" class="sidebar-link">线性表</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="ctype-h"><a href="#ctype-h" class="header-anchor">#</a> ctype.h</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token comment">//判断字母</span>
+<span class="token function">isalpha</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+
+<span class="token comment">//是否是数字、字母</span>
+<span class="token function">isalnum</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+
+<span class="token comment">//判断大写字母</span>
+<span class="token function">isupper</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token comment">//转换</span>
+<span class="token function">toupper</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+
+<span class="token comment">//判断小写字母</span>
+<span class="token function">islower</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token comment">//转换</span>
+<span class="token function">tolower</span><span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span>
+
+<span class="token comment">//判断数字</span>
+<span class="token function">isdigit</span><span class="token punctuation">(</span><span class="token string">'7'</span><span class="token punctuation">)</span>
+
+<span class="token comment">//空格</span>
+<span class="token function">isspace</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="math-h"><a href="#math-h" class="header-anchor">#</a> math.h</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token comment">//double</span>
+<span class="token comment">//向上取整(进一)</span>
+<span class="token function">ceil</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>
+
+<span class="token comment">//向下取整(舍去)</span>
+<span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>
+
+<span class="token comment">//平方根</span>
+<span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>
+
+<span class="token comment">//n次方</span>
+<span class="token keyword">double</span> <span class="token function">pow</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">,</span><span class="token keyword">double</span><span class="token punctuation">)</span>
+
+<span class="token comment">//绝对值</span>
+<span class="token keyword">int</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>
+
+<span class="token comment">//e的x次方</span>
+<span class="token function">exp</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+
+<span class="token comment">//</span>
+<span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token function">log10</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="随机数"><a href="#随机数" class="header-anchor">#</a> 随机数</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token comment">//设置随机数种子</span>
+<span class="token function">srand</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//生成随机数</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//随机数种子相同,生成相同随机数</span>
+<span class="token function">srand</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="字符串处理"><a href="#字符串处理" class="header-anchor">#</a> 字符串处理</h2> <h3 id="strcpy-将一个字符串内容复制到一个字符串数组中"><a href="#strcpy-将一个字符串内容复制到一个字符串数组中" class="header-anchor">#</a> strcpy:将一个字符串内容复制到一个字符串数组中</h3> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token comment">//会覆盖掉c1的内容</span>
+<span class="token keyword">char</span> c1<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;11&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> c2<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;122222&quot;</span><span class="token punctuation">;</span>
+
+<span class="token function">stpcpy</span><span class="token punctuation">(</span>c1<span class="token punctuation">,</span> c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//122222</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="strlen-获取字符数组中字符串长度"><a href="#strlen-获取字符数组中字符串长度" class="header-anchor">#</a> strlen:获取字符数组中字符串长度</h3> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">char</span> c1<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;1234&quot;</span><span class="token punctuation">;</span>
+<span class="token function">strlen</span><span class="token punctuation">(</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//4</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="strcat-合并两个字符数组"><a href="#strcat-合并两个字符数组" class="header-anchor">#</a> strcat:合并两个字符数组</h3> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">char</span> c1<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;1234    null&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> c2<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;222&quot;</span><span class="token punctuation">;</span>
+<span class="token function">strcat</span><span class="token punctuation">(</span>c1<span class="token punctuation">,</span> c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span>c1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//1234    null222</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="atio-字符串转整形"><a href="#atio-字符串转整形" class="header-anchor">#</a> atio:字符串转整形</h3> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">int</span> <span class="token function">atio</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> <span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="strcmp-字符串比较"><a href="#strcmp-字符串比较" class="header-anchor">#</a> strcmp:字符串比较</h3> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">int</span> strcmp <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str1<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str2<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/20/2020, 12:13:44 AM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/C/LinearTable.html">
+        线性表
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><canvas id="vuepress-canvas-ribbon"></canvas><div></div><canvas id="vuepress-canvas-cursor"></canvas><div data-v-288be2bf></div></div></div>
+    <script src="/assets/js/app.0e564a1d.js" defer></script><script src="/assets/js/2.e9ce5888.js" defer></script><script src="/assets/js/6.c02ee8cb.js" defer></script>
+  </body>
+</html>
