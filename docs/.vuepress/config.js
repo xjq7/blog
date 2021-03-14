@@ -85,7 +85,7 @@ module.exports = {
         "FrontEnd",
         "Algorithm",
       ],
-      "/Other/": ["", "Firewall"],
+      "/Other/": ["", "Firewall", "Aoteman"],
     },
   },
   plugins: [
