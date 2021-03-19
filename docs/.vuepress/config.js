@@ -80,7 +80,7 @@ module.exports = {
         'Debug',
       ],
       '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net', 'FrontEnd', 'Algorithm'],
-      '/Other/': ['', 'Firewall'],
+      '/Other/': ['', 'Firewall', 'Aoteman'],
     },
   },
   plugins: [
