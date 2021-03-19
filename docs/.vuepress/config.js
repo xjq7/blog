@@ -39,13 +39,17 @@ module.exports = {
           },
           {
             text: 'AwesomeStudy',
-            link: 'https://github.com/SummerJoan3/awesome-study',
+            link: 'https://github.com/xjq7/awesome-study',
+          },
+          {
+            text: '我的简历',
+            link: 'https://image.xjq.icu/2021/3/20/2021.3.20-%E5%89%8D%E7%AB%AF-%E5%A4%8F%E6%B4%81%E7%90%BC-%E5%8D%97%E5%8D%8E%E5%A4%A7%E5%AD%A6.pdf',
           },
           {
             text: '我的gitbook笔记',
             link: 'https://lebnizjoan.gitbook.io/front-end/',
           },
-          { text: '我的Github', link: 'https://github.com/SummerJoan3' },
+          { text: '我的Github', link: 'https://github.com/xjq7' },
         ],
       },
       {
@@ -124,8 +128,8 @@ module.exports = {
           clientID: 'b58b55371a09c91da91c',
           clientSecret: '57b12a77745432b22d7583347f7b724cb5858975',
           repo: 'bloggitalk',
-          owner: 'SummerJoan3',
-          admin: ['SummerJoan3'],
+          owner: 'xjq7',
+          admin: ['xjq7'],
           language: 'zh-CN',
         },
       },
