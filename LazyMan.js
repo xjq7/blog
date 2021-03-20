@@ -5,9 +5,6 @@ const stepObj = {
   sleep: async function ({ delay }) {
     return sleep(delay)
   },
-  sleepFirst: async function ({ delay }) {
-    return sleep(delay)
-  },
   talk: async function ({ name }) {
     console.log(`I'm ${name}`)
   },
@@ -24,12 +21,6 @@ function LazyManConstructor(name) {
   async function fn() {
     while (this.step.length) {
       const { name, params } = this.step.shift()
-      if (this.step.length) {
-        if (this.step[0].name === 'sleepFirst') {
-          const { name: lateName, params: lateParams } = this.step.shift()
-          await stepObj[lateName](lateParams)
-        }
-      }
       await stepObj[name](params)
     }
   }
@@ -52,7 +43,7 @@ LazyManConstructor.prototype.sleep = function (delay) {
 }
 
 LazyManConstructor.prototype.sleepFirst = function (delay) {
-  this.step.push({ name: 'sleepFirst', params: { delay } })
+  this.step.unshift({ name: 'sleep', params: { delay } })
   return this
 }
 
