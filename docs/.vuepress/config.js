@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   title: 'Geek',
   description: 'face icu coding',
@@ -8,6 +10,33 @@ module.exports = {
   base: '/', // 这是部署到github相关的配置 下面会讲
   markdown: {
     lineNumbers: true, // 代码块显示行号
+  },
+  // webpack配置
+  configureWebpack: () => {
+    const NODE_ENV = process.env.NODE_ENV
+    //判断是否是生产环境
+    if (NODE_ENV === 'production') {
+      return {
+        output: {
+          publicPath: 'https://image.xjq.icu/blog/',
+        },
+        resolve: {
+          //配置路径别名
+          alias: {
+            public: path.resolve(__dirname, './public'),
+          },
+        },
+      }
+    } else {
+      return {
+        resolve: {
+          //配置路径别名
+          alias: {
+            public: path.resolve(__dirname, './public'),
+          },
+        },
+      }
+    }
   },
   themeConfig: {
     lastUpdated: 'Last Updated',
