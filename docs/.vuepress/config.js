@@ -107,6 +107,7 @@ module.exports = {
         'Traversing',
         'Vscode',
         'Debug',
+        'AutoDeploy',
       ],
       '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net', 'FrontEnd', 'Algorithm'],
       '/Other/': ['', 'Firewall', 'Aoteman'],
