@@ -17,6 +17,8 @@
     "vuepress-plugin-ribbon": "^1.0.0"
   },
   "dependencies": {
+    "aliyun-oss-static-deploy": "^1.0.3",
+    "axios": "^0.21.1",
     "vuepress-plugin-awesome-gitalk": "^0.0.4"
   }
 }
