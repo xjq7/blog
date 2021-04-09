@@ -1,14 +1,27 @@
-function repeat(fn, times, wait) {
-  return function (str) {
-    fn(str);
-    times--;
-    if (times > 0) {
-      setTimeout(() => {
-        arguments.callee(str);
-      }, wait);
+function r(code, list) {
+  let arr = [...list]
+  while (arr.length) {
+    const cur = arr.shift()
+    if (cur.code === code) {
+      return cur
     }
-  };
+    if (cur.children && cur.children.length) {
+      arr = arr.concat(cur.children)
+    }
+  }
+  return false
 }
 
-const repeatFn = repeat(console.log, 4, 1000);
-repeatFn("hello");
+const list = [
+  {
+    code: '444',
+    children: [{ code: '222' }],
+  },
+  {
+    code: '222',
+    children: [{ code: '333', children: [{ code: '444' }] }],
+  },
+  { code: '777' },
+]
+const ret = r('444', list)
+console.log(ret)
