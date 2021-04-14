@@ -108,6 +108,7 @@ module.exports = {
         'Vscode',
         'Debug',
         'AutoDeploy',
+        'WindowsTerminal',
       ],
       '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net', 'FrontEnd', 'Algorithm'],
       '/Other/': ['', 'Firewall', 'Aoteman'],
