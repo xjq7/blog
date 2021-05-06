@@ -1,1 +1,0 @@
-netstat -ltnp | grep -w ':10089'
