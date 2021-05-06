@@ -110,7 +110,7 @@ module.exports = {
         'AutoDeploy',
         'WindowsTerminal',
       ],
-      '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net', 'FrontEnd', 'Algorithm'],
+      '/TechnicalTopics/': ['', 'Git', 'DesignPattern', 'Net', 'FrontEnd', 'Algorithm', 'Question', 'Shell'],
       '/Other/': ['', 'Firewall', 'Aoteman'],
     },
   },
