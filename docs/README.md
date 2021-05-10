@@ -2,7 +2,7 @@
 home: true
 heroImage: /study.ico
 actionText: Geek →
-actionLink: /Resume/
+actionLink: /
 features:
   - title: 大道至简
     details: ---
