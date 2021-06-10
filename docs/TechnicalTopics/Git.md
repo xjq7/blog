@@ -141,6 +141,9 @@ git config --global credential.helper store
 git rm -r --cached
 git add .
 git commit -m 'gitignore文件'
+
+# 去除ssl校验
+git config --global http.sslVerify false
 ```
 
 ## Git 报错集锦
