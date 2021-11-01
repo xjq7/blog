@@ -79,6 +79,7 @@ module.exports = {
             link: 'https://lebnizjoan.gitbook.io/front-end/',
           },
           { text: '我的Github', link: 'https://github.com/xjq7' },
+          { text: '我的LeetCode', link: 'https://leetcode-cn.com/u/xjq_/' },
         ],
       },
       {
