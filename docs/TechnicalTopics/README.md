@@ -1,462 +1,157 @@
 ---
-title: 数据结构
-sidebarDepth: 3
+title: Git
+sidebarDepth: 2
 ---
 
-## 栈
+## 参考
 
-```js
-function Stack(arr) {
-  this.arr = arr;
-}
+[阮一峰 git 教程](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
-Stack.prototype.push = function (o) {
-  this.arr.push(o);
-};
+## 常用命令
 
-Stack.prototype.pop = function (o) {
-  this.arr.pop(o);
-};
+- **配置**
 
-Stack.prototype.isEmpty = function (o) {
-  return this.arr.length === 0;
-};
+```
+在当前目录新建Git代码库
+git init
 
-Stack.prototype.top = function (o) {
-  return this.arr[this.arr.lenght - 1];
-};
+新建一个目录，并将其初始化为Git代码库
+git init [project-name]
 
-Stack.prototype.clear = function (o) {
-  this.arr = [];
-};
-Stack.prototype.size = function (o) {
-  return this.arr.length;
-};
+拉一个新项目代码
+git clone [url]
+
+显示当前Git配置
+git config --list
+
+修改git配置用户信息
+git config -g user.name "[name]"
+git config -g user.email "[email]"
 ```
 
-## 队列
+- **文件,代码操作**
 
-```js
-function Queue() {
-  this.arr = [];
-}
+```
+添加指定文件到暂存区
+git add [file1] [file2]...
 
-Queue.prototype.enqueue = function (o) {
-  this.arr.push(o);
-};
+添加目录到暂存区，递归
+git add [dir]
 
-Queue.prototype.dequeue = function (o) {
-  this.arr.shift();
-};
+添加当前所有更改到暂存区
+git add .
 
-Queue.prototype.front = function (o) {
-  return this.arr[0];
-};
+提交暂存区到仓库区
+git commit -m [message]
 
-Queue.prototype.isEmpty = function (o) {
-  return this.arr.length === 0;
-};
+提交暂存区的指定文件到仓库区
+git commit [file1] [file2] ... -m [message]
 
-Queue.prototype.size = function (o) {
-  return this.arr.length;
-};
+提交工作区继上次commit后的变化，到仓库区
+git commit -a
+
+提交时显示所有diff信息
+git commit -v
+
+使用一次新的commit替代上一次提交，如果代码没有任何新变化，则用来改写上一次commit的提交信息
+git commit --amend -m [message]
+
+重做上一次commit，并包括指定文件的新变化
+git commit --amend [file1] [file2] ...
+
+查看历史提交记录
+git log
 ```
 
-## 链表
+- **分支**
 
-单链表
+```Shell
+列出本地分支
+git branch
 
-```js
-function Node(elem) {
-  this.elem = elem;
-  this.next = null;
-}
+列出远程分支
+git branch -r
 
-function LinkedList() {
-  this.node = null;
-  this.next = null;
-  this.head = null;
-  this.length = 0;
-}
+列出本地和远程分支
+git branch -a
 
-LinkedList.prototype.append = function (o) {
-  const node = new Node(o);
+新建分支
+git branch [branch-name]
 
-  if (this.head === null) {
-    this.head = node;
-    this.node = node;
-  } else {
-    this.node.next = node;
-    this.node = node;
-  }
+切换分支
+git checkout [branch-name]
 
-  this.length++;
-};
+合并指定分支到当前分支
+git merge [branch]
 
-LinkedList.prototype.insert = function (position, elem) {
-  const len = this.length();
-  if (position < 0 || position > len) {
-    throw new Error("越界");
-  }
-  if (position === undefined || elem === undefined) {
-    throw new Error("insert调用参数不全");
-  }
-  if (position === len) {
-    this.append(elem);
-    return;
-  }
-  let index = 0;
-  let cur = this.head;
+删除分支
+git branch -d [branch-name]
 
-  while (index < position) {
-    cur = cur.next;
-    index++;
-  }
-  let nextNode = cur.next;
-  let newNode = new Node(elem);
-  newNode.next = nextNode;
-  cur.next = newNode;
+删除远程分支
+git push origin --delete [branch-name]
+git branch -dr [remote/branch]
 
-  this.length++;
-};
-
-LinkedList.prototype.find = function (elem) {
-  let cur = this.head;
-  while (cur) {
-    if (cur.elem === elem) {
-      return cur;
-    }
-    cur = cur.next;
-  }
-  return null;
-};
-
-LinkedList.prototype.findPre = function (elem) {
-  let cur = this.head;
-  while (cur) {
-    if (cur.next && cur.next.elem === elem) {
-      return cur;
-    }
-    cur = cur.next;
-  }
-  return null;
-};
-
-LinkedList.prototype.remove = function (elem) {
-  const preNode = this.findPre(elem);
-  console.log(preNode);
-  if (!preNode) {
-    throw new Error("找不到该元素");
-  }
-  preNode.next = preNode.next.next;
-  this.length--;
-};
-
-LinkedList.prototype.log = function () {
-  let cur = this.head;
-  while (cur) {
-    console.log(cur.elem);
-    cur = cur.next;
-  }
-};
+新建分支并切换至该分支
+git checkout -b [branch]
 ```
 
-### 双向链表
+## 不常用命令
 
-```js
-function Node(elem) {
-  this.elem = elem;
-  this.next = null;
-  this.pre = null;
-}
+```Shell
+关联远程仓库
+git remote add origin
+删除已关联的远程仓库
+git remote rm origin
+首次提交
+git push -u origin master
 
-function LinkedList() {
-  this.node = null;
-  this.head = null;
-  this.length = 0;
-}
+强推，当本地仓库与远程仓库代码不同步时使用可同步本地仓库和远程仓库
+git push -f origin/[分支]
 
-LinkedList.prototype.append = function (elem) {
-  const newNode = new Node(elem);
-  if (this.head) {
-    this.node.next = newNode;
-    newNode.pre = this.node;
-  } else {
-    this.head = newNode;
-  }
-  this.node = newNode;
-};
+远程库中的更新合并到本地库中，–rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。
+git pull --rebase origin master
 
-LinkedList.prototype.find = function (elem) {
-  let cur = this.head;
-  while (cur) {
-    if (cur.elem === elem) {
-      return cur;
-    }
-    cur = cur.next;
-  }
-  return null;
-};
+版本回退
+1.reset:通过reset的方式，把head指针指向之前的某次提交，reset之后，后面的版本就找不到了
+git reset --hard [版本号]
 
-LinkedList.prototype.remove = function (elem) {
-  let findNode = this.find(elem);
-  if (!findNode.pre) {
-    findNode.next.pre = null;
-    this.head = findNode.next;
-  } else if (!findNode.next) {
-    findNode.pre.next = null;
-  } else {
-    let nextNode = findNode.next;
-    findNode.pre.next = nextNode;
-    nextNode.pre = findNode.pre;
-  }
+2.revert:这种方式不会把版本往前回退，而是生成一个新的版本
+git revert -n [版本号]
+git commit - m [message]
+git push
 
-  findNode = null;
-};
+强制覆盖本地代码
+1.git fetch --all
+2.git reset --hard origin/master
+3.git pull
 
-LinkedList.prototype.log = function () {
-  let cur = this.head;
-  while (cur) {
-    console.log(cur);
-    cur = cur.next;
-  }
-};
+撤销commit
+git reset --soft HEAD^
+
+修改目录权限引发全部文件出现更改，可用以下命令忽略文件权限的配置
+git config core.filemode false
+
+保存pull、push时的帐号密码(输入一次密码后便会记住)
+git config --global credential.helper store
+这一步在~/.gitconfig文件尾部添加
+[credential]
+    helper = store
+
+.gitignore文件失效,gitignore只能忽略那些原来没有被 track 的文件，如果某些文件已经被纳入了版本管理中，则修改 .gitignore 是无效的。解决方法是先把本地缓存删除，然后再提交。
+git rm -r --cached
+git add .
+git commit -m 'gitignore文件'
+
+# 去除ssl校验
+git config --global http.sslVerify false
 ```
 
-## 二叉树
+## Git 报错集锦
 
-### 构造
+- **fatal: refusing to merge unrelated histories**
 
-```js
-function Node(elem, left, right) {
-  this.elem = elem;
-  this.left = left || null;
-  this.right = right || null;
-}
+  分支间没有建立关系,pull、push 的时候带上 --allow-unrelated-histories
 
-function BST() {
-  this.root = null;
-}
-```
-
-### 插入
-
-```js
-BST.prototype.insert = function (elem) {
-  const newNode = new Node(elem);
-  if (!this.root) {
-    this.root = newNode;
-  } else {
-    let cur = this.root;
-    let parent;
-    while (true) {
-      parent = cur;
-      if (elem < cur.elem) {
-        cur = cur.left;
-        if (cur === null) {
-          parent.left = newNode;
-          break;
-        }
-      } else {
-        cur = cur.right;
-        if (cur === null) {
-          parent.right = newNode;
-          break;
-        }
-      }
-    }
-  }
-};
-```
-
-### 遍历
-
-递归
-
-```js
-function inOrder(node) {
-  if (node !== null) {
-    inOrder(node.left);
-    console.log(node.elem);
-    inOrder(node.right);
-  }
-}
-
-function preOrder(node) {
-  if (node !== null) {
-    console.log(node.elem);
-    preOrder(node.left);
-    preOrder(node.right);
-  }
-}
-
-function postOrder(node) {
-  if (node !== null) {
-    postOrder(node.left);
-    postOrder(node.right);
-    console.log(node.elem);
-  }
-}
-```
-
-### 查找
-
-```js
-BST.prototype.find = function (elem) {
-  let cur = this.root;
-  while (cur !== null && cur.elem !== elem) {
-    if (cur.elem > elem) {
-      cur = cur.left;
-    } else {
-      cur = cur.right;
-    }
-  }
-  return cur;
-};
-```
-
-## 图
-
-### 无向图
-
-```js
-function Vertex(label) {
-  this.label = label;
-}
-
-function Graph(v) {
-  this.vertices = v;
-  this.edges = 0;
-  this.adj = [];
-  for (var i = 0; i < this.vertices; ++i) {
-    this.adj[i] = [];
-  }
-}
-
-Graph.prototype.addEdge = function (v, w) {
-  const vVertex = new Vertex(v);
-  const wVertex = new Vertex(w);
-  this.adj[v].push(wVertex);
-  this.adj[w].push(vVertex);
-  this.edges++;
-};
-
-Graph.prototype.show = function () {
-  let log = "";
-  for (var i = 0; i < this.vertices; ++i) {
-    log = `${i} -> `;
-    for (var j = 0; j < this.vertices; ++j) {
-      const item = this.adj[i][j];
-      if (item !== undefined) {
-        log = log.concat(`${item.label}, `);
-      }
-    }
-    console.log(log);
-  }
-};
-```
-
-### 搜索图
-
-#### 深度优先搜索
-
-```js
-function Graph(v) {
-  this.vertices = v;
-  this.edges = 0;
-  this.marked = [];
-
-  this.adj = [];
-  for (var i = 0; i < this.vertices; ++i) {
-    this.adj[i] = [];
-    this.marked[i] = false;
-  }
-}
-
-Graph.prototype.addEdge = function (v, w) {
-  this.adj[v].push(w);
-  this.adj[w].push(v);
-  this.edges++;
-};
-
-Graph.prototype.show = function () {
-  let log = "";
-  for (var i = 0; i < this.vertices; ++i) {
-    log = `${i} -> `;
-    for (var j = 0; j < this.vertices; ++j) {
-      const item = this.adj[i][j];
-      if (item !== undefined) {
-        log = log.concat(`${item}, `);
-      }
-    }
-    console.log(log);
-  }
-};
-
-Graph.prototype.dfs = function (v = 0) {
-  this._dfs(v);
-};
-Graph.prototype._dfs = function (v) {
-  this.marked[v] = true;
-  console.log(v);
-  this.adj[v].forEach((w) => {
-    if (!this.marked[w]) {
-      this._dfs(w);
-    }
-  });
-};
-```
-
-#### 广度优先搜索
-
-```js
-Graph.prototype.bfs = function (v) {
-  const queue = [];
-  queue.push(v);
-  this.marked[v] = true;
-  while (queue.length > 0) {
-    let log = "";
-    let curV = queue.shift();
-    log = log.concat(`${curV} `);
-    console.log(curV);
-
-    this.adj[curV].forEach((w) => {
-      if (!this.marked[w]) {
-        this.marked[w] = true;
-        queue.push(w);
-      }
-    });
-  }
-};
-```
-
-### BFS 寻找最短路径
-
-d 记录距离，pred 记录前溯点
-
-```js
-Graph.prototype.bfs = function (v) {
-  const queue = [];
-  const d = [];
-  const pred = [];
-
-  for (let i = 0; i < this.vertices; i++) {
-    d[i] = 0;
-    pred[i] = null;
-  }
-  queue.push(v);
-  this.marked[v] = true;
-  while (queue.length > 0) {
-    let curV = queue.shift();
-    this.adj[curV].forEach((w) => {
-      if (!this.marked[w]) {
-        d[w] = d[curV] + 1;
-        pred[w] = curV;
-        this.marked[w] = true;
-        queue.push(w);
-      }
-    });
-  }
-  return { d, pred };
-};
-```
+  ```js
+  git pull --allow-unrelated-histories
+  ```

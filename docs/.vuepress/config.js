@@ -113,7 +113,6 @@ module.exports = {
       ],
       '/TechnicalTopics/': [
         '',
-        'Git',
         'DesignPattern',
         'Net',
         'FrontEnd',
