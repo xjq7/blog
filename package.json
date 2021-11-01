@@ -10,15 +10,17 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-cursor-effects": "^0.0.4",
-    "vuepress-plugin-dynamic-title": "^0.0.5",
-    "vuepress-plugin-reading-time": "^0.1.1",
-    "vuepress-plugin-ribbon": "^1.0.0"
-  },
-  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
     "aliyun-oss-static-deploy": "^1.0.3",
     "axios": "^0.21.1",
-    "vuepress-plugin-awesome-gitalk": "^0.0.4"
-  }
+    "prettier": "2.4.1",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-awesome-gitalk": "^0.0.4",
+    "vuepress-plugin-cursor-effects": "^0.0.4",
+    "vuepress-plugin-dynamic-title": "^0.0.5",
+    "vuepress-plugin-helper-live2d": "^1.0.2",
+    "vuepress-plugin-reading-progress": "^1.0.10",
+    "vuepress-plugin-ribbon": "^1.0.4"
+  },
+  "dependencies": {}
 }
