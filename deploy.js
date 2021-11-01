@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 const Axios = require('axios')
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
 const instance = Axios.create({
   baseURL: 'https://api.xjq.icu/api',
   timeout: 10000,
