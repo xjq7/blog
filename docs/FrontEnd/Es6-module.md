@@ -2,8 +2,6 @@
 title: es6模块化
 ---
 
-> This post have {{$page.readingTime.word}}
-
 ## 模块化的必要性
 
 - 解决命名冲突，防止全局变量的污染，全局作用域更加干净，而不是到处都有命名冲突之类的问题
