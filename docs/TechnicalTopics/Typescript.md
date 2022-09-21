@@ -49,11 +49,7 @@ type Push<T extends unknown[], U> = [...T, U]
 ### Includes
 
 ```ts
-type Includes<T extends unknown[], U> = T extends [infer P, ...infer K]
-  ? Equal<P, U> extends true
-    ? true
-    : Includes<K, U>
-  : false
+type Includes<T extends unknown[], U> = T extends [infer P, ...infer K] ? (Equal<P, U> extends true ? true : Includes<K, U>) : false
 ```
 
 ### Equal
@@ -80,4 +76,20 @@ type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer
 type MyReadonly2<T, K extends keyof T = keyof T> = { readonly [R in keyof T]: T[R] } & {
   [R in Exclude<keyof T, K>]: T[R]
 }
+```
+
+### DeepReadonly
+
+```ts
+type DeepReadonly<T> = T extends Object
+  ? {
+      readonly [R in keyof T]: T[R] extends Object ? (T[R] extends Function ? T[R] : DeepReadonly<T[R]>) : Readonly<T[R]>
+    }
+  : never
+```
+
+### TupleToUnion
+
+```ts
+type TupleToUnion<T extends unknown[]> = T[number]
 ```
