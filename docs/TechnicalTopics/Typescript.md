@@ -93,3 +93,23 @@ type Chainable<T = {}> = {
   get: () => T
 }
 ```
+
+### DeepReadonly
+
+```ts
+type DeepReadonly<T> = T extends Object
+  ? {
+      readonly [R in keyof T]: T[R] extends Object
+        ? T[R] extends Function
+          ? T[R]
+          : DeepReadonly<T[R]>
+        : Readonly<T[R]>
+    }
+  : never
+```
+
+### TupleToUnion
+
+```ts
+type TupleToUnion<T extends unknown[]> = T[number]
+```
