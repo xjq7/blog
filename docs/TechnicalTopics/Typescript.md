@@ -113,3 +113,99 @@ type DeepReadonly<T> = T extends Object
 ```ts
 type TupleToUnion<T extends unknown[]> = T[number]
 ```
+
+### Last
+
+```ts
+type Last<T extends unknown[]> = T extends [...unknown[], infer R] ? R : T[0]
+```
+
+### PromiseAll
+
+```ts
+declare function PromiseAll<T extends unknown[]>(
+  values: readonly [...T]
+): Promise<{ [R in keyof T]: T[R] extends Promise<infer P> ? Awaited<P> : T[R] }>
+```
+
+### Lookup
+
+```ts
+type Lookup<U, T extends string> = U extends { type: T } ? U : never
+```
+
+### Capitalize
+
+```ts
+type MyCapitalize<S extends string> = S extends `${infer P}${infer R}` ? `${Uppercase<P>}${R}` : S
+```
+
+###
+
+```ts
+// 1 ways
+type UpperLetter =
+  | 'A'
+  | 'B'
+  | 'C'
+  | 'D'
+  | 'E'
+  | 'F'
+  | 'G'
+  | 'H'
+  | 'I'
+  | 'J'
+  | 'K'
+  | 'L'
+  | 'M'
+  | 'N'
+  | 'O'
+  | 'P'
+  | 'Q'
+  | 'R'
+  | 'S'
+  | 'T'
+  | 'U'
+  | 'V'
+  | 'W'
+  | 'X'
+  | 'Y'
+  | 'Z'
+
+type KebabCase<S extends string, U = S> = S extends `${infer R}${infer P}`
+  ? R extends UpperLetter
+    ? U extends `${infer _}${infer US}`
+      ? P extends US
+        ? `${Lowercase<R>}${KebabCase<P, S>}`
+        : `-${Lowercase<R>}${KebabCase<P, S>}`
+      : S
+    : `${R}${KebabCase<P, S>}`
+  : S
+
+// 2 ways
+type KebabCase<S extends string> = S extends `${infer R}${infer P}`
+  ? P extends Uncapitalize<P>
+    ? `${Lowercase<R>}${KebabCase<P>}`
+    : `${Lowercase<R>}-${KebabCase<P>}`
+  : S
+```
+
+### AnyOf
+
+```ts
+// 1 way
+type AnyOf<T extends unknown[]> = T extends [infer R, ...infer P]
+  ? R extends [] | '' | false | 0 | Record<string, never>
+    ? AnyOf<P>
+    : true
+  : false
+
+// 2 way
+type AnyOf<T extends any[]> = T[number] extends 0 | '' | false | [] | { [key: string]: never } ? false : true
+```
+
+### IsNever
+
+```ts
+type IsNever<T> = [T] extends [never] ? true : false
+```
