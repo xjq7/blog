@@ -209,3 +209,45 @@ type AnyOf<T extends any[]> = T[number] extends 0 | '' | false | [] | { [key: st
 ```ts
 type IsNever<T> = [T] extends [never] ? true : false
 ```
+
+### Replace
+
+```ts
+type Replace<S extends string, From extends string, To extends string> = From extends ''
+  ? S
+  : S extends `${infer R}${From}${infer P}`
+  ? `${R}${To}${P}`
+  : S
+```
+
+### ReplaceAll
+
+```ts
+type ReplaceAll<S extends string, From extends string, To extends string> = From extends ''
+  ? S
+  : S extends `${infer R}${From}${infer P}`
+  ? `${ReplaceAll<R, From, To>}${To}${ReplaceAll<P, From, To>}`
+  : S
+```
+
+### Parameters
+
+```ts
+type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer R) => any ? R : never
+```
+
+### Flatten
+
+```ts
+type Flatten<T extends unknown[]> = T extends [infer R, ...infer P]
+  ? R extends unknown[]
+    ? [...Flatten<R>, ...Flatten<P>]
+    : [R, ...Flatten<P>]
+  : []
+```
+
+### Absolute
+
+```ts
+type Absolute<T extends number | string | bigint> = `${T}` extends `-${infer R}` ? R : `${T}`
+```
