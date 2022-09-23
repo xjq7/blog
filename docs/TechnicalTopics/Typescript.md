@@ -251,3 +251,17 @@ type Flatten<T extends unknown[]> = T extends [infer R, ...infer P]
 ```ts
 type Absolute<T extends number | string | bigint> = `${T}` extends `-${infer R}` ? R : `${T}`
 ```
+
+### IsUnion
+
+```ts
+type IsUnion<T, P = T> = [T] extends [never] ? false : T extends P ? ([P] extends [T] ? false : true) : false
+```
+
+### ReplaceKeys
+
+```ts
+type ReplaceKeys<U, T, Y> = U extends U
+  ? { [R in keyof U]: R extends T ? (R extends keyof Y ? Y[R] : never) : U[R] }
+  : never
+```
