@@ -6,6 +6,10 @@
 
   - [去除重复字母](./Algorithm.html#去除重复字母)
 
+- [动态规划](./Algorithm.html#动态规划)
+
+  - [组合总和\_Ⅳ](./Algorithm.html#组合总和_Ⅳ)
+
 ## 最长连续序列
 
 - 用例 1:
@@ -118,6 +122,61 @@ public:
             c[ch-'a']--;
         }
         return stack;
+    }
+};
+```
+
+## 动态规划
+
+### 组合总和\_Ⅳ
+
+给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。
+
+```
+示例 1：
+
+输入：nums = [1,2,3], target = 4
+输出：7
+解释：
+所有可能的组合为：
+(1, 1, 1, 1)
+(1, 1, 2)
+(1, 2, 1)
+(1, 3)
+(2, 1, 1)
+(2, 2)
+(3, 1)
+请注意，顺序不同的序列被视作不同的组合。
+示例 2：
+
+输入：nums = [9], target = 3
+输出：0
+```
+
+#### 解法一
+
+从上往下看 [1,2,3] 中，target 为 4 的组合
+
+应该为 dp[4-1] + dp[4-2] + dp[4-3]
+
+target 为 3 的组合, 为 dp[3-1] + dp[3-2] + dp[3-3]
+
+```cpp
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        int n=nums.size();
+        vector<double> dp(target+1,0);
+        dp[0]=1;
+        sort(nums.begin(),nums.end());
+
+        for(int i=1;i<=target;i++){
+            for(int j=0;j<n;j++){
+                if(nums[j]>i)break;
+                dp[i]+=dp[i-nums[j]];
+            }
+        }
+        return dp[target];
     }
 };
 ```
