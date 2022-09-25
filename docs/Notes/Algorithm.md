@@ -2,6 +2,10 @@
 
   - [最长连续子序列](./Algorithm.html#最长连续序列)
 
+- [单调栈](./Algorithm.html#单调栈)
+
+  - [去除重复字母](./Algorithm.html#去除重复字母)
+
 ## 最长连续序列
 
 - 用例 1:
@@ -58,4 +62,62 @@ func max(a,b int)int{
     }
     return b
 }
+```
+
+## 单调栈
+
+### 去除重复字母
+
+给你一个字符串 s ，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证 返回结果的字典序最小（要求不能打乱其他字符的相对位置）
+
+```
+示例 1：
+
+输入：s = "bcabc"
+输出："abc"
+
+示例 2：
+
+输入：s = "cbacdcbc"
+输出："acdb"
+```
+
+```cpp
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        // 字符是否存在栈中
+        int vis[26] = {0};
+        // 未遍历的字符数量
+        int c[26] = {0};
+
+        for (char ch:s){
+            c[ch-'a']++;
+        }
+
+        string stack;
+        for(char ch:s){
+            // 栈里不存在当前字符时
+            if(!vis[ch-'a']){
+                // 栈顶字符大于当前字符时，需要保持单调栈
+                while(!stack.empty() && stack.back() > ch){
+                    // 栈顶字符在后面不会在出现时，不能将它出栈
+                    if(c[stack.back()-'a']>0){
+                        vis[stack.back()-'a']=0;
+                        stack.pop_back();
+                    }else{
+                        // 直接终止，栈顶字符不能出栈，无需继续处理
+                        break;
+                    }
+                }
+                // 进栈当前字符，并标识当前字符存在栈中
+                vis[ch-'a']=1;
+                stack.push_back(ch);
+            }
+            // 字符数量减1,c 存储的是当前未遍历的字符串中每个字符的数量
+            c[ch-'a']--;
+        }
+        return stack;
+    }
+};
 ```
