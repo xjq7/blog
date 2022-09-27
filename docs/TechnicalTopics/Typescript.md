@@ -265,3 +265,47 @@ type ReplaceKeys<U, T, Y> = U extends U
   ? { [R in keyof U]: R extends T ? (R extends keyof Y ? Y[R] : never) : U[R] }
   : never
 ```
+
+### PickByType
+
+```ts
+type PickByType<T, U> = { [R in keyof T as T[R] extends U ? R : never]: T[R] }
+```
+
+### OmitByType
+
+```ts
+type OmitByType<T, U> = { [R in keyof T as T[R] extends U ? never : R]: T[R] }
+```
+
+### StartsWith
+
+```ts
+type StartsWith<T extends string, U extends string> = T extends `${U}${infer _}` ? true : false
+```
+
+### EndsWith
+
+```ts
+type EndsWith<T extends string, U extends string> = T extends `${infer _}${U}` ? true : false
+```
+
+### PartialByKeys
+
+```ts
+type Merge<T> = {
+  [Key in keyof T]: T[Key]
+}
+type PartialByKeys<T, K = keyof T> = Merge<
+  { [R in keyof T as R extends K ? never : R]: T[R] } & { [R in keyof T as R extends K ? R : never]?: T[R] }
+>
+```
+
+### RequiredByKeys
+
+```ts
+type Merge<T> = { [R in keyof T]: T[R] }
+type RequiredByKeys<T, K = keyof T> = Merge<
+  { [R in keyof T as R extends K ? never : R]: T[R] } & { [R in keyof T as R extends K ? R : never]-?: T[R] }
+>
+```
