@@ -10,6 +10,10 @@
 
   - [组合总和\_Ⅳ](./Algorithm.html#组合总和_Ⅳ)
 
+- [堆](./Algorithm.html#堆)
+
+  - [第*k*个数](./Algorithm.html#第_k_个数)
+
 ## 最长连续序列
 
 - 用例 1:
@@ -177,6 +181,78 @@ public:
             }
         }
         return dp[target];
+    }
+};
+```
+
+## 堆
+
+### 第 k 个数
+
+有些数的素因子只有 3，5，7，请设计一个算法找出第 k 个数。注意，不是必须有这些素因子，而是必须不包含其他的素因子。例如，前几个数按顺序应该是 1，3，5，7，9，15，21。
+
+```
+示例 1:
+
+输入: k = 5
+
+输出: 9
+```
+
+#### 解法一
+
+堆，题目实际是合并有序链表，可以做个小顶堆，取堆中第 k 个数
+
+```cpp
+class Solution {
+public:
+    int getKthMagicNumber(int k) {
+        if(k==1)return 1;
+        priority_queue<long,vector<long>,greater<long>> q;
+        unordered_set<long> s;
+        int num[3] = {3,5,7};
+        q.push(1);
+        s.insert(1);
+        long res = 1;
+        while(k--){
+            int top = q.top();
+            res=top;
+            q.pop();
+            for(int i=0;i<3;i++){
+                long n = (long)top*num[i];
+                if(!s.count(n)){
+                    s.insert(n);
+                    q.push(n);
+                }
+            }
+        }
+
+        return res;
+    }
+};
+```
+
+#### 解法二
+
+合并有序链表
+
+```cpp
+class Solution {
+public:
+    int getKthMagicNumber(int k) {
+        vector<int> li(k+1,0);
+        int i=0;
+        int j=0;
+        int l=0;
+        li[0]=1;
+
+        for(int p=1;p<k;p++){
+            li[p] = min(min(li[i]*3,li[j]*5),li[l]*7);
+            if(li[p]==li[i]*3)i++;
+            if(li[p]==li[j]*5)j++;
+            if(li[p]==li[l]*7)l++;
+        }
+        return li[k-1];
     }
 };
 ```
