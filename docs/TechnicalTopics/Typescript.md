@@ -321,3 +321,13 @@ type Shift<T> = T extends [infer _, ...infer R] ? R : never
 ```ts
 type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
 ```
+
+### TupleToNestedObject
+
+```ts
+type TupleToNestedObject<T, U> = T extends [infer R, ...infer Rest]
+  ? R extends string
+    ? { [K in R]: TupleToNestedObject<Rest, U> }
+    : U
+  : U
+```
