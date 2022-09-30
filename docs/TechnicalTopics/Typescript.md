@@ -309,3 +309,15 @@ type RequiredByKeys<T, K = keyof T> = Merge<
   { [R in keyof T as R extends K ? never : R]: T[R] } & { [R in keyof T as R extends K ? R : never]-?: T[R] }
 >
 ```
+
+### Shift
+
+```ts
+type Shift<T> = T extends [infer _, ...infer R] ? R : never
+```
+
+### Reverse
+
+```ts
+type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
+```
