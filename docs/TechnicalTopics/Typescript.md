@@ -331,3 +331,20 @@ type TupleToNestedObject<T, U> = T extends [infer R, ...infer Rest]
     : U
   : U
 ```
+
+### FlipArguments
+
+```ts
+type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
+type FlipArguments<T extends (...args: any) => any> = T extends (...args: infer R) => infer P
+  ? (...args: Reverse<R>) => P
+  : never
+```
+
+### Flip
+
+```ts
+type Flip<T extends Record<string | number | symbol, any>> = {
+  [R in keyof T as T[R] extends boolean ? `${T[R]}` : R extends string | number | symbol ? T[R] : never]: R
+}
+```
