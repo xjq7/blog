@@ -309,3 +309,53 @@ type RequiredByKeys<T, K = keyof T> = Merge<
   { [R in keyof T as R extends K ? never : R]: T[R] } & { [R in keyof T as R extends K ? R : never]-?: T[R] }
 >
 ```
+
+### IndexOf
+
+```ts
+type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
+  ? Equal<U, P> extends true
+    ? Res['length']
+    : IndexOf<R, U, [...Res, P]>
+  : -1
+```
+
+### LastIndexOf
+
+```ts
+type LastIndexOf<T extends unknown[], U> = T extends [...infer R, infer P]
+  ? Equal<P, U> extends true
+    ? R['length']
+    : LastIndexOf<R, U>
+  : -1
+```
+
+### Unique
+
+```ts
+type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
+  ? Equal<U, P> extends true
+    ? Res['length']
+    : IndexOf<R, U, [...Res, P]>
+  : -1
+
+type Unique<T, Res extends unknown[] = []> = T extends [infer P, ...infer R]
+  ? IndexOf<Res, P> extends -1
+    ? Unique<R, [...Res, P]>
+    : Unique<R, Res>
+  : Res
+```
+
+### MapTypes
+
+```ts
+type Include<T, U> = T extends { mapFrom: any; mapTo: any }
+  ? Equal<T['mapFrom'], U> extends true
+    ? T['mapTo']
+    : never
+  : never
+
+type MapTypes<T, R extends { mapFrom: any; mapTo: any } | { mapFrom: any; mapTo: any }> = {
+  [P in keyof T]: Include<R, T[P]> extends never ? T[P] : Include<R, T[P]>
+}
+```
