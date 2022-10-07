@@ -348,7 +348,7 @@ type Unique<T, Res extends unknown[] = []> = T extends [infer P, ...infer R]
 
 ### MapTypes
 
-```ts
+````ts
 type Include<T, U> = T extends { mapFrom: any; mapTo: any }
   ? Equal<T['mapFrom'], U> extends true
     ? T['mapTo']
@@ -357,5 +357,41 @@ type Include<T, U> = T extends { mapFrom: any; mapTo: any }
 
 type MapTypes<T, R extends { mapFrom: any; mapTo: any } | { mapFrom: any; mapTo: any }> = {
   [P in keyof T]: Include<R, T[P]> extends never ? T[P] : Include<R, T[P]>
+### Shift
+
+```ts
+type Shift<T> = T extends [infer _, ...infer R] ? R : never
+````
+
+### Reverse
+
+```ts
+type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
+```
+
+### TupleToNestedObject
+
+```ts
+type TupleToNestedObject<T, U> = T extends [infer R, ...infer Rest]
+  ? R extends string
+    ? { [K in R]: TupleToNestedObject<Rest, U> }
+    : U
+  : U
+```
+
+### FlipArguments
+
+```ts
+type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
+type FlipArguments<T extends (...args: any) => any> = T extends (...args: infer R) => infer P
+  ? (...args: Reverse<R>) => P
+  : never
+```
+
+### Flip
+
+```ts
+type Flip<T extends Record<string | number | symbol, any>> = {
+  [R in keyof T as T[R] extends boolean ? `${T[R]}` : R extends string | number | symbol ? T[R] : never]: R
 }
 ```
