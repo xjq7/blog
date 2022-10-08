@@ -444,3 +444,15 @@ type Fibonacci<
   U2 extends unknown[] = [0]
 > = U['length'] extends T ? U1['length'] : Fibonacci<T, [...U, 0], U2, [...U1, ...U2]>
 ```
+
+### Chunk
+
+```ts
+type Chunk<T, U, K extends unknown[] = []> = K['length'] extends U
+  ? [K, ...Chunk<T, U, []>]
+  : T extends [infer P, ...infer R]
+  ? Chunk<R, U, [...K, P]>
+  : K['length'] extends 0
+  ? []
+  : [K]
+```
