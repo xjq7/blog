@@ -348,7 +348,7 @@ type Unique<T, Res extends unknown[] = []> = T extends [infer P, ...infer R]
 
 ### MapTypes
 
-````ts
+```ts
 type Include<T, U> = T extends { mapFrom: any; mapTo: any }
   ? Equal<T['mapFrom'], U> extends true
     ? T['mapTo']
@@ -357,11 +357,14 @@ type Include<T, U> = T extends { mapFrom: any; mapTo: any }
 
 type MapTypes<T, R extends { mapFrom: any; mapTo: any } | { mapFrom: any; mapTo: any }> = {
   [P in keyof T]: Include<R, T[P]> extends never ? T[P] : Include<R, T[P]>
+
+```
+
 ### Shift
 
 ```ts
 type Shift<T> = T extends [infer _, ...infer R] ? R : never
-````
+```
 
 ### Reverse
 
@@ -400,4 +403,62 @@ type Flip<T extends Record<string | number | symbol, any>> = {
 
 ```ts
 type Subsequence<T extends any[]> = T extends [infer P, ...infer R] ? [...Subsequence<R>] | [P, ...Subsequence<R>] : []
+```
+
+### Without
+
+```ts
+// 1 way
+type TupleToUnion<T> = T extends unknown[] ? T[number] : T
+type Without<T, U, K = TupleToUnion<U>> = T extends [infer P, ...infer R]
+  ? P extends K
+    ? Without<R, U>
+    : [P, ...Without<R, U>]
+  : []
+
+// 2 way
+type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
+  ? Equal<U, P> extends true
+    ? Res['length']
+    : IndexOf<R, U, [...Res, P]>
+  : -1
+type Exist<T, U> = T extends unknown[] ? (IndexOf<T, U> extends -1 ? false : true) : Equal<T, U>
+type Without<T, U> = T extends [infer P, ...infer R]
+  ? Exist<U, P> extends false
+    ? [P, ...Without<R, U>]
+    : Without<R, U>
+  : []
+```
+
+### Zip
+
+```ts
+type Zip<T, U> = T extends [infer P, ...infer R]
+  ? U extends [infer K, ...infer KR]
+    ? [[P, K], ...Zip<R, KR>]
+    : []
+  : []
+```
+
+### Fibonacci
+
+```ts
+type Fibonacci<
+  T extends number,
+  U extends unknown[] = [0],
+  U1 extends unknown[] = [0],
+  U2 extends unknown[] = [0]
+> = U['length'] extends T ? U1['length'] : Fibonacci<T, [...U, 0], U2, [...U1, ...U2]>
+```
+
+### Chunk
+
+```ts
+type Chunk<T, U, K extends unknown[] = []> = K['length'] extends U
+  ? [K, ...Chunk<T, U, []>]
+  : T extends [infer P, ...infer R]
+  ? Chunk<R, U, [...K, P]>
+  : K['length'] extends 0
+  ? []
+  : [K]
 ```
