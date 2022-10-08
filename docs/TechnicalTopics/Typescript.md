@@ -395,3 +395,9 @@ type Flip<T extends Record<string | number | symbol, any>> = {
   [R in keyof T as T[R] extends boolean ? `${T[R]}` : R extends string | number | symbol ? T[R] : never]: R
 }
 ```
+
+### Subsequence
+
+```ts
+type Subsequence<T extends any[]> = T extends [infer P, ...infer R] ? [...Subsequence<R>] | [P, ...Subsequence<R>] : []
+```
