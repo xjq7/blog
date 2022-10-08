@@ -348,7 +348,7 @@ type Unique<T, Res extends unknown[] = []> = T extends [infer P, ...infer R]
 
 ### MapTypes
 
-````ts
+```ts
 type Include<T, U> = T extends { mapFrom: any; mapTo: any }
   ? Equal<T['mapFrom'], U> extends true
     ? T['mapTo']
@@ -357,11 +357,14 @@ type Include<T, U> = T extends { mapFrom: any; mapTo: any }
 
 type MapTypes<T, R extends { mapFrom: any; mapTo: any } | { mapFrom: any; mapTo: any }> = {
   [P in keyof T]: Include<R, T[P]> extends never ? T[P] : Include<R, T[P]>
+
+```
+
 ### Shift
 
 ```ts
 type Shift<T> = T extends [infer _, ...infer R] ? R : never
-````
+```
 
 ### Reverse
 
@@ -394,4 +397,39 @@ type FlipArguments<T extends (...args: any) => any> = T extends (...args: infer 
 type Flip<T extends Record<string | number | symbol, any>> = {
   [R in keyof T as T[R] extends boolean ? `${T[R]}` : R extends string | number | symbol ? T[R] : never]: R
 }
+```
+
+### Without
+
+```ts
+// 1 way
+type TupleToUnion<T> = T extends unknown[] ? T[number] : T
+type Without<T, U, K = TupleToUnion<U>> = T extends [infer P, ...infer R]
+  ? P extends K
+    ? Without<R, U>
+    : [P, ...Without<R, U>]
+  : []
+
+// 2 way
+type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
+  ? Equal<U, P> extends true
+    ? Res['length']
+    : IndexOf<R, U, [...Res, P]>
+  : -1
+type Exist<T, U> = T extends unknown[] ? (IndexOf<T, U> extends -1 ? false : true) : Equal<T, U>
+type Without<T, U> = T extends [infer P, ...infer R]
+  ? Exist<U, P> extends false
+    ? [P, ...Without<R, U>]
+    : Without<R, U>
+  : []
+```
+
+### Zip
+
+```ts
+type Zip<T, U> = T extends [infer P, ...infer R]
+  ? U extends [infer K, ...infer KR]
+    ? [[P, K], ...Zip<R, KR>]
+    : []
+  : []
 ```
