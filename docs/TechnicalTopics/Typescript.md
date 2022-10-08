@@ -433,3 +433,14 @@ type Zip<T, U> = T extends [infer P, ...infer R]
     : []
   : []
 ```
+
+### Fibonacci
+
+```ts
+type Fibonacci<
+  T extends number,
+  U extends unknown[] = [0],
+  U1 extends unknown[] = [0],
+  U2 extends unknown[] = [0]
+> = U['length'] extends T ? U1['length'] : Fibonacci<T, [...U, 0], U2, [...U1, ...U2]>
+```
