@@ -462,3 +462,23 @@ type Chunk<T, U, K extends unknown[] = []> = K['length'] extends U
   ? []
   : [K]
 ```
+
+### Split
+
+```ts
+type Split<S extends string, SEP extends string, Res extends string[] = []> = Equal<string, S> extends true
+  ? string[]
+  : S extends `${infer P}${SEP}${infer R}`
+  ? Split<R, SEP, [...Res, P]>
+  : SEP extends ''
+  ? [...Res]
+  : [...Res, S]
+```
+
+### LengthOfString
+
+```ts
+type LengthOfString<S extends string, U extends string[] = []> = S extends `${infer P}${infer R}`
+  ? LengthOfString<R, [...U, P]>
+  : U['length']
+```
