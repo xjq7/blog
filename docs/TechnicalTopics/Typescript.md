@@ -482,3 +482,9 @@ type LengthOfString<S extends string, U extends string[] = []> = S extends `${in
   ? LengthOfString<R, [...U, P]>
   : U['length']
 ```
+
+### RequiredKeys
+
+```ts
+type RequiredKeys<T> = keyof { [R in keyof T as T[R] extends Required<T>[R] ? R : never]: never }
+```
