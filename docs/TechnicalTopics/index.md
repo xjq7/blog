@@ -6,6 +6,34 @@
 
 > [阮一峰 git 教程](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
+## 分支管理
+
+```js
+// 列出本地分支
+git branch
+
+// 列出远程分支
+git branch -r
+
+// 列出全部分支
+git branch -a
+
+// 查看未合并到当前分支的分支
+git branch --no-merged
+
+// 查看已合并到当前分支的分支
+git branch --merged
+
+// 移动分支,可用于重命名分支
+git branch -m [branch-name]
+
+// 筛选分支, 参数为筛选出来 f 分支
+git branch -l "f-*"
+
+// 筛选分支, 参数为筛选出来 20221010创建的 f 分支
+git branch -l "f-20221010-*"
+```
+
 ## 常用命令
 
 - 配置
