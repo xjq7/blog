@@ -19,8 +19,7 @@
 技术关键词:
 
 react | react-native | taro | typescript | 正则表达式
-yarn | pnpm | eslint | webpack | vite
-react-router | redux | redux-saga | mobx | less | lodash
+pnpm | webpack | vite| redux | redux-saga | mobx
 nodejs | koa | mysql | redis
 
 - 熟悉前端构建工具 webpack、vite
@@ -51,10 +50,8 @@ nodejs | koa | mysql | redis
     2.  门户网站开发,门户内容管理,登录、企业入驻功能开发
     3.  台账模块开发, 对潜在客户分发与管理
     4.  设计开发权限模块功能, 对系统功能增加管理控制，封装鉴权组件, 路由鉴权拦截，BFF 接口层鉴权, 鉴权装饰器开发, 提升了应用安全性
-
-    5.  动态换肤功能设计, 主题色切换功能
-    6.  CI 速度优化, 提升集成验证速度
-    7.  公共组件库的开发,为多个后台系统提供支撑
+    5.  CI 速度优化, 提升集成验证速度
+    6.  公共组件库的开发,为多个后台系统提供支撑
 
 - 丰艺 ( 深圳 ) 国际文化发展有限公司(2019.10-2021.4)
 
