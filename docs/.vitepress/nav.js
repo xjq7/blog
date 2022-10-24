@@ -12,6 +12,7 @@ export default [
     text: '个人领地',
     items: [
       { text: '图床', link: 'https://img.xjq.icu' },
+      { text: '在线运行代码编辑器', link: 'https://r.xjq.icu' },
       {
         text: 'http协议',
         link: 'https://www.processon.com/view/link/5f47621df346fb3c83ca1407#map',
