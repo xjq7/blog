@@ -7,7 +7,7 @@
 - 姓名 : 夏洁琼(男)
 - 全日制统招本科 / 南华大学 / 网络工程
 - 工作经验 : 3 年
-- 技术博客 : [https://xjq.icu](https://xjq.icu)
+- github : [https://github.com/xjq7](https://github.com/xjq7)
 - 年龄 : 25
 - email :2574073960@qq.com
 - 电话：15115438096
