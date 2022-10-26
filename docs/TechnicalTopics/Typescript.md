@@ -488,3 +488,11 @@ type LengthOfString<S extends string, U extends string[] = []> = S extends `${in
 ```ts
 type RequiredKeys<T> = keyof { [R in keyof T as T[R] extends Required<T>[R] ? R : never]: never }
 ```
+
+### Assign
+
+```ts
+type Assign<T extends Record<string, unknown>, U extends unknown[]> = U extends [infer P, ...infer R]
+  ? Assign<Merge<T, P>, R>
+  : T
+```
