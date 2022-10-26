@@ -24,37 +24,78 @@ git branch --no-merged
 // 查看已合并到当前分支的分支
 git branch --merged
 
-// 移动分支,可用于重命名分支
+// 移动分支,可用于重命名分支,移动的是当前分支
 git branch -m [branch-name]
+
+// 重命名分支
+git branch -m [old-branch-name] [new-branch-name]
 
 // 筛选分支, 参数为筛选出来 f 分支
 git branch -l "f-*"
 
 // 筛选分支, 参数为筛选出来 20221010创建的 f 分支
 git branch -l "f-20221010-*"
+
+// 切换分支
+git checkout [branch-name]
+
+// 创建并切换到分支
+git checkout -b [branch-name]
+
+// 删除分支(本地)
+git branch -d [branch-name]
+
+// 删除分支(远程)
+git push [remote] -d [branch-name]
+git branch -dr [remote/branch]
 ```
 
-## 常用命令
+## 版本管理
 
-- 配置
+```js
+// 撤销文件更改,文件需要带路径
+git checkout [file-name]
+
+// 撤销当前更改(全部)
+git checkout .
+
+// 列出全部commit记录
+git log
+
+// 版本回退 --hard, 回退到历史中的某个commit,这个commit节点后的提交都会丢失
+git reset --hard [commit-id]
+// 回退后, 强推覆盖远程
+git push -f
+
+// 版本重做, 重做指定的commit,然后生成一个新的commit,不会影响其他 commit
+git revert -n [commit-id] [commit-id] ...
+
+// 撤回 commit
+git reset --soft HEAD^
 
 ```
-在当前目录新建Git代码库
+
+## 配置
+
+```js
+// 在当前目录新建Git代码库
 git init
 
-新建一个目录，并将其初始化为Git代码库
+// 新建一个目录，并将其初始化为Git代码库
 git init [project-name]
 
-拉一个新项目代码
+// 拉一个新项目代码
 git clone [url]
 
-显示当前Git配置
+// 显示当前Git配置
 git config --list
 
-修改git配置用户信息
+// 修改git配置用户信息
 git config -g user.name "[name]"
 git config -g user.email "[email]"
 ```
+
+## 常用命令
 
 - 文件,代码操作
 
@@ -93,33 +134,8 @@ git log
 - **分支**
 
 ```bash
-列出本地分支
-git branch
-
-列出远程分支
-git branch -r
-
-列出本地和远程分支
-git branch -a
-
-新建分支
-git branch [branch-name]
-
-切换分支
-git checkout [branch-name]
-
 合并指定分支到当前分支
 git merge [branch]
-
-删除分支
-git branch -d [branch-name]
-
-删除远程分支
-git push origin --delete [branch-name]
-git branch -dr [remote/branch]
-
-新建分支并切换至该分支
-git checkout -b [branch]
 ```
 
 ## 不常用命令
