@@ -19,7 +19,7 @@
 技术关键词:
 
 react | react-native | taro | typescript | 正则表达式
-pnpm | webpack | vite| redux | redux-saga | mobx
+pnpm | webpack | vite| redux | redux-saga
 nodejs | koa | mysql | redis
 
 - 熟悉前端构建工具 webpack、vite
