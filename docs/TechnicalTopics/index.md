@@ -6,6 +6,34 @@
 
 > [阮一峰 git 教程](http:#www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
+> [【Git】(1)---工作区、暂存区、版本库、远程仓库 ](https://www.cnblogs.com/qdhxhz/p/9757390.html)
+
+## 概念
+
+### 四个工作区域
+
+<div style="text-align: center;">
+  <img src="https://image.xjq.icu/2022/11/1/1667274339519_git-relation.png"/>
+</div>
+
+1. Workspace:工作区, 代码存放目录
+2. Index / Stage: 暂存区,用于临时存放你的改动,事实上它只是一个文件,保存即将提交到文件列表信息
+3. Repository: 仓库区/版本库, HEAD 指向最新 commit
+4. Remote: 远程仓库
+
+### 工作流程
+
+1. 工作目录中添加,修改文件
+2. 将需要提交的文件放入暂存区
+3. 将暂存区文件提交至远程仓库
+
+### 文件的状态
+
+- Untracked: 未跟踪, 此文件在文件夹中, 但并没有加入到 git 库, 不参与版本控制. 通过 git add 状态变为 Staged.
+- Unmodify: 文件已经入库, 未修改. 1. 改动文件内容状态变为 Modified. 2. 使用 git rm 移出版本库, 则成为 Untracked 文件
+- Modified: 文件已修改, 1. 通过 git add 可进入暂存 staged 状态, 使用 git checkout 则丢弃修改 状态变为 Unmodify , git checkout 是从仓库区取出文件, 覆盖当前修改
+- Staged: 暂存状态, 1. 执行 git commit 将修改同步 仓库区, 成功后, 状态变更为 Unmodify
+
 ## 配置
 
 ```sh
@@ -162,6 +190,44 @@ git commit --amend -m [message]
 git merge [branch]
 # 当你想终止这次合并时
 git merge --abort
+```
+
+## 暂存
+
+```sh
+# 暂存修改
+git stash
+
+# 查看暂存列表, 每次暂存都有个 ID，删除跟恢复都是用 ID 关联
+git stash list
+
+# 暂存修改并命名
+git stash save "message"
+
+# 弹出暂存栈中第一个,先进后出
+git stash pop
+# 例如
+# stash@{0}: On dev: second stash
+# stash@{1}: On dev: first stash
+# 在 弹出后变成
+# stash@{1}: On dev: first stash
+
+# 应用 某次暂存, 但是不删除他
+git stash apply 1
+# 例如
+# stash@{0}: On dev: second stash
+# stash@{1}: On dev: first stash
+# 在 git stash apply 1 后暂存栈还是没变
+# stash@{0}: On dev: second stash
+# stash@{1}: On dev: first stash
+
+# 删除某个暂存
+git stash drop 1
+# 例如
+# stash@{0}: On dev: second stash
+# stash@{1}: On dev: first stash
+# 在 git stash drop 1 后
+# stash@{0}: On dev: second stash
 ```
 
 ## 其他

@@ -38,6 +38,15 @@ ALTER TABLE user
 CHANGE name1 name VARCHAR(255)
 ```
 
+## DELETE COLUMN
+
+删除表列
+
+```sql
+ALTER TABLE user
+DROP COLUMN name;
+```
+
 ## UPDATE
 
 更新数据
@@ -106,4 +115,12 @@ SELECT name from user Order By age DESC
 
 ```sql
 SELECT IFNULL((SELECT name from user LIMIT 1), 'xjq')
+```
+
+## UPDATE
+
+批量修改时间，统一 +8 小时
+
+```sql
+update stat set createdAt = DATE_ADD(createdAt, INTERVAL 8 HOUR);
 ```
