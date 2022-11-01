@@ -1,3 +1,5 @@
+- [安装]()
+
 - [表列操作](./Mysql.html#add-column)
 
   - [ADD COLUMN](./Mysql.html#add-column)
@@ -19,6 +21,89 @@
   - [Group By](./Mysql.html#group-by)
   - [Order By](./Mysql.html#order-by)
   - [IFNULL](./Mysql.html#ifnull)
+
+## 安装
+
+版本: Mysql 8.0
+
+OS: centos 7
+
+### 下载源
+
+[https://dev.mysql.com/downloads/repo/yum/](https://dev.mysql.com/downloads/repo/yum/)
+
+```sh
+wget https://dev.mysql.com/get/mysql80-community-release-fc36-1.noarch.rpm
+```
+
+### 安装源
+
+```sh
+rpm -Uvh mysql80-community-release-fc36-1.noarch.rpm
+```
+
+### 查看 Mysql 相关资源
+
+```sh
+yum repolist enabled | grep "mysql.*-community.*"
+# 输出
+# !mysql-connectors-community/x86_64 MySQL Connectors Community                206
+# !mysql-tools-community/x86_64      MySQL Tools Community                      94
+# !mysql80-community/x86_64          MySQL 8.0 Community Server                367
+```
+
+### 选择版本
+
+默认开启的是 MySQL 8.0 Community Server
+
+```sh
+yum repolist all | grep mysql
+# 输出
+# mysql-cluster-7.5-community/x86_64  MySQL Cluster 7.5 Communit disabled
+# mysql-cluster-7.5-community-source  MySQL Cluster 7.5 Communit disabled
+# mysql-cluster-7.6-community/x86_64  MySQL Cluster 7.6 Communit disabled
+# mysql-cluster-7.6-community-source  MySQL Cluster 7.6 Communit disabled
+# mysql-cluster-8.0-community/x86_64  MySQL Cluster 8.0 Communit disabled
+# mysql-cluster-8.0-community-source  MySQL Cluster 8.0 Communit disabled
+# !mysql-connectors-community/x86_64  MySQL Connectors Community enabled:      206
+# mysql-connectors-community-source   MySQL Connectors Community disabled
+# !mysql-tools-community/x86_64       MySQL Tools Community      enabled:       94
+# mysql-tools-community-source        MySQL Tools Community - So disabled
+# mysql-tools-preview/x86_64          MySQL Tools Preview        disabled
+# mysql-tools-preview-source          MySQL Tools Preview - Sour disabled
+# mysql55-community/x86_64            MySQL 5.5 Community Server disabled
+# mysql55-community-source            MySQL 5.5 Community Server disabled
+# mysql56-community/x86_64            MySQL 5.6 Community Server disabled
+# mysql56-community-source            MySQL 5.6 Community Server disabled
+# mysql57-community/x86_64            MySQL 5.7 Community Server disabled
+# mysql57-community-source            MySQL 5.7 Community Server disabled
+# !mysql80-community/x86_64           MySQL 8.0 Community Server enabled:      367
+# mysql80-community-source            MySQL 8.0 Community Server disabled
+```
+
+### yum 安装 Mysql
+
+```sh
+# 安装
+yum install mysql-community-server
+# 启动
+systemctl start mysqld
+# 开启自启
+systemctl enable mysqld
+```
+
+### 修改密码
+
+```sh
+# 查看临时密码
+grep 'temporary password' /var/log/mysqld.log
+```
+
+### 暂停服务
+
+```sh
+systemctl stop mysqld
+```
 
 ## ADD COLUMN
 
