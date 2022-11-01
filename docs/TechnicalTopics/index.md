@@ -1,6 +1,16 @@
-- [常用命令](./index.html#常用命令)
-- [不常用命令](./index.html#不常用命令)
-- [Git 报错集锦](./index.html#git-报错集锦)
+- [概念](./index.html#概念)
+  - [四个工作区](./index.html#四个工作区)
+  - [工作流程](./index.html#工作流程)
+  - [文件的状态](./index.html#文件的状态)
+- [配置](./index.html#配置)
+- [源管理](./index.html#源管理)
+- [代码同步](./index.html#代码同步)
+- [查看](./index.html#查看)
+- [分支管理](./index.html#分支管理)
+- [版本管理](./index.html#版本管理)
+- [代码管理](./index.html#代码管理)
+- [暂存](./index.html#暂存)
+- [其他](./index.html#其他)
 
 ---
 
@@ -10,7 +20,7 @@
 
 ## 概念
 
-### 四个工作区域
+### 四个工作区
 
 <div style="text-align: center;">
   <img src="https://image.xjq.icu/2022/11/1/1667274339519_git-relation.png"/>
@@ -240,11 +250,7 @@ git commit -m 'gitignore文件'
 
 # fatal: refusing to merge unrelated histories, 分支间没有建立关系
 git pull --allow-unrelated-histories
-```
 
-## 不常用命令
-
-```bash
-远程库中的更新合并到本地库中，–rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。
+# 远程库中的更新合并到本地库中，–rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。
 git pull --rebase origin master
 ```

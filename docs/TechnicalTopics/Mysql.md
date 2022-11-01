@@ -2,6 +2,7 @@
 
   - [ADD COLUMN](./Mysql.html#add-column)
   - [CHANGE COLUMN](./Mysql.html#change-column)
+  - [DELETE COLUMN](./Mysql.html#delete-column)
 
 - [更新数据](./Mysql.html#update)
 
