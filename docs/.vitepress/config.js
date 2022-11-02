@@ -9,12 +9,7 @@ export default defineConfig({
   base: '/',
   lastUpdated: true,
   lastUpdatedText: 'Updated Date',
-  head: [
-    [
-      'link',
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-    ],
-  ],
+  head: [['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]],
   markdown: {
     theme: 'material-palenight',
     lineNumbers: true,
@@ -26,6 +21,11 @@ export default defineConfig({
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2019-present xjq',
+    },
+    siteTitle: 'xjq',
+    editLink: {
+      pattern: 'https://github.com/xjq7/blog/edit/master/docs/:path',
+      text: 'Edit this page on GitHub',
     },
   },
 })

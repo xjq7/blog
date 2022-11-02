@@ -12,10 +12,9 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "2.4.1",
-    "vitepress": "^1.0.0-alpha.4",
+    "vitepress": "1.0.0-alpha.26",
     "vue": "^3.2.37"
   },
-  "dependencies": {},
   "engines": {
     "node": ">= 14.20.0"
   }
