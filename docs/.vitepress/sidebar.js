@@ -82,6 +82,10 @@ export default [
         text: 'Shell',
         link: '/TechnicalTopics/Shell',
       },
+      {
+        text: 'Nginx',
+        link: '/TechnicalTopics/Nginx',
+      },
     ],
   },
   {
