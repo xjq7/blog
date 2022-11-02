@@ -5,10 +5,9 @@
 - [配置](./index.html#配置)
 - [源管理](./index.html#源管理)
 - [代码同步](./index.html#代码同步)
-- [查看](./index.html#查看)
 - [分支管理](./index.html#分支管理)
-- [版本管理](./index.html#版本管理)
 - [代码管理](./index.html#代码管理)
+- [版本管理](./index.html#版本管理)
 - [暂存](./index.html#暂存)
 - [其他](./index.html#其他)
 
@@ -86,18 +85,22 @@ git push -u origin master
 ## 代码同步
 
 ```sh
+# 首次拉取指定默认源
+git pull --set-upstream origin master
+
+# 拉取代码
+git pull
+
+# 往远程仓库推送变更
+git push
+
+# 首次推送指定默认源
+git push --set-upstream origin master
 
 # 强制覆盖本地代码
 1.git fetch --all
 2.git reset --hard origin/master
 3.git pull
-```
-
-## 查看
-
-```sh
-# 查看历史提交记录
-git log
 ```
 
 ## 分支管理
@@ -144,31 +147,6 @@ git push [remote] -d [branch-name]
 git branch -dr [remote/branch]
 ```
 
-## 版本管理
-
-```sh
-# 撤销文件更改,文件需要带路径
-git checkout [file-name]
-
-# 撤销当前更改(全部)
-git checkout .
-
-# 列出全部commit记录
-git log
-
-# 版本回退 --hard, 回退到历史中的某个commit,这个commit节点后的提交都会丢失
-git reset --hard [commit-id]
-# 回退后, 强推覆盖远程
-git push -f
-
-# 版本重做, 重做指定的commit,然后生成一个新的commit,不会影响其他 commit
-git revert -n [commit-id] [commit-id] ...
-
-# 撤回 commit
-git reset --soft HEAD^
-
-```
-
 ## 代码管理
 
 ```sh
@@ -180,6 +158,9 @@ git add [dir]
 
 # 添加当前所有更改到暂存区
 git add .
+
+# 查看工作区和暂存区状态
+git status
 
 # 提交暂存区到仓库区
 git commit -m [message]
@@ -200,6 +181,33 @@ git commit --amend -m [message]
 git merge [branch]
 # 当你想终止这次合并时
 git merge --abort
+
+# 撤销文件更改,文件需要带路径
+git checkout [file-name]
+
+# 撤销当前更改(全部)
+git checkout .
+
+# 合并某些 commit
+git cherry-pick [commit-id] [commit-id]...
+```
+
+## 版本管理
+
+```sh
+# 列出全部commit记录
+git log
+
+# 版本回退 --hard, 回退到历史中的某个commit,这个commit节点后的提交都会丢失
+git reset --hard [commit-id]
+# 回退后, 强推覆盖远程
+git push -f
+
+# 版本重做, 重做指定的commit,然后生成一个新的commit,不会影响其他 commit
+git revert -n [commit-id] [commit-id] ...
+
+# 撤回 commit
+git reset --soft HEAD^
 ```
 
 ## 暂存
