@@ -1,4 +1,11 @@
-- [安装]()
+- [安装](./Mysql.html#安装)
+
+  - [下载源](./Mysql.html#下载源)
+  - [安装源](./Mysql.html#安装源)
+  - [查看 Mysql 相关资源](./Mysql.html#查看-Mysql-相关资源)
+  - [切换版本](./Mysql.html#切换版本)
+  - [yum 安装 Mysql](./Mysql.html#yum-安装-Mysql)
+  - [修改密码](./Mysql.html#修改密码)
 
 - [表列操作](./Mysql.html#add-column)
 
@@ -53,7 +60,7 @@ yum repolist enabled | grep "mysql.*-community.*"
 # !mysql80-community/x86_64          MySQL 8.0 Community Server                367
 ```
 
-### 选择版本
+### 切换版本
 
 默认开启的是 MySQL 8.0 Community Server
 
@@ -98,12 +105,6 @@ systemctl enable mysqld
 ```sh
 # 查看临时密码
 grep 'temporary password' /var/log/mysqld.log
-```
-
-### 暂停服务
-
-```sh
-systemctl stop mysqld
 ```
 
 ## ADD COLUMN
