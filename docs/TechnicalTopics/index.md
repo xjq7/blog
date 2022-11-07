@@ -198,6 +198,32 @@ git cherry-pick [commit-id] [commit-id]...
 # 列出全部commit记录
 git log
 
+# 查看工作区与暂存区所有文件差异
+git diff
+# 具体文件之间的差异(需要带上相对路径)
+git diff -- [filename] [filename]...
+
+# 查看工作区, 暂存区与版本库的差异, 默认最新版本 HEAD
+git diff [commit-hash | branch (版本)]
+# 具体文件之间的差异
+git diff [版本] -- [filename] [filename]...
+
+# 查看暂存区与版本库的差异, 默认最新版本 HEAD
+git diff --cached
+# 具体文件
+git diff --cached -- [filename] [filename]...
+# 版本号
+git diff --cached [版本]
+
+# 查看不同版本间文件的差异
+git diff [版本 A] [版本 B]
+# 指定目录
+git diff [版本 A] [版本 B] [dir]
+# 指定文件
+git diff [版本 A] [版本 B] -- [filename] [filename]...
+# 列出改动文件
+git diff [版本 A] [版本 B] --stat
+
 # 版本回退 --hard, 回退到历史中的某个commit,这个commit节点后的提交都会丢失
 git reset --hard [commit-id]
 # 回退后, 强推覆盖远程
@@ -208,6 +234,12 @@ git revert -n [commit-id] [commit-id] ...
 
 # 撤回 commit
 git reset --soft HEAD^
+
+# 变基, 合并当前分支的 多个 commit
+git rebase -i
+
+# 变基
+git rebase [branch]
 ```
 
 ## 暂存
