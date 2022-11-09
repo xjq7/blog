@@ -86,6 +86,10 @@ export default [
         text: 'Nginx',
         link: '/TechnicalTopics/Nginx',
       },
+      {
+        text: '前端知识整理',
+        link: '/Resume/Tech',
+      },
     ],
   },
   {
