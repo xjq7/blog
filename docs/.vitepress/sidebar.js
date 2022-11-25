@@ -90,6 +90,10 @@ export default [
         text: '前端知识整理',
         link: '/Resume/Tech',
       },
+      {
+        text: '浏览器',
+        link: '/TechnicalTopics/Browser',
+      },
     ],
   },
   {
