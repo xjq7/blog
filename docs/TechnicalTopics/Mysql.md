@@ -105,6 +105,10 @@ systemctl enable mysqld
 ```sh
 # 查看临时密码
 grep 'temporary password' /var/log/mysqld.log
+
+ALTER USER '用户'@'host' IDENTIFIED BY '新密码'
+
+flush privileges
 ```
 
 ## ADD COLUMN
