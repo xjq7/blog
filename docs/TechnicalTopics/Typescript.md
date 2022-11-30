@@ -1,52 +1,83 @@
-### Await
+- [Await](./Typescript.html#await)
+- [Pick](./Typescript.html#pick)
+- [Exclude](./Typescript.html#exclude)
+- [First](./Typescript.html#first)
+- [Readonly](./Typescript.html#readonly)
+- [IF](./Typescript.html#if)
+- [Concat](./Typescript.html#concat)
+- [Push](./Typescript.html#push)
+- [Includes](./Typescript.html#includes)
+- [Equal](./Typescript.html#equal)
+- [Unshift](./Typescript.html#unshift)
+- [Parameters](./Typescript.html#parameters)
+- [Flatten](./Typescript.html#flatten)
+- [Absolute](./Typescript.html#absolute)
+- [IsUnion](./Typescript.html#isunion)
+- [ReplaceKeys](./Typescript.html#replacekeys)
+- [PickByType](./Typescript.html#pickbytype)
+- [OmitByType](./Typescript.html#omitbytype)
+- [StartsWith](./Typescript.html#startswith)
+- [EndsWith](./Typescript.html#endswith)
+- [PartialByKeys](./Typescript.html#partialbykeys)
+- [RequiredByKeys](./Typescript.html#requiredbykeys)
+- [IndexOf](./Typescript.html#indexof)
+- [LastIndexOf](./Typescript.html#lastindexof)
+- [Unique](./Typescript.html#unique)
+- [MapTypes](./Typescript.html#maptypes)
+- [Shift](./Typescript.html#shift)
+- [Reverse](./Typescript.html#reverse)
+- [TupleToNestedObject](./Typescript.html#tupletonestedobject)
+- [FlipArguments](./Typescript.html#fliparguments)
+
+## Await
 
 ```ts
 type MyAwaited<T> = T extends Promise<infer K> ? (K extends Promise<unknown> ? MyAwaited<K> : K) : T
 ```
 
-### Pick
+## Pick
 
 ```ts
 type MyPick<T, K extends keyof T> = { [P in K]: T[P] }
 ```
 
-### Exclude
+## Exclude
 
 ```ts
 type MyExclude<T, K extends T> = T extends K ? never : T
 ```
 
-### First
+## First
 
 ```ts
 type First<T extends unknown[]> = T extends [infer P, ...unknown[]] ? P : never
 ```
 
-### Readonly
+## Readonly
 
 ```ts
 type MyReadonly<T> = { readonly [K in keyof T]: T[K] }
 ```
 
-### IF
+## IF
 
 ```ts
 type If<C extends boolean, T, F> = C extends true ? T : F
 ```
 
-### Concat
+## Concat
 
 ```ts
 type Concat<T extends unknown[], U extends unknown[]> = [...T, ...U]
 ```
 
-### Push
+## Push
 
 ```ts
 type Push<T extends unknown[], U> = [...T, U]
 ```
 
-### Includes
+## Includes
 
 ```ts
 type Includes<T extends unknown[], U> = T extends [infer P, ...infer K]
@@ -56,25 +87,25 @@ type Includes<T extends unknown[], U> = T extends [infer P, ...infer K]
   : false
 ```
 
-### Equal
+## Equal
 
 ```ts
 type Equal<P, U> = (<T>() => T extends P ? 1 : 2) extends <T>() => T extends U ? 1 : 2 ? true : false
 ```
 
-### Unshift
+## Unshift
 
 ```ts
 type Unshift<T extends unknown[], U> = [U, ...T]
 ```
 
-### Parameters
+## Parameters
 
 ```ts
 type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer K) => any ? K : never
 ```
 
-### Readonly2
+## Readonly2
 
 ```ts
 type MyReadonly2<T, K extends keyof T = keyof T> = { readonly [R in keyof T]: T[R] } & {
@@ -82,7 +113,7 @@ type MyReadonly2<T, K extends keyof T = keyof T> = { readonly [R in keyof T]: T[
 }
 ```
 
-### Chainable
+## Chainable
 
 ```ts
 type Chainable<T = {}> = {
@@ -94,7 +125,7 @@ type Chainable<T = {}> = {
 }
 ```
 
-### DeepReadonly
+## DeepReadonly
 
 ```ts
 type DeepReadonly<T> = T extends Object
@@ -108,19 +139,19 @@ type DeepReadonly<T> = T extends Object
   : never
 ```
 
-### TupleToUnion
+## TupleToUnion
 
 ```ts
 type TupleToUnion<T extends unknown[]> = T[number]
 ```
 
-### Last
+## Last
 
 ```ts
 type Last<T extends unknown[]> = T extends [...unknown[], infer R] ? R : T[0]
 ```
 
-### PromiseAll
+## PromiseAll
 
 ```ts
 declare function PromiseAll<T extends unknown[]>(
@@ -128,19 +159,19 @@ declare function PromiseAll<T extends unknown[]>(
 ): Promise<{ [R in keyof T]: T[R] extends Promise<infer P> ? Awaited<P> : T[R] }>
 ```
 
-### Lookup
+## Lookup
 
 ```ts
 type Lookup<U, T extends string> = U extends { type: T } ? U : never
 ```
 
-### Capitalize
+## Capitalize
 
 ```ts
 type MyCapitalize<S extends string> = S extends `${infer P}${infer R}` ? `${Uppercase<P>}${R}` : S
 ```
 
-###
+##
 
 ```ts
 // 1 ways
@@ -190,7 +221,7 @@ type KebabCase<S extends string> = S extends `${infer R}${infer P}`
   : S
 ```
 
-### AnyOf
+## AnyOf
 
 ```ts
 // 1 way
@@ -204,13 +235,13 @@ type AnyOf<T extends unknown[]> = T extends [infer R, ...infer P]
 type AnyOf<T extends any[]> = T[number] extends 0 | '' | false | [] | { [key: string]: never } ? false : true
 ```
 
-### IsNever
+## IsNever
 
 ```ts
 type IsNever<T> = [T] extends [never] ? true : false
 ```
 
-### Replace
+## Replace
 
 ```ts
 type Replace<S extends string, From extends string, To extends string> = From extends ''
@@ -220,7 +251,7 @@ type Replace<S extends string, From extends string, To extends string> = From ex
   : S
 ```
 
-### ReplaceAll
+## ReplaceAll
 
 ```ts
 type ReplaceAll<S extends string, From extends string, To extends string> = From extends ''
@@ -230,13 +261,13 @@ type ReplaceAll<S extends string, From extends string, To extends string> = From
   : S
 ```
 
-### Parameters
+## Parameters
 
 ```ts
 type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer R) => any ? R : never
 ```
 
-### Flatten
+## Flatten
 
 ```ts
 type Flatten<T extends unknown[]> = T extends [infer R, ...infer P]
@@ -246,19 +277,19 @@ type Flatten<T extends unknown[]> = T extends [infer R, ...infer P]
   : []
 ```
 
-### Absolute
+## Absolute
 
 ```ts
 type Absolute<T extends number | string | bigint> = `${T}` extends `-${infer R}` ? R : `${T}`
 ```
 
-### IsUnion
+## IsUnion
 
 ```ts
 type IsUnion<T, P = T> = [T] extends [never] ? false : T extends P ? ([P] extends [T] ? false : true) : false
 ```
 
-### ReplaceKeys
+## ReplaceKeys
 
 ```ts
 type ReplaceKeys<U, T, Y> = U extends U
@@ -266,31 +297,31 @@ type ReplaceKeys<U, T, Y> = U extends U
   : never
 ```
 
-### PickByType
+## PickByType
 
 ```ts
 type PickByType<T, U> = { [R in keyof T as T[R] extends U ? R : never]: T[R] }
 ```
 
-### OmitByType
+## OmitByType
 
 ```ts
 type OmitByType<T, U> = { [R in keyof T as T[R] extends U ? never : R]: T[R] }
 ```
 
-### StartsWith
+## StartsWith
 
 ```ts
 type StartsWith<T extends string, U extends string> = T extends `${U}${infer _}` ? true : false
 ```
 
-### EndsWith
+## EndsWith
 
 ```ts
 type EndsWith<T extends string, U extends string> = T extends `${infer _}${U}` ? true : false
 ```
 
-### PartialByKeys
+## PartialByKeys
 
 ```ts
 type Merge<T> = {
@@ -301,7 +332,7 @@ type PartialByKeys<T, K = keyof T> = Merge<
 >
 ```
 
-### RequiredByKeys
+## RequiredByKeys
 
 ```ts
 type Merge<T> = { [R in keyof T]: T[R] }
@@ -310,7 +341,7 @@ type RequiredByKeys<T, K = keyof T> = Merge<
 >
 ```
 
-### IndexOf
+## IndexOf
 
 ```ts
 type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
@@ -320,7 +351,7 @@ type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
   : -1
 ```
 
-### LastIndexOf
+## LastIndexOf
 
 ```ts
 type LastIndexOf<T extends unknown[], U> = T extends [...infer R, infer P]
@@ -330,7 +361,7 @@ type LastIndexOf<T extends unknown[], U> = T extends [...infer R, infer P]
   : -1
 ```
 
-### Unique
+## Unique
 
 ```ts
 type IndexOf<T, U, Res extends unknown[] = []> = T extends [infer P, ...infer R]
@@ -346,7 +377,7 @@ type Unique<T, Res extends unknown[] = []> = T extends [infer P, ...infer R]
   : Res
 ```
 
-### MapTypes
+## MapTypes
 
 ```ts
 type Include<T, U> = T extends { mapFrom: any; mapTo: any }
@@ -360,19 +391,19 @@ type MapTypes<T, R extends { mapFrom: any; mapTo: any } | { mapFrom: any; mapTo:
 
 ```
 
-### Shift
+## Shift
 
 ```ts
 type Shift<T> = T extends [infer _, ...infer R] ? R : never
 ```
 
-### Reverse
+## Reverse
 
 ```ts
 type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
 ```
 
-### TupleToNestedObject
+## TupleToNestedObject
 
 ```ts
 type TupleToNestedObject<T, U> = T extends [infer R, ...infer Rest]
@@ -382,7 +413,7 @@ type TupleToNestedObject<T, U> = T extends [infer R, ...infer Rest]
   : U
 ```
 
-### FlipArguments
+## FlipArguments
 
 ```ts
 type Reverse<T> = T extends [...infer R, infer K] ? [K, ...Reverse<R>] : []
@@ -391,7 +422,7 @@ type FlipArguments<T extends (...args: any) => any> = T extends (...args: infer 
   : never
 ```
 
-### Flip
+## Flip
 
 ```ts
 type Flip<T extends Record<string | number | symbol, any>> = {
@@ -399,13 +430,13 @@ type Flip<T extends Record<string | number | symbol, any>> = {
 }
 ```
 
-### Subsequence
+## Subsequence
 
 ```ts
 type Subsequence<T extends any[]> = T extends [infer P, ...infer R] ? [...Subsequence<R>] | [P, ...Subsequence<R>] : []
 ```
 
-### Without
+## Without
 
 ```ts
 // 1 way
@@ -430,7 +461,7 @@ type Without<T, U> = T extends [infer P, ...infer R]
   : []
 ```
 
-### Zip
+## Zip
 
 ```ts
 type Zip<T, U> = T extends [infer P, ...infer R]
@@ -440,7 +471,7 @@ type Zip<T, U> = T extends [infer P, ...infer R]
   : []
 ```
 
-### Fibonacci
+## Fibonacci
 
 ```ts
 type Fibonacci<
@@ -451,7 +482,7 @@ type Fibonacci<
 > = U['length'] extends T ? U1['length'] : Fibonacci<T, [...U, 0], U2, [...U1, ...U2]>
 ```
 
-### Chunk
+## Chunk
 
 ```ts
 type Chunk<T, U, K extends unknown[] = []> = K['length'] extends U
@@ -463,7 +494,7 @@ type Chunk<T, U, K extends unknown[] = []> = K['length'] extends U
   : [K]
 ```
 
-### Split
+## Split
 
 ```ts
 type Split<S extends string, SEP extends string, Res extends string[] = []> = Equal<string, S> extends true
@@ -475,7 +506,7 @@ type Split<S extends string, SEP extends string, Res extends string[] = []> = Eq
   : [...Res, S]
 ```
 
-### LengthOfString
+## LengthOfString
 
 ```ts
 type LengthOfString<S extends string, U extends string[] = []> = S extends `${infer P}${infer R}`
@@ -483,13 +514,13 @@ type LengthOfString<S extends string, U extends string[] = []> = S extends `${in
   : U['length']
 ```
 
-### RequiredKeys
+## RequiredKeys
 
 ```ts
 type RequiredKeys<T> = keyof { [R in keyof T as T[R] extends Required<T>[R] ? R : never]: never }
 ```
 
-### Assign
+## Assign
 
 ```ts
 type Assign<T extends Record<string, unknown>, U extends unknown[]> = U extends [infer P, ...infer R]

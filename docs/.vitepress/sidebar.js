@@ -94,6 +94,10 @@ export default [
         text: '浏览器',
         link: '/TechnicalTopics/Browser',
       },
+      {
+        text: 'Typescript 类型体操集合',
+        link: '/TechnicalTopics/Typescript',
+      },
     ],
   },
   {
