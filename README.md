@@ -1,13 +1,15 @@
 个人博客
 
+技术文章
+
 ## 使用
 
 ```shell
-yarn
+npm install pnpm -g
 
 # 启动
-yarn start
+pnpm dev
 
 # 打包
-yarn build
+pnpm build
 ```
