@@ -37,6 +37,7 @@ export default [
       { text: '天真的小窝', link: 'http://bin.zmide.com/' },
       { text: 'Lexmin0412', link: 'https://home.cellerchan.top/' },
       { text: '1874', link: 'https://1874.cool/' },
+      { text: 'tools.fun 工具导航', link: 'https://tools.fun/' },
     ],
   },
 ]
