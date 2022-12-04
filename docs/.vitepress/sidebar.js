@@ -94,6 +94,18 @@ export default [
         text: 'Typescript 类型体操集合',
         link: '/TechnicalTopics/Typescript',
       },
+      {
+        text: 'HTML',
+        link: '/TechnicalTopics/Html',
+      },
+      {
+        text: 'CSS',
+        link: '/TechnicalTopics/Css',
+      },
+      {
+        text: 'JS',
+        link: '/TechnicalTopics/Js',
+      },
     ],
   },
   {
