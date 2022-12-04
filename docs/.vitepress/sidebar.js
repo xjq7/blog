@@ -46,10 +46,6 @@ export default [
         link: '/FrontEnd/WindowsTerminal',
       },
       {
-        text: 'es6模块化',
-        link: '/FrontEnd/Es6-module',
-      },
-      {
         text: 'Vscode',
         link: '/FrontEnd/Vscode',
       },
