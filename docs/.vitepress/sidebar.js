@@ -118,6 +118,12 @@ export default [
     ],
   },
   {
+    text: 'CPP',
+    collapsible: true,
+    collapsed: false,
+    items: [{ text: 'STL', link: '/Cpp/' }],
+  },
+  {
     text: '其他',
     collapsible: true,
     collapsed: false,
