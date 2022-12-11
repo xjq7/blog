@@ -122,6 +122,16 @@ cout << *it; // 0
 vector<int> arr = {1,2,3,4,5};
 ```
 
+二维初始化
+
+```cpp
+// 一维长度 10, 二维 长度 10, 初始值为 2
+vector<vector<int>> arr(10,vector<int>(10,2));
+
+// 一维长度 2, 二维 长度 2, 指定初始值
+vector<vector<int>> arr = {{1,2},{3,4}};
+```
+
 指定元素个数, 初始值为 0
 
 ```cpp

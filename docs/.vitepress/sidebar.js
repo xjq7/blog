@@ -121,7 +121,10 @@ export default [
     text: 'CPP',
     collapsible: true,
     collapsed: false,
-    items: [{ text: 'STL', link: '/Cpp/' }],
+    items: [
+      { text: 'STL', link: '/Cpp/' },
+      { text: 'Algorithm', link: '/Cpp/Algorithm' },
+    ],
   },
   {
     text: '其他',
