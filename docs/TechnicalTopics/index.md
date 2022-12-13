@@ -240,6 +240,9 @@ git rebase -i
 
 # 变基
 git rebase [branch]
+
+# 范围 base, 合并范围内的 commit, 左开右闭
+git rebase -i [commit hash] [commit hash]
 ```
 
 ## 暂存
