@@ -124,6 +124,7 @@ export default [
     items: [
       { text: 'STL', link: '/Cpp/' },
       { text: 'Algorithm', link: '/Cpp/Algorithm' },
+      { text: 'Collection', link: '/Cpp/Collection' },
     ],
   },
   {
