@@ -19,15 +19,13 @@
 技术关键词:
 
 react | react-native | taro | typescript | 正则表达式
-pnpm | webpack | vite| redux | redux-saga
-nodejs | koa | mysql | redis
+pnpm | webpack | vite| redux | redux-saga | nodejs
 
 - 熟悉前端构建工具 webpack、vite
 - 熟悉 nodejs, bff 层开发,了解后端开发(nodejs、mysql、redis),有项目经验
 - 数据结构与算法基础良好
 - 熟悉常用设计模式
 - 前端工程化建设, 规范化(代码规范、开发规范)
-- 熟悉 nginx 的使用, 网关、反向代理、负载均衡
 
 ## 经历
 

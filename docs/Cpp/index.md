@@ -148,10 +148,10 @@ vector<int> arr(10,100);
 
 ```cpp
 int array[] = {1,2,3};
-vector<int>arr(array, array + 3);// {1,2,3}
-vector<int>arr1 = {1,2,3,4,5};
-vector<int>arr2(begin(arr1),end(arr1));// {1,2,3,4,5}
-vector<int>arr3(begin(arr1),begin(arr1) + 2);// {1,2}
+vector<int> arr(array, array + 3);// {1,2,3}
+vector<int> arr1 = {1,2,3,4,5};
+vector<int> arr2(begin(arr1),end(arr1));// {1,2,3,4,5}
+vector<int> arr3(begin(arr1),begin(arr1) + 2);// {1,2}
 ```
 
 #### 成员函数
