@@ -1,0 +1,75 @@
+name: (Reusable) Build and Push
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+
+env:
+  AWS_REGION: ap-southeast-1
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19.3'
+          cache: 'pnpm'
+
+      - name: Configure Deploy Key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.ESLINT_CONFIG_PRICE_DEPLOY_KEY }}
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build
+        run: pnpm build:${{ inputs.environment }}
+
+      - uses: kanga333/variable-mapper@master
+        with:
+          key: '${{ inputs.environment }}'
+          map: |
+            {
+              "dev": {
+                "CLOUDFRONT_S3_ROLE": "arn:aws:iam::",
+                "S3_BUCKET": "adev-tpp-tmp"
+              },
+              "staging": {
+                "CLOUDFRONT_S3_ROLE": "arn:aws:iam::",
+                "S3_BUCKET": "asta-tpp-tmp"
+              },
+              "production": {
+                "CLOUDFRONT_S3_ROLE": "arn:aws:iam::",
+                "S3_BUCKET": "apro-tpp-tmp"
+              }
+            }
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.CLOUDFRONT_S3_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+          mask-aws-account-id: 'no'
+
+      - name: Sync to S3
+        run: |
+          # Cache 1 year for hashed files
+          aws s3 sync ./dist s3://${{ env.S3_BUCKET }}/ --delete --exclude "*.html" --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync ./dist s3://${{ env.S3_BUCKET }}/ --exclude "*" --include "*.html" --cache-control "no-cache, max-age=0"
+
+

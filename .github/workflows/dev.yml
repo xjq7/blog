@@ -1,0 +1,22 @@
+name: Dev
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    uses: ./.github/workflows/reusable-build-push.yml
+    secrets: inherit
+    with:
+      environment: dev
