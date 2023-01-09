@@ -19,4 +19,4 @@ jobs:
     uses: ./.github/workflows/reusable-build-push.yml
     secrets: inherit
     with:
-      environment: dev
+      environment: development
