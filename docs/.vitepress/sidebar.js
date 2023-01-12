@@ -115,6 +115,7 @@ export default [
     items: [
       { text: '读书笔记', link: '/Notes/' },
       { text: '刷题日记', link: '/Notes/Algorithm' },
+      { text: '英语速记', link: '/Notes/English' },
     ],
   },
   {
