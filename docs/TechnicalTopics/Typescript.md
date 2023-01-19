@@ -28,6 +28,7 @@
 - [Reverse](./Typescript.html#reverse)
 - [TupleToNestedObject](./Typescript.html#tupletonestedobject)
 - [FlipArguments](./Typescript.html#fliparguments)
+- [TypedGet](./Typescript.html#typedget)
 
 ## Await
 
@@ -526,4 +527,28 @@ type RequiredKeys<T> = keyof { [R in keyof T as T[R] extends Required<T>[R] ? R 
 type Assign<T extends Record<string, unknown>, U extends unknown[]> = U extends [infer P, ...infer R]
   ? Assign<Merge<T, P>, R>
   : T
+```
+
+## TypedGet
+
+```ts
+type GetKey<T extends unknown[] | Record<string, any>, K extends string> = T extends unknown[]
+  ? T[0] extends Record<string, unknown>
+    ? T[0][K]
+    : never
+  : T extends Record<string, any>
+  ? T[K]
+  : never
+
+type Get<O extends Record<string, any>, T extends string> = unknown extends O[T]
+  ? T extends `${infer K}.${infer R}`
+    ? R extends string
+      ? O[R] extends unknown
+        ? Get<GetKey<O, K>, R>
+        : O[R]
+      : GetKey<O, K>
+    : T extends string
+    ? GetKey<O, T>
+    : never
+  : O[T]
 ```
