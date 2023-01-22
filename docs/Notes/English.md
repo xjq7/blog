@@ -12,4 +12,16 @@ When life gives you lemons, make lemonade
 
 ## would
 
+### 陈述句
+
+表达 will 的过去式
+
 ### 想要
+
+### 过去习惯做某件事
+
+### 表达请求
+
+### would have + 过去分词
+
+表达过去想做的事,但没做
