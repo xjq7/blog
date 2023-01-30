@@ -106,6 +106,14 @@ export default [
         text: 'JS',
         link: '/TechnicalTopics/Js',
       },
+      {
+        text: '工程化',
+        link: '/TechnicalTopics/Engineerd',
+      },
+      {
+        text: 'React',
+        link: '/TechnicalTopics/React',
+      },
     ],
   },
   {

@@ -177,7 +177,7 @@ UI 界面都选择采用 GPU 来绘制
 
 DOM 中发生事件时, 所有相关信息都会被收集并存储在 event 对象中, 包含 DOM 元素, 事件类型, 事件相关数据
 
-- event. preventDefault()
+- event.preventDefault()
 
   阻止默认事件行为, 或者函数 return false 也能阻止
 
