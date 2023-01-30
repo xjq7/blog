@@ -8,6 +8,8 @@
   - [原型式继承](./Js.html#原型式继承)
   - [寄生式继承](./Js.html#寄生式继承)
   - [寄生组合式继承](./Js.html#寄生组合式继承)
+- [模块化](./Js.html#模块化)
+  - [CommonJS](./Js.html#commonjs)
 
 ## 拷贝
 
@@ -228,3 +230,5 @@ inherit(Child, Parent)
 const c1 = new Child('x1')
 const c2 = new Child('x2')
 ```
+
+## CommonJS

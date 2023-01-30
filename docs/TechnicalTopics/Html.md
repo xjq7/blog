@@ -29,3 +29,15 @@ HTML5 是下一代 HTML 标准
 ### 优雅降级
 
 一开始就构建完整的功能，然后再针对低版本的浏览器进行兼容
+
+## CSS
+
+### z-index
+
+失效的几种情况
+
+- 父元素 position 为 relative 时，子元素的 z-index 失效
+
+- 元素没有设置 position 属性为非 static 属性
+
+- 元素在设置 z-index 的同时还设置了 float 浮动

@@ -114,6 +114,10 @@ export default [
         text: 'React',
         link: '/TechnicalTopics/React',
       },
+      {
+        text: '移动端',
+        link: '/TechnicalTopics/Mobile',
+      },
     ],
   },
   {
