@@ -17,10 +17,11 @@
 ## 专业技能
 
 - 3 年前端开发工作经验
-- 擅长使用 React 框架和 React 生态圈中的技术
+- 擅长使用 React 框架和 React 生态圈中的技术, 包含 Redux
 - 熟悉前端构建工具 webpack、vite
-- 有 RN 、Taro 跨平台开发经验
+- 有 React Native 、Taro 跨平台项目开发经验
 - 熟悉 TypeScript
+- 熟悉 http 协议, 熟悉浏览器运行机制,
 - 熟练掌握 Node.js 开发，熟悉 BFF 层开发，了解后端开发(Node.js、MySQL、Redis)
 - 数据结构和算法基础扎实，熟悉常用设计模式
 - 熟悉前端工程化建设，注重代码规范和开发规范
