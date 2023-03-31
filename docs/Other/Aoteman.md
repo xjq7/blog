@@ -107,7 +107,7 @@
 《葛雷·奥特曼》是日本圆谷株式会社在 1990 年把版权卖给澳大利亚而制作的空想特摄系列的电视系列片《奥特曼》中的一部。
 
 <div style="text-align: center;">
-  <img src="https://image.xjq.icu/2021/3/15/2021.3.15-pDRYC71smb-compress.jpg"/>
+  <img src="https://image.xjq.icu/2023/3/31/1680226591543_%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16802263964619.png"/>
 </div>
 
 ## 帕瓦特奥特曼
