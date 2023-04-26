@@ -118,6 +118,10 @@ export default [
         text: '移动端',
         link: '/TechnicalTopics/Mobile',
       },
+      {
+        text: 'Java',
+        link: '/TechnicalTopics/Java',
+      },
     ],
   },
   {
