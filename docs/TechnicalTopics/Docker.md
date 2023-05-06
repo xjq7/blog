@@ -1,30 +1,10 @@
+- [容器](./Docker.html#容器)
+  - [启动容器](./Docker.html#启动容器)
+  - [终止容器](./Docker.html#终止容器)
+  - [删除容器](./Docker.html#删除容器)
+  - [导出容器](./Docker.html#导出容器)
+
 ## 容器
-
-### 删除容器
-
-根据 id 删除
-
-```sh
-docker container rm <container-id>
-```
-
-清除所有终止状态的容器
-
-```sh
-docker container prune
-```
-
-### 导出容器
-
-```sh
-docker export <container-id> > <filepath>/<filename>
-```
-
-### 终止容器
-
-```sh
-docker container stop <container-id>
-```
 
 ### 启动容器
 
@@ -56,4 +36,30 @@ docker run -it <image-name> bash
 
 ```sh
 docker container start <container-id>
+```
+
+### 终止容器
+
+```sh
+docker container stop <container-id>
+```
+
+### 删除容器
+
+根据 id 删除
+
+```sh
+docker container rm <container-id>
+```
+
+清除所有终止状态的容器
+
+```sh
+docker container prune
+```
+
+### 导出容器
+
+```sh
+docker export <container-id> > <filepath>/<filename>
 ```

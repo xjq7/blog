@@ -1,3 +1,14 @@
+- [Load 加载性能](./WebIndex.html#Load-加载性能)
+  - [FCP](./WebIndex.html#fcp)
+  - [LCP](./WebIndex.html#lcp)
+  - [FID](./WebIndex.html#fid)
+  - [TTI](./WebIndex.html#tti)
+  - [TTFB](./WebIndex.html#ttfb)
+  - [TBT](./WebIndex.html#tbt)
+- [Runtime 运行时性能](./WebIndex.html#Runtime-运行时性能)
+  - [帧率](./WebIndex.html#帧率)
+  - [内存](./WebIndex.html#内存)
+
 # Web 性能指标
 
 ## Load 加载性能
