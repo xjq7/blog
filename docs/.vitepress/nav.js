@@ -4,6 +4,7 @@ export default [
     items: [
       { text: '前端', link: '/FrontEnd/' },
       { text: '技术专题', link: '/TechnicalTopics/' },
+      { text: '性能专题', link: '/Performance/' },
       { text: '读书笔记', link: '/Notes/' },
       { text: 'cpp', link: '/Cpp/' },
       { text: '其他', link: '/Other/' },

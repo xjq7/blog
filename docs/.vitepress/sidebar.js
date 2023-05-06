@@ -129,6 +129,12 @@ export default [
     ],
   },
   {
+    text: '性能专题',
+    collapsible: true,
+    collapsed: false,
+    items: [{ text: 'Web 性能指标', link: '/Performance/WebIndex' }],
+  },
+  {
     text: 'Notes',
     collapsible: true,
     collapsed: false,
