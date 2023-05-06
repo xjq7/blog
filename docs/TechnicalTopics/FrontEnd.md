@@ -235,3 +235,9 @@ Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节�
 1. 同源检测，禁止外域的请求
 
 2. CSRF token，服务端校验 token
+
+## monorepo
+
+### pnpm workspace
+
+

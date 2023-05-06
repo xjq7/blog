@@ -122,6 +122,10 @@ export default [
         text: 'Java',
         link: '/TechnicalTopics/Java',
       },
+      {
+        text: 'Docker',
+        link: '/TechnicalTopics/Docker',
+      },
     ],
   },
   {
