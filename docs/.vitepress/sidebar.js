@@ -60,7 +60,7 @@ export default [
     collapsible: true,
     collapsed: false,
     items: [
-      { text: 'Git', link: '/TechnicalTopics/' },
+      { text: 'Git', link: '/TechnicalTopics/Git' },
       { text: '前端', link: '/TechnicalTopics/FrontEnd' },
       {
         text: '设计模式',
@@ -132,7 +132,10 @@ export default [
     text: '性能专题',
     collapsible: true,
     collapsed: false,
-    items: [{ text: 'Web 性能指标', link: '/Performance/WebIndex' }],
+    items: [
+      { text: 'Rail 模型', link: '/Performance/Rail' },
+      { text: 'Web 性能指标', link: '/Performance/WebIndex' },
+    ],
   },
   {
     text: 'Notes',
