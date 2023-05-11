@@ -1,3 +1,5 @@
+[[toc]]
+
 [原帖](https://www.cnblogs.com/l1pe1/p/6197371.html)
 
 ## 拼接-concat

@@ -1,7 +1,4 @@
----
-title: javascript相关知识
-sidebarDepth: 3
----
+[[toc]]
 
 > [冴羽写博客的地方](https://github.com/mqyqingfeng/Blog)
 

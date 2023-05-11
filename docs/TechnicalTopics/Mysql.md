@@ -1,34 +1,4 @@
-- [安装](./Mysql.html#安装)
-
-  - [下载源](./Mysql.html#下载源)
-  - [安装源](./Mysql.html#安装源)
-  - [查看 Mysql 相关资源](./Mysql.html#查看-Mysql-相关资源)
-  - [切换版本](./Mysql.html#切换版本)
-  - [yum 安装 Mysql](./Mysql.html#yum-安装-Mysql)
-  - [修改密码](./Mysql.html#修改密码)
-
-- [表列操作](./Mysql.html#add-column)
-
-  - [ADD COLUMN](./Mysql.html#add-column)
-  - [CHANGE COLUMN](./Mysql.html#change-column)
-  - [DELETE COLUMN](./Mysql.html#delete-column)
-
-- [更新数据](./Mysql.html#update)
-
-  - [UPDATE](./Mysql.html#update)
-
-- [连接](./Mysql.html#join)
-
-  - [join](./Mysql.html#join)
-  - [left join](./Mysql.html#left-join)
-
-- [查询](./Mysql.html#limit)
-
-  - [LIMIT](./Mysql.html#limit)
-  - [DISTINCT](./Mysql.html#distinct)
-  - [Group By](./Mysql.html#group-by)
-  - [Order By](./Mysql.html#order-by)
-  - [IFNULL](./Mysql.html#ifnull)
+[[toc]]
 
 ## 安装
 

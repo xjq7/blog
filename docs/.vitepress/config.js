@@ -3,17 +3,21 @@ import nav from './nav'
 import sidebar from './sidebar'
 
 export default defineConfig({
-  lang: 'zh',
-  title: 'xjq',
+  lang: 'zh-CN',
+  title: 'xjq blog',
+  description: 'xjq 代码库 随手记 博客',
   appearance: true,
   base: '/',
-  lastUpdated: true,
-  lastUpdatedText: 'Updated Date',
   head: [['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]],
   markdown: {
-    theme: 'material-palenight',
+    theme: 'monokai',
     lineNumbers: true,
+    toc: {
+      level: [1, 2, 3],
+    },
   },
+  lastUpdated: true,
+  lastUpdatedText: 'Updated Date',
   themeConfig: {
     nav,
     sidebar,

@@ -1,6 +1,4 @@
-- [flex 布局](./Css.html#flex-布局)
-- [居中布局](./Css.html#居中布局)
-- [BFC](./Css.html#bfc)
+[[toc]]
 
 ## flex-布局
 

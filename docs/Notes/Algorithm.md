@@ -1,18 +1,4 @@
-- [哈希表](./Algorithm.html#最长连续序列)
-
-  - [最长连续子序列](./Algorithm.html#最长连续序列)
-
-- [单调栈](./Algorithm.html#单调栈)
-
-  - [去除重复字母](./Algorithm.html#去除重复字母)
-
-- [动态规划](./Algorithm.html#动态规划)
-
-  - [组合总和\_Ⅳ](./Algorithm.html#组合总和_Ⅳ)
-
-- [堆](./Algorithm.html#堆)
-
-  - [第*k*个数](./Algorithm.html#第_k_个数)
+[[toc]]
 
 ## 最长连续序列
 

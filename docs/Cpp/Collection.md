@@ -1,5 +1,4 @@
-- [图论](./Collection.html#图论)
-  - [BFS](./Collection.html#bfs)
+[[toc]]
 
 ## 图论
 

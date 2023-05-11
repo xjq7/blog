@@ -1,16 +1,4 @@
-- [Chrome-架构](./Browser.html#chrome-架构)
-
-  - [进程与线程](./Browser.html#进程)
-    - [进程](./Browser.html#进程)
-    - [线程](./Browser.html#线程)
-    - [区别](./Browser.html#区别)
-
-- [渲染流程](./Browser.html#渲染流程)
-- [事件机制](./Browser.html#事件机制)
-  - [事件流](./Browser.html#事件流)
-  - [事件处理程序](./Browser.html#事件处理程序)
-  - [事件对象](./Browser.html#事件对象)
-  - [事件委托](./Browser.html#事件委托)
+[[toc]]
 
 ## Chrome 架构
 

@@ -1,15 +1,4 @@
-- [概念](./index.html#概念)
-  - [四个工作区](./index.html#四个工作区)
-  - [工作流程](./index.html#工作流程)
-  - [文件的状态](./index.html#文件的状态)
-- [配置](./index.html#配置)
-- [源管理](./index.html#源管理)
-- [代码同步](./index.html#代码同步)
-- [分支管理](./index.html#分支管理)
-- [代码管理](./index.html#代码管理)
-- [版本管理](./index.html#版本管理)
-- [暂存](./index.html#暂存)
-- [其他](./index.html#其他)
+[[toc]]
 
 ---
 

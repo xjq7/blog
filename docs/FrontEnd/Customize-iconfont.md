@@ -1,3 +1,5 @@
+[[toc]]
+
 > [ReactNative 干货分享——自定义 iconfont 图标的使用](https://juejin.im/post/5ae1685bf265da0b8a675199#comment)
 
 ## react-native-vector-icons

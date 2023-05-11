@@ -1,8 +1,4 @@
-- [简介](./Nginx.html#简介)
-- [安装](./Nginx.html#安装)
-- [反向代理](./Nginx.html#反向代理)
-- [其他](./Nginx.html#其他)
-  - [获取用户真实-ip](./Nginx.html#获取用户真实-ip)
+[[toc]]
 
 ## 简介
 

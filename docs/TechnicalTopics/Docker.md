@@ -1,14 +1,10 @@
-- [容器](./Docker.html#容器)
-  - [启动容器](./Docker.html#启动容器)
-  - [终止容器](./Docker.html#终止容器)
-  - [删除容器](./Docker.html#删除容器)
-  - [导出容器](./Docker.html#导出容器)
+[[toc]]
 
-## 容器
+## 操作容器
 
 ### 启动容器
 
-#### 新建并启动: docker run
+新建并启动: docker run
 
 -t 选项让 Docker 分配一个伪终端并绑定到容器的标准输入上
 
@@ -58,8 +54,22 @@ docker container rm <container-id>
 docker container prune
 ```
 
-### 导出容器
+## 导出容器
 
 ```sh
 docker export <container-id> > <filepath>/<filename>
+```
+
+## 导入容器
+
+从文件导入
+
+```sh
+cat centos.tar | docker import - centos:7
+```
+
+从 url 导入
+
+```sh
+docker import http://example.com/centos.tgz example/centos
 ```

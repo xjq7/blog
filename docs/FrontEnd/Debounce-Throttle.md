@@ -1,3 +1,5 @@
+[[toc]]
+
 ## debounce
 
 - **两次触发事件间隔控制在 delay**

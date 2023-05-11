@@ -1,6 +1,4 @@
-[静态方法](./Bignumberjs.html#静态方法)
-
-- [config](./Bignumberjs.html#config)
+[[toc]]
 
 ## Properties
 

@@ -1,7 +1,4 @@
-- [sort](./Algorithm.html#sort)
-  - [默认升序](./Algorithm.html#默认升序)
-  - [指定排序](./Algorithm.html#指定排序)
-  - [自定义排序](./Algorithm.html#自定义排序)
+[[toc]]
 
 ## sort
 

@@ -1,6 +1,4 @@
-- [STL 是什么](./index.html#stl-是什么)
-  - [STL 的组成](./index.html#stl-的组成)
-  - [STL 头文件](./index.html#stl-头文件)
+[[toc]]
 
 > [STL 教程：C++ STL 快速入门](http://c.biancheng.net/stl/)
 

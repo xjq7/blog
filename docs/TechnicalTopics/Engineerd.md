@@ -1,7 +1,4 @@
-- [开发效率](./Engineerd.html#开发效率)
-  - [进程与线程](./Engineerd.html#进程)
-- [协作效率](./Engineerd.html#协作效率)
-- [系统质量](./Engineerd.html#系统质量)
+[[toc]]
 
 ## 开发效率
 

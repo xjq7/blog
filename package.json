@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "2.4.1",
-    "vitepress": "1.0.0-alpha.26",
+    "vitepress": "1.0.0-alpha.75",
     "vue": "^3.2.37"
   },
   "engines": {
