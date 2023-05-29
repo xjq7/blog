@@ -28,8 +28,8 @@ export default [
         link: 'https://leetcode.cn/u/xjq_/',
       },
       {
-        text: 'resume',
-        link: '/Resume/',
+        text: '重生之我是切图仔',
+        link: '/Resume/Introduce',
       },
     ],
   },
