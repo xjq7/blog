@@ -127,6 +127,60 @@ Good 100ms Middle 250ms Poor
 
 ## Runtime 运行时性能
 
-### 帧率
+### 帧率(FPS)
+
+FPS 是描述"帧"变化速度的物理量，每秒渲染多少帧的图像
+
+帧率通常用来描述动画和视频的流畅度. 较高的帧率可以提供更平滑的动画和视频播放体验，而较低的帧率
+则可能导致卡顿和不流畅的感觉
+
+一般来说：
+
+- 帧率稳定在 50-60 之间是比较流畅的
+- 30-50 之间，较卡顿
+- 30 以下，让人感觉明显卡顿和不适
+- 帧率波动很大，也会感觉卡顿
+
+帧率的计算方式
+
+通过计算 requestAnimationFrame 在 1s 内的执行次数，即是帧率
+
+```js
+function fps() {
+  let lastTime = 0
+  let frameCount = 0
+  window.fps = []
+  const _calFps = (currentTime) => {
+    if (lastTime === 0) {
+      lastTime = currentTime
+    }
+
+    frameCount++
+
+    if (currentTime - lastTime >= 1000) {
+      window.fps.push({
+        time: ((Date.now() - performance.timing.navigationStart) / 1000).toFixed(1),
+        value: frameCount,
+      })
+      frameCount = 0
+      lastTime = currentTime
+    }
+    requestAnimationFrame(_calFps)
+  }
+  requestAnimationFrame(_calFps)
+}
+```
 
 ### 内存
+
+- jsHeapSizeLimit
+
+  上下文内可用堆的最大体积，以字节计算
+
+- totalJSHeapSize
+
+  已分配的堆体积，以字节计算
+
+- usedJSHeapSize
+
+  当前 JS 堆活跃段的体积，以字节计算
