@@ -28,7 +28,7 @@ export default [
         link: 'https://leetcode.cn/u/xjq_/',
       },
       {
-        text: '重生之我是切图仔',
+        text: '大型纪录片-重生之我是切图仔',
         link: '/Resume/Introduce',
       },
     ],
