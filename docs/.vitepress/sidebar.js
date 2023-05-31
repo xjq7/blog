@@ -56,32 +56,38 @@ export default [
     ],
   },
   {
-    text: '技术专题',
+    text: '后端',
     collapsible: true,
     collapsed: false,
     items: [
-      { text: 'Git', link: '/TechnicalTopics/Git' },
-      { text: '前端', link: '/TechnicalTopics/FrontEnd' },
-      {
-        text: '设计模式',
-        link: '/TechnicalTopics/DesignPattern',
-      },
       {
         text: 'Mysql',
         link: '/TechnicalTopics/Mysql',
       },
       {
-        text: 'Net',
-        link: '/TechnicalTopics/Net',
-      },
-      {
-        text: 'Shell',
-        link: '/TechnicalTopics/Shell',
-      },
-      {
         text: 'Nginx',
         link: '/TechnicalTopics/Nginx',
       },
+      {
+        text: 'Java',
+        link: '/TechnicalTopics/Java',
+      },
+      {
+        text: 'Docker',
+        link: '/TechnicalTopics/Docker',
+      },
+      {
+        text: 'MongoDB',
+        link: '/TechnicalTopics/MongoDB',
+      },
+    ],
+  },
+  {
+    text: '前端',
+    collapsible: true,
+    collapsed: false,
+    items: [
+      { text: '前端', link: '/TechnicalTopics/FrontEnd' },
       {
         text: '前端知识整理',
         link: '/Resume/Tech',
@@ -118,17 +124,25 @@ export default [
         text: '移动端',
         link: '/TechnicalTopics/Mobile',
       },
+    ],
+  },
+  {
+    text: '技术专题',
+    collapsible: true,
+    collapsed: false,
+    items: [
+      { text: 'Git', link: '/TechnicalTopics/Git' },
       {
-        text: 'Java',
-        link: '/TechnicalTopics/Java',
+        text: '设计模式',
+        link: '/TechnicalTopics/DesignPattern',
       },
       {
-        text: 'Docker',
-        link: '/TechnicalTopics/Docker',
+        text: 'Net',
+        link: '/TechnicalTopics/Net',
       },
       {
-        text: 'MongoDB',
-        link: '/TechnicalTopics/MongoDB',
+        text: 'Shell',
+        link: '/TechnicalTopics/Shell',
       },
     ],
   },
