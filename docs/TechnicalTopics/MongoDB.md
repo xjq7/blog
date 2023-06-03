@@ -32,6 +32,35 @@ NoSQL 数据库用于具有庞大数据存储需求的分布式数据存储
 
 NoSQL 用于大数据和实时 Web 应用程序
 
+## 安装
+
+### MongoDB 4 + Centos 7
+
+编写源
+
+```sh
+cat <<EOF | sudo tee /etc/yum.repos.d/mongodb.repo
+[mongodb-org-4.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
+EOF
+```
+
+安装包
+
+```sh
+yum install mongodb-org
+```
+
+开机自启
+
+```sh
+systemctl enable --now mongod
+```
+
 ## 连接
 
 ```sh
