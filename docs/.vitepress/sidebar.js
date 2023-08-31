@@ -144,6 +144,10 @@ export default [
         text: 'Shell',
         link: '/TechnicalTopics/Shell',
       },
+      {
+        text: 'C++ 基础',
+        link: '/Cpp/Base',
+      },
     ],
   },
   {
