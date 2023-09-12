@@ -77,7 +77,7 @@ GET [index]/_search
 
 ### 新增字段
 
-```
+```SQL
 PUT /_index_/_mapping
 {
   "properties": {

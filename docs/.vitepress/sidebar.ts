@@ -76,6 +76,10 @@ export default [
         text: 'MongoDB',
         link: '/TechnicalTopics/MongoDB',
       },
+      {
+        text: 'ElasticSearch',
+        link: '/TechnicalTopics/ElasticSearch',
+      },
     ],
   },
   {
