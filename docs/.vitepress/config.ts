@@ -17,7 +17,6 @@ export default defineConfig({
     },
   },
   lastUpdated: true,
-  lastUpdatedText: 'Updated Date',
   themeConfig: {
     nav,
     sidebar,

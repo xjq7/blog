@@ -144,10 +144,7 @@ export default [
         text: 'Shell',
         link: '/TechnicalTopics/Shell',
       },
-      {
-        text: 'C++ 基础',
-        link: '/Cpp/Base',
-      },
+     
     ],
   },
   {
@@ -170,14 +167,24 @@ export default [
     ],
   },
   {
-    text: 'CPP',
+    text: 'Cpp',
     collapsible: true,
     collapsed: false,
     items: [
       { text: 'STL', link: '/Cpp/' },
       { text: 'Algorithm', link: '/Cpp/Algorithm' },
       { text: 'Collection', link: '/Cpp/Collection' },
+      {
+        text: 'C++ 基础',
+        link: '/Cpp/Base',
+      },
     ],
+  },
+  {
+    text: 'Java',
+    collapsible: true,
+    collapsed: false,
+    items: [{ text: '正则表达式', link: '/Java/Regex' }],
   },
   {
     text: '其他',
