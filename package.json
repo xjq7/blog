@@ -12,8 +12,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "prettier": "2.4.1",
-    "vitepress": "1.0.0-rc.12",
+    "prettier": "^3.0.3",
+    "vitepress": "~1.0.0-rc.12",
     "vue": "^3.2.37"
   },
   "engines": {

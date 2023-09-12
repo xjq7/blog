@@ -69,10 +69,6 @@ export default [
         link: '/TechnicalTopics/Nginx',
       },
       {
-        text: 'Java',
-        link: '/TechnicalTopics/Java',
-      },
-      {
         text: 'Docker',
         link: '/TechnicalTopics/Docker',
       },
@@ -144,7 +140,6 @@ export default [
         text: 'Shell',
         link: '/TechnicalTopics/Shell',
       },
-     
     ],
   },
   {
@@ -184,7 +179,10 @@ export default [
     text: 'Java',
     collapsible: true,
     collapsed: false,
-    items: [{ text: '正则表达式', link: '/Java/Regex' }],
+    items: [
+      { text: '正则表达式', link: '/Java/Regex' },
+      { text: '基础', link: '/Java/Base' },
+    ],
   },
   {
     text: '其他',
