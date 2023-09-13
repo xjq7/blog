@@ -4,7 +4,7 @@
 
 - 姓名 : 夏洁琼(男)
 - 全日制统招本科 / 南华大学 / 网络工程
-- 工作经验 : 3 年
+- 工作经验 : 4 年
 - github : [https://github.com/xjq7](https://github.com/xjq7)
 - 年龄 : 26
 - email :2574073960@qq.com
@@ -14,7 +14,7 @@
 
 ## 专业技能
 
-- 3 年前端开发工作经验
+- 4 年前端开发工作经验
 - 擅长使用 React 框架和 React 生态圈中的技术, 包含 Redux
 - 熟悉前端构建工具 webpack、vite
 - 有 React Native 、Taro 跨平台项目开发经验
