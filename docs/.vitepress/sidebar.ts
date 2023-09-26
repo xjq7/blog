@@ -50,6 +50,10 @@ export default [
         link: '/FrontEnd/Vscode',
       },
       {
+        text: '移动端真机调试',
+        link: '/FrontEnd/MobileDebug',
+      },
+      {
         text: '记录图床项目部署',
         link: '/FrontEnd/Deploy-img',
       },
