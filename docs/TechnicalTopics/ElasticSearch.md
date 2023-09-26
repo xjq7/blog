@@ -1,3 +1,5 @@
+[[toc]]
+
 ## 简介
 
 Elasticsearch是一个开源的分布式搜索和分析引擎，具有以下核心优势：
@@ -168,3 +170,25 @@ POST _bulk
 { "index" : { "_index" : "[index]", "_id" : "id2" } }
 { "id": "id2", "name": "xjq2" }
 ```
+
+## 字段修改
+
+1. 新建索引
+
+使用新的字段类型 新建索引
+
+2. 重新索引数据
+
+```SQL
+POST _reindex
+{
+  "source": {
+    "index": "[old-index]"
+  },
+  "dest": {
+    "index": "[new-index]"
+  }
+}
+```
+
+3. 删除旧索引, 再重新索引数据回去
