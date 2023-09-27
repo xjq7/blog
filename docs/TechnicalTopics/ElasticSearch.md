@@ -103,6 +103,22 @@ PUT /[index]/_mapping
 }
 ```
 
+### 删除数据
+
+```SQL
+POST /[index]/_delete_by_query
+{
+  "query":{
+    "bool": {
+      "should": [
+        { "term": { "lcp": 0 } },
+        { "term": { "fcp": 0 } }
+      ]
+    }
+  }
+}
+```
+
 ### 获取结构
 
 ```SQL
