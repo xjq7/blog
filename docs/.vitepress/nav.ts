@@ -41,6 +41,7 @@ export default [
       { text: 'Lexmin0412', link: 'https://home.cellerchan.top/' },
       { text: '1874', link: 'https://1874.cool/' },
       { text: 'tools.fun 工具导航', link: 'https://tools.fun/' },
+      { text: '勤为径苦作舟', link: 'https://blog.zhjh.top/' },
     ],
   },
 ]
