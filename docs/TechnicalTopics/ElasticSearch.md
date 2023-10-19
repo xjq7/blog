@@ -88,6 +88,40 @@ GET [index]/_search
     }
   }
 }
+
+-- 分页查询
+GET [index]/_search
+{
+  "query":{
+    "match_all": {}
+  },
+  "from": 1,
+  "size": 10
+}
+
+-- 排序
+GET [index]/_search
+{
+  "query":{
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "price": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+-- 限制返回字段
+GET [index]/_search
+{
+  "query":{
+    "match_all": {}
+  },
+  "_source": ["name", "price"]
+}
 ```
 
 ### 新增字段
