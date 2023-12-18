@@ -34,8 +34,8 @@ export default [
         link: '/FrontEnd/Js',
       },
       {
-        text: 'Node-pm2',
-        link: '/FrontEnd/Node-pm2',
+        text: 'pm2',
+        link: '/FrontEnd/Pm2',
       },
       {
         text: '字符串方法',
@@ -98,7 +98,7 @@ export default [
       },
       {
         text: '浏览器',
-        link: '/TechnicalTopics/Browser',
+        link: '/FrontEnd/Browser',
       },
       {
         text: 'Typescript 类型体操集合',

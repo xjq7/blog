@@ -55,6 +55,14 @@ EOF
 yum install mongodb-org
 ```
 
+下载 timeout 或 404 时
+
+执行以下命令, Import the MongoDB public key
+
+```sh
+rpm --import https://www.mongodb.org/static/pgp/server-3.2.asc
+```
+
 开机自启
 
 ```sh
