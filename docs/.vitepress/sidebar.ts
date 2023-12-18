@@ -4,7 +4,7 @@ export default [
     collapsible: true,
     collapsed: false,
     items: [
-      { text: 'RN 相关', link: '/FrontEnd/' },
+      { text: 'RN 相关', link: '/FrontEnd/RN' },
       {
         text: 'Bignumberjs',
         link: '/FrontEnd/Bignumberjs',

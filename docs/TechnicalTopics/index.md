@@ -1,3 +1,2 @@
 - [Git](./Git.html)
 - [Css](./Css.html)
-- [Browser](./Browser.html)
