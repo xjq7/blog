@@ -190,6 +190,7 @@ export default [
     items: [
       { text: '正则表达式', link: '/Java/Regex' },
       { text: '基础', link: '/Java/Base' },
+      { text: 'IDEA', link: '/Java/Idea-keymap' },
     ],
   },
   {
