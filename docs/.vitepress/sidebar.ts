@@ -148,6 +148,10 @@ export default [
         text: 'Shell',
         link: '/TechnicalTopics/Shell',
       },
+      {
+        text: 'Linux',
+        link: '/TechnicalTopics/Linux',
+      },
     ],
   },
   {
