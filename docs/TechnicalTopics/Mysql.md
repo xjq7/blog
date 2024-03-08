@@ -81,7 +81,13 @@ ALTER USER '用户'@'host' IDENTIFIED BY '新密码'
 flush privileges
 ```
 
-## ADD COLUMN
+## 查询
+
+### SELECT
+
+## 表结构编辑
+
+### ADD COLUMN
 
 添加表列
 
@@ -90,7 +96,7 @@ ALTER TABLE user
 ADD COLUMN age int not NULL after name
 ```
 
-## CHANGE COLUMN
+### CHANGE COLUMN
 
 修改表列
 
@@ -99,7 +105,7 @@ ALTER TABLE user
 CHANGE name1 name VARCHAR(255)
 ```
 
-## DELETE COLUMN
+### DELETE COLUMN
 
 删除表列
 
@@ -108,11 +114,19 @@ ALTER TABLE user
 DROP COLUMN name;
 ```
 
+## 数据更新
+
 ## UPDATE
 
-更新数据
+批量修改时间，统一 +8 小时
 
-## join
+```sql
+update stat set createdAt = DATE_ADD(createdAt, INTERVAL 8 HOUR);
+```
+
+## 连接
+
+### join
 
 内连接, 获取两个表字段匹配关系的记录
 
@@ -126,9 +140,11 @@ DROP COLUMN name;
 SELECT article.id, article.title, user.name from article left join user on article.user_id = user.id
 ```
 
-## NOT IN
+## 条件
 
-## LIMIT
+### NOT IN
+
+### LIMIT
 
 限定返回行数
 
@@ -138,7 +154,7 @@ SELECT article.id, article.title, user.name from article left join user on artic
 SELECT name from user LIMIT 10
 ```
 
-## DISTINCT
+### DISTINCT
 
 检索不同的行, 去重匹配, 有多个列时, 多个列都相同才会被过滤
 
@@ -148,9 +164,9 @@ SELECT name from user LIMIT 10
 SELECT DISTINCT name, age from user
 ```
 
-## Group By
+### Group By
 
-## IS NULL 和 IS NOT NULL
+### IS NULL 和 IS NOT NULL
 
 对于 NULL 字段 需要使用 IS NULL 和 IS NOT NULL 判断
 
@@ -160,7 +176,7 @@ SELECT DISTINCT name, age from user
 SELECT name from user where name!='张三' or name IS NULL
 ```
 
-## Order By
+### Order By
 
 排序默认升序(ASC)排序
 
@@ -170,18 +186,10 @@ SELECT name from user where name!='张三' or name IS NULL
 SELECT name from user Order By age DESC
 ```
 
-## IFNULL
+### IFNULL
 
 用于判断一个表达式是否为 NULL, 如果是 NULL 则返回第二个参数的值
 
 ```sql
 SELECT IFNULL((SELECT name from user LIMIT 1), 'xjq')
-```
-
-## UPDATE
-
-批量修改时间，统一 +8 小时
-
-```sql
-update stat set createdAt = DATE_ADD(createdAt, INTERVAL 8 HOUR);
 ```
