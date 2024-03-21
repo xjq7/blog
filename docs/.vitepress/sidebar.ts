@@ -14,10 +14,6 @@ export default [
         link: '/FrontEnd/Crontab',
       },
       {
-        text: 'Css',
-        link: '/FrontEnd/Css',
-      },
-      {
         text: 'RN-自定义Iconfont的集成与使用',
         link: '/FrontEnd/Customize-iconfont',
       },
@@ -73,10 +69,6 @@ export default [
       {
         text: 'HTML',
         link: '/TechnicalTopics/Html',
-      },
-      {
-        text: 'CSS',
-        link: '/TechnicalTopics/Css',
       },
       {
         text: 'JS',

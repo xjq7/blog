@@ -300,11 +300,71 @@ function throttle(fn, time) {
 }
 ```
 
-##
-
 ## 深拷贝
 
+```js
+function deepClone(obj, weakMap = new WeakMap()) {
+  if (!(obj instanceof Object)) return obj
+  var isArray = obj instanceof Array
+  var res = isArray ? [] : {}
+  if (!isArray) {
+    if (weakMap.get(obj)) return {}
+    weakMap.set(obj, {}.toString.call(obj))
+  }
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      res[key] = deepClone(obj[key], weakMap)
+    }
+  }
+  return res
+}
+```
+
 ## 对象合并
+
+```js
+function getType(o) {
+  return Object.prototype.toString.call(o)
+}
+
+function deepClone(obj, weakMap = new WeakMap()) {
+  if (!(obj instanceof Object)) return obj
+  var isArray = obj instanceof Array
+  var res = isArray ? [] : {}
+  if (!isArray) {
+    if (weakMap.get(obj)) return {}
+    weakMap.set(obj, {}.toString.call(obj))
+  }
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      res[key] = deepClone(obj[key], weakMap)
+    }
+  }
+  return res
+}
+
+function merge(a, b) {
+  if (getType(a) !== getType(b)) {
+    return deepClone(b)
+  }
+  if (!(a instanceof Object)) {
+    return b
+  }
+  const isArray = a instanceof Array
+  const res = isArray ? [] : {}
+  for (let key in b) {
+    if (b.hasOwnProperty(key)) {
+      res[key] = merge(a[key], b[key])
+    }
+  }
+  for (let key in a) {
+    if (res[key] === undefined && a.hasOwnProperty(key)) {
+      res[key] = deepClone(a[key])
+    }
+  }
+  return res
+}
+```
 
 ## 柯里化
 
@@ -325,3 +385,63 @@ function currying(func) {
 ```
 
 ## LazyMan
+
+```js
+const stepObj = {
+  eat: async function ({ str }) {
+    console.log(str)
+  },
+  sleep: async function ({ delay }) {
+    return sleep(delay)
+  },
+  sleepFirst: async function ({ delay }) {
+    return sleep(delay)
+  },
+  talk: async function ({ name }) {
+    console.log(`I'm ${name}`)
+  },
+}
+
+async function sleep(delay) {
+  return new Promise((r, j) => setTimeout(r, delay))
+}
+
+function LazyManConstructor(name) {
+  this.step = []
+  this.name = name
+  this.step.push({ name: 'talk', params: { name } })
+  async function fn() {
+    while (this.step.length) {
+      const { name, params } = this.step.shift()
+      if (this.step.length) {
+        if (this.step[0].name === 'sleepFirst') {
+          const { name: lateName, params: lateParams } = this.step.shift()
+          await stepObj[lateName](lateParams)
+        }
+      }
+      await stepObj[name](params)
+    }
+  }
+  setTimeout(fn.bind(this), 0)
+  return this
+}
+
+LazyManConstructor.prototype.eat = function (str) {
+  this.step.push({ name: 'eat', params: { str } })
+  return this
+}
+
+LazyManConstructor.prototype.sleep = function (delay) {
+  this.step.push({ name: 'sleep', params: { delay } })
+  return this
+}
+
+LazyManConstructor.prototype.sleepFirst = function (delay) {
+  this.step.push({ name: 'sleepFirst', params: { delay } })
+  return this
+}
+
+function LazyMan(name) {
+  return new LazyManConstructor(name)
+}
+```
