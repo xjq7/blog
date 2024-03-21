@@ -57,40 +57,6 @@ export default [
         text: '记录图床项目部署',
         link: '/FrontEnd/Deploy-img',
       },
-    ],
-  },
-  {
-    text: '后端',
-    collapsible: true,
-    collapsed: false,
-    items: [
-      {
-        text: 'Mysql',
-        link: '/TechnicalTopics/Mysql',
-      },
-      {
-        text: 'Nginx',
-        link: '/TechnicalTopics/Nginx',
-      },
-      {
-        text: 'Docker',
-        link: '/TechnicalTopics/Docker',
-      },
-      {
-        text: 'MongoDB',
-        link: '/TechnicalTopics/MongoDB',
-      },
-      {
-        text: 'ElasticSearch',
-        link: '/TechnicalTopics/ElasticSearch',
-      },
-    ],
-  },
-  {
-    text: '前端',
-    collapsible: true,
-    collapsed: false,
-    items: [
       { text: '前端', link: '/TechnicalTopics/FrontEnd' },
       {
         text: '前端知识整理',
@@ -127,6 +93,56 @@ export default [
       {
         text: '移动端',
         link: '/TechnicalTopics/Mobile',
+      },
+    ],
+  },
+  {
+    text: '后端',
+    collapsible: true,
+    collapsed: false,
+    items: [
+      {
+        text: 'Mysql',
+        link: '/TechnicalTopics/Mysql',
+      },
+      {
+        text: 'Nginx',
+        link: '/TechnicalTopics/Nginx',
+      },
+      {
+        text: 'Docker',
+        link: '/TechnicalTopics/Docker',
+      },
+      {
+        text: 'MongoDB',
+        link: '/TechnicalTopics/MongoDB',
+      },
+      {
+        text: 'ElasticSearch',
+        link: '/TechnicalTopics/ElasticSearch',
+      },
+    ],
+  },
+  {
+    text: '归档',
+    collapsible: true,
+    collapsed: false,
+    items: [
+      {
+        text: '构建工具',
+        link: '/Knowledge/BuildTools',
+      },
+      {
+        text: '手写系列',
+        link: '/Knowledge/Code',
+      },
+      {
+        text: 'Typescript',
+        link: '/Knowledge/TS',
+      },
+      {
+        text: 'CSS',
+        link: '/Knowledge/Css',
       },
     ],
   },
