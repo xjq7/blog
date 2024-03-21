@@ -1,5 +1,160 @@
 [[toc]]
 
+## 盒模型
+
+标准 W3C 盒子模型的范围包括 margin、border、padding、content，并且 content 部分不包含其他部分
+
+IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading
+
+## 垂直居中
+
+### absolute + (-margin)
+
+兼容性好
+
+但是需要知道子元素的宽高
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .outer {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: red;
+      }
+
+      .inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">12345</div>
+    </div>
+  </body>
+</html>
+```
+
+### absolute + transform
+
+不需要知道子元素宽高
+
+兼容性依赖于 transform，只支持 IE9 及以上
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .outer {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: red;
+      }
+
+      .inner {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: yellow;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">12345</div>
+    </div>
+  </body>
+</html>
+```
+
+### absolute + (auto margin)
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .outer {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: red;
+      }
+
+      .inner {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: yellow;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">12345</div>
+    </div>
+  </body>
+</html>
+```
+
+### flex
+
+兼容性依赖于 flex
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .outer {
+        display: flex;
+        width: 300px;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+        background: red;
+      }
+
+      .inner {
+        width: 100px;
+        height: 100px;
+        background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">12345</div>
+    </div>
+  </body>
+</html>
+```
+
 ## BFC
 
 ### 格式化上下文(Formatting context)
@@ -150,3 +305,9 @@ BFC 的特点包括：
   @import url('main.css');
 </style>
 ```
+
+## 移动端适配 1px
+
+CSS 中的 1px 并不等于移动设备的 1px，这是由于不同手机有不同的像素密度。在 window 对象中有一个 devicePixelRatio 属性，它可以反映 CSS 中的像素和设备的像素比。
+
+devicePixelRatio 的官方定义：设备物理像素和设备独立像素的比例

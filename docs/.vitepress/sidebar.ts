@@ -136,6 +136,10 @@ export default [
         text: 'CSS',
         link: '/Knowledge/Css',
       },
+      {
+        text: 'JS',
+        link: '/Knowledge/Js',
+      },
     ],
   },
   {

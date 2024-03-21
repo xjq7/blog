@@ -2,3 +2,4 @@
 [Typescript](./TS.html)
 [css](./Css.html)
 [构建工具](./BuildTools.html)
+[JS](./Js.html)
