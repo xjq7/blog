@@ -130,7 +130,7 @@ export default [
       },
       {
         text: 'Typescript',
-        link: '/Knowledge/TS',
+        link: '/Knowledge/Ts',
       },
       {
         text: 'CSS',

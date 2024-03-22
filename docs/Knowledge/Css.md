@@ -311,3 +311,5 @@ BFC 的特点包括：
 CSS 中的 1px 并不等于移动设备的 1px，这是由于不同手机有不同的像素密度。在 window 对象中有一个 devicePixelRatio 属性，它可以反映 CSS 中的像素和设备的像素比。
 
 devicePixelRatio 的官方定义：设备物理像素和设备独立像素的比例
+
+## 行内元素和块级元素
