@@ -101,5 +101,5 @@ cp -a a.txt b.txt
 ### 大文件搜索
 
 ```sh
-
+du -h --max-depth=1 / | sort -hr
 ```
