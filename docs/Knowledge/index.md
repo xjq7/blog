@@ -1,5 +1,4 @@
 [手写系列](./Code.html)
-[Typescript](./Ts.html)
 [Css](./Css.html)
 [构建工具](./BuildTools.html)
 [JS](./Js.html)
