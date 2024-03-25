@@ -1,6 +1,6 @@
 [手写系列](./Code.html)
 [Css](./Css.html)
 [构建工具](./BuildTools.html)
-[JS](./Js.html)
+[Js](./Js.html)
 [React](./React.html)
 [其他](./Other.html)
