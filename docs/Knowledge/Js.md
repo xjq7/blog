@@ -9,9 +9,17 @@ Node 端的事件循环包含 6 个阶段
 1. timers 阶段: 这个阶段执行 setTimeout(callback) 和 setInterval(callback) 预定的 callback
 2. I/O callbacks 阶段: 此阶段执行某些系统操作的回调
 3. idle, prepare 阶段: 仅node内部使用
-4. poll 阶段: 获取新的I/O事件, 例如操作读取文件等等，适当的条件下node将阻塞在这里
+4. poll 阶段: 获取新的I/O事件, 例如操作读取文件等等, 适当的条件下node将阻塞在这里
 5. check 阶段: 执行 setImmediate() 设定的callbacks
 6. close callbacks 阶段: 比如 socket.on(‘close’, callback) 的callback会在这个阶段执行
+
+#### nextTick 与 promise
+
+process.nextTick 不属于事件循环的任何一个阶段, 它属于该阶段与下阶段之间的过渡, 即本阶段执行结束, 进入下一个阶段前, 所要执行的回调
+
+promise 与 process.nextTick 可以看做为微任务, process.nextTick 优先级要高于 promise
+
+process.nextTick 递归的话会导致 事件循环无法进入下一阶段, 通过 process.maxTickDepth 可以限制递归层数
 
 ### 浏览器
 
@@ -57,23 +65,23 @@ JS 对于异步事件会将它先挂起加入事件队列, 主线程空闲时执
 事件流的三个阶段:
 
 1. 捕获阶段: 事件从最顶层元素 window 一直传递到目标元素的父元素
-2. 目标阶段: 事件到达目标元素，如果事件指定不冒泡，那就会在这里中止
+2. 目标阶段: 事件到达目标元素, 如果事件指定不冒泡, 那就会在这里中止
 3. 冒泡阶段: 事件从目标元素父元素向上逐级传递直到最顶层元素 window
 
 ### 阻止捕获和冒泡
 
 通过 Event 对象的 stopPropagation 方法可以阻止事件捕获和冒泡
 
-在捕获事件里执行，子元素事件无法触发
-在冒泡事件里执行，父元素事件无法触发
+在捕获事件里执行, 子元素事件无法触发
+在冒泡事件里执行, 父元素事件无法触发
 
 ### 事件委托
 
-通过事件冒泡可以将子元素的事件函数定义在父元素上，由父元素的事件统一处理多个子元素的事件
+通过事件冒泡可以将子元素的事件函数定义在父元素上, 由父元素的事件统一处理多个子元素的事件
 
 优点:
 
-1. 减少内存消耗，不需要为每个子元素绑定事件，提高性能
+1. 减少内存消耗, 不需要为每个子元素绑定事件, 提高性能
 2. 动态绑定事件
 
 ### DOM 级别
@@ -88,13 +96,13 @@ DOM0 级事件无法同时绑定多个处理函数
 
 3.  DOM3级事件在 DOM2 级事件基础上新增了更多的事件类型
 
-    - UI事件，当用户与页面上的元素交互时触发，如: load、scroll
-    - 焦点事件，当元素获得或失去焦点时触发，如: blur、focus
-    - 鼠标事件，mouseenter 和 mouseleave: 这两个事件与mouseover和mouseout类似，但是不会在子元素进入或离开父元素时触发。它们更适合用于实现鼠标进入和离开元素的效果，而不受子元素影响
-    - 滚轮事件，当使用鼠标滚轮或类似设备时触发，如: mousewheel
-    - 文本事件，当在文档中输入文本时触发，如: textInput
-    - 键盘事件，input: 当用户输入文本时触发。与keydown、keypress和keyup事件不同，input事件在文本字段的值发生变化时触发，而不是在按键被按下或释放时触发
-    - 变动事件，当底层DOM结构发生变化时触发，如: DOMsubtreeModified
-    - 触摸事件，touchstart、touchend、touchmove、touchcancel: 这些事件用于处理触摸屏设备上的触摸操作，如手指接触屏幕、手指离开屏幕、手指在屏幕上移动等
-    - 拖放事件，drag、dragstart、dragend、dragover、dragenter、dragleave、drop: 这些事件用于处理拖放操作，可以实现拖动元素并将其放置到其他位置的功能
-    - 复合事件，compositionstart、compositionupdate、compositionend: 这些事件用于处理复合输入（如中文输入法输入）时的事件，可以捕获到输入法的中间状态和最终结果
+    - UI事件, 当用户与页面上的元素交互时触发, 如: load、scroll
+    - 焦点事件, 当元素获得或失去焦点时触发, 如: blur、focus
+    - 鼠标事件, mouseenter 和 mouseleave: 这两个事件与mouseover和mouseout类似, 但是不会在子元素进入或离开父元素时触发。它们更适合用于实现鼠标进入和离开元素的效果, 而不受子元素影响
+    - 滚轮事件, 当使用鼠标滚轮或类似设备时触发, 如: mousewheel
+    - 文本事件, 当在文档中输入文本时触发, 如: textInput
+    - 键盘事件, input: 当用户输入文本时触发。与keydown、keypress和keyup事件不同, input事件在文本字段的值发生变化时触发, 而不是在按键被按下或释放时触发
+    - 变动事件, 当底层DOM结构发生变化时触发, 如: DOMsubtreeModified
+    - 触摸事件, touchstart、touchend、touchmove、touchcancel: 这些事件用于处理触摸屏设备上的触摸操作, 如手指接触屏幕、手指离开屏幕、手指在屏幕上移动等
+    - 拖放事件, drag、dragstart、dragend、dragover、dragenter、dragleave、drop: 这些事件用于处理拖放操作, 可以实现拖动元素并将其放置到其他位置的功能
+    - 复合事件, compositionstart、compositionupdate、compositionend: 这些事件用于处理复合输入（如中文输入法输入）时的事件, 可以捕获到输入法的中间状态和最终结果
