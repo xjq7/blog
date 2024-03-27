@@ -4,6 +4,15 @@
 
 ### Node
 
+Node 端的事件循环包含 6 个阶段
+
+1. timers 阶段: 这个阶段执行 setTimeout(callback) 和 setInterval(callback) 预定的 callback
+2. I/O callbacks 阶段: 此阶段执行某些系统操作的回调
+3. idle, prepare 阶段: 仅node内部使用
+4. poll 阶段: 获取新的I/O事件, 例如操作读取文件等等，适当的条件下node将阻塞在这里
+5. check 阶段: 执行 setImmediate() 设定的callbacks
+6. close callbacks 阶段: 比如 socket.on(‘close’, callback) 的callback会在这个阶段执行
+
 ### 浏览器
 
 事件循环是单线程 JS 处理异步事件时的循环过程
