@@ -4,6 +4,8 @@
 
 ### Node
 
+> [深入理解NodeJS事件循环机制](https://juejin.cn/post/6844903999506923528)
+
 Node 端的事件循环包含 6 个阶段
 
 1. timers 阶段: 这个阶段执行 setTimeout(callback) 和 setInterval(callback) 预定的 callback
@@ -51,8 +53,6 @@ JS 对于异步事件会将它先挂起加入事件队列, 主线程空闲时执
 ## this
 
 ## 继承
-
-## 装饰器
 
 ## DOM 事件流
 
