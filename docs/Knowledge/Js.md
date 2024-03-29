@@ -298,3 +298,33 @@ DOM0 级事件无法同时绑定多个处理函数
     - 触摸事件, touchstart、touchend、touchmove、touchcancel: 这些事件用于处理触摸屏设备上的触摸操作, 如手指接触屏幕、手指离开屏幕、手指在屏幕上移动等
     - 拖放事件, drag、dragstart、dragend、dragover、dragenter、dragleave、drop: 这些事件用于处理拖放操作, 可以实现拖动元素并将其放置到其他位置的功能
     - 复合事件, compositionstart、compositionupdate、compositionend: 这些事件用于处理复合输入（如中文输入法输入）时的事件, 可以捕获到输入法的中间状态和最终结果
+
+## 模块化
+
+### Commonjs
+
+Commonjs 是 nodejs 中的模块化规范
+
+1. Commonjs 模块是同步加载的
+2. 文件级别的模块作用域
+3. 首次加载会运行模块并缓存结果, 再次加载会使用缓存
+
+CommonJS 实现会将模块的代码包装在一个IIFE中，并向该IIFE传递 exports、module 和 require，以确保模块的作用域是隔离的
+
+```js
+;(function (exports, module, require) {
+  // 模块代码
+})(exports, module, require)
+```
+
+### ESM
+
+ESM 在编译时就能确定模块依赖的输入与输出
+
+1. ESM 输出的是值的引用
+2. ESM 是编译时输出接口
+3. ESM 支持异步加载
+
+### AMD
+
+### CMD
