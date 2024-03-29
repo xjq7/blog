@@ -50,9 +50,201 @@ JS 对于异步事件会将它先挂起加入事件队列, 主线程空闲时执
 
 ## 原型链
 
+![原型链关系图](https://image.xjq.icu/2024/3/29/1711702766719_image.png)
+
+### 原型对象(prototype)
+
+每个函数都有一个 prototype 属性, 这个属性指向一个对象, 这个对象就是函数的原型对象。通过原型对象, 可以实现属性和方法的共享
+
+### 构造函数(constructor)
+
+构造函数是用来创建对象的函数，在构造函数中可以定义对象的属性和方法
+
+constructor 存在于 prototype的属性上
+
+### 优势
+
+1. 实现对象之间的共享: 原型链允许对象之间共享属性和方法，这样可以减少内存消耗
+2. 实现继承: 通过原型链，可以实现对象之间的继承关系，子对象可以继承父对象的属性和方法，提高代码的复用性
+3. 动态性和灵活性: 可以动态地向原型对象添加属性和方法，所有基于该原型对象创建的对象都会自动继承这些新添加的属性和方法
+
 ## this
 
 ## 继承
+
+### 原型链继承
+
+子类的 prototype 设置为父类的实例
+
+缺点:
+
+1. 子类共享同一份实例, 父子类数据耦合
+2. 无法传参
+
+```js
+function Parent() {
+  this.arr = [1, 2]
+}
+
+function Child(name) {
+  this.name = name
+}
+
+Child.prototype = new Parent()
+
+const c1 = new Child('x1')
+const c2 = new Child('x2')
+
+console.log(c1.arr) // [1,2]
+c1.arr.push(3)
+console.log(c2.arr) // [1,2,3]
+```
+
+### 构造函数继承
+
+将父类构造函数内容复制给子类构造函数, 子类不会相互影响,且可以传参
+
+缺点: 无法复用父类方法
+
+```js
+function Parent(name) {
+  this.pName = name
+  this.arr = [1, 2]
+}
+
+function Child(name) {
+  Parent.call(this, 'parent')
+  this.name = name
+}
+
+const c1 = new Child('x1')
+const c2 = new Child('x2')
+
+console.log(c1.arr) // [1,2]
+c1.arr.push(3)
+console.log(c2.arr) // [1,2]
+console.log(c1.pName) // parent
+```
+
+### 组合继承
+
+原型链继承与构造函数继承的组合
+
+优点:
+
+    1. 父类方法可以复用
+    2. 父类引用属性不会共享
+    3. 子类构造实例可以向父类传参
+
+缺点:
+
+    1. 调用了两次父类构造函数
+    2. 父类属性存在子类实例以及子类实例原型中
+
+```js
+function Parent(age) {
+  this.age = age
+  this.arr = [1, 2]
+}
+
+Parent.prototype.say = function () {
+  console.log('hello')
+}
+
+function Child(name) {
+  Parent.call(this, 40)
+  this.name = name
+}
+
+Child.prototype = new Parent()
+
+const c1 = new Child('x1')
+const c2 = new Child('x2')
+
+console.log(c1.arr) // [1,2]
+c1.arr.push(3)
+console.log(c2.arr) // [1,2]
+c1.say() // hello
+```
+
+### 原型式继承
+
+浅复制参数对象
+
+子类父类属性耦合
+无法传递参数
+
+```js
+const obj = { a: 1 }
+function clone(o) {
+  function F() {}
+  F.prototype = o
+  return new F()
+}
+const c1 = clone(obj)
+console.log(c1.a)
+```
+
+### 寄生式继承
+
+在原型式继承基础上增强
+
+```js
+const obj = { a: 1 }
+function clone(o) {
+  function F() {}
+  F.prototype = o
+  const f = new F()
+  f.say = function () {
+    console.log('hello')
+  }
+  return f
+}
+
+const c1 = clone(obj)
+
+c1.a // 1
+c1.say()
+```
+
+### 寄生组合式继承
+
+通过寄生式继承复用父类原型方法
+通过组合继承复用父类属性
+
+```js
+function Parent(age) {
+  this.age = age
+  this.arr = [1]
+}
+
+Parent.prototype.c = 'c1'
+Parent.prototype.say = function () {
+  console.log('hello')
+}
+
+function Child(name) {
+  Parent.call(this, 22)
+  this.name = name
+}
+
+function clone(o) {
+  function F() {}
+  F.prototype = o
+  return new F()
+}
+
+function inherit(child, parent) {
+  let prototype = clone(parent.prototype)
+  prototype.constructor = child
+  child.prototype = prototype
+}
+
+inherit(Child, Parent)
+
+const c1 = new Child('x1')
+const c2 = new Child('x2')
+```
 
 ## DOM 事件流
 
