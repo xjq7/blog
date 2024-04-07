@@ -189,8 +189,6 @@ function factory(name, age) {
 var obj = newObject(factory, 'xjq', 23)
 ```
 
-## 继承
-
 ## async
 
 ## 迭代器
