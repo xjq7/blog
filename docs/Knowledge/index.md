@@ -2,5 +2,6 @@
 - [Css](./Css.html)
 - [构建工具](./BuildTools.html)
 - [Js](./Js.html)
+- [调试](./Debugger.html)
 - [React](./React.html)
 - [其他](./Other.html)
