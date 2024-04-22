@@ -84,7 +84,7 @@ interface 是 TS 设计出来用于定义对象类型的，可以对对象的形
 
 类型别名用于给各种类型定义别名, 更加简洁
 
-type 可以声明基本类型, 联合类型, 交叉类型, 元组, interfa 不行
+type 可以声明基本类型, 联合类型, 交叉类型, 元组, interface 不行
 
 interface 可以合并重复声明
 
@@ -559,7 +559,7 @@ type Fibonacci<
   T extends number,
   U extends unknown[] = [0],
   U1 extends unknown[] = [0],
-  U2 extends unknown[] = [0]
+  U2 extends unknown[] = [0],
 > = U['length'] extends T ? U1['length'] : Fibonacci<T, [...U, 0], U2, [...U1, ...U2]>
 ```
 
