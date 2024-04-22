@@ -443,3 +443,139 @@ function LazyMan(name) {
   return new LazyManConstructor(name)
 }
 ```
+
+## 排序
+
+### 插入排序
+
+```js
+function insert(arr) {
+  let len = arr.length
+  for (let i = 0; i < len - 1; i++) {
+    let preIdx = i
+    let current = arr[i + 1]
+    while (preIdx >= 0 && current < arr[preIdx]) {
+      arr[preIdx + 1] = arr[preIdx]
+      preIdx--
+    }
+    arr[preIdx + 1] = current
+  }
+  return arr
+}
+```
+
+### 选择排序
+
+```js
+function selectSort(arr) {
+  let len = arr.length
+  let temp, minIdx
+  for (let i = 0; i < len - 1; i++) {
+    minIdx = i
+    for (let j = i + 1; j < len; j++) {
+      if (arr[minIdx] > arr[j]) {
+        minIdx = j
+      }
+    }
+    temp = arr[minIdx]
+    arr[minIdx] = arr[i]
+    arr[i] = temp
+  }
+  return arr
+}
+```
+
+### 归并排序
+
+```js
+function mergeSort(arr) {
+  _mergeSort(arr, 0, arr.length - 1)
+}
+
+function _mergeSort(arr, l, r) {
+  if (l < r) {
+    const mid = l + parseInt((r - l) / 2)
+    _mergeSort(arr, l, mid)
+    _mergeSort(arr, mid + 1, r)
+    _merge(arr, l, mid, r)
+  }
+}
+
+function _merge(arr, l, mid, r) {
+  let i = l,
+    j = mid + 1
+  let k = 0,
+    temp = []
+  while (i <= mid && j <= r) {
+    if (arr[i] > arr[j]) {
+      temp[k++] = arr[j++]
+    } else {
+      temp[k++] = arr[i++]
+    }
+  }
+
+  while (i <= mid) {
+    temp[k++] = arr[i++]
+  }
+
+  while (j <= r) {
+    temp[k++] = arr[j++]
+  }
+  for (let i = 0; i < k; i++) {
+    arr[l + i] = temp[i]
+  }
+}
+```
+
+### 快速排序
+
+```js
+function quickSort(arr) {
+  _quickSort(arr, 0, arr.length - 1)
+}
+function _quickSort(arr, l, r) {
+  if (l > r) return
+
+  let left = l,
+    right = r
+
+  let base = arr[left]
+  let temp
+  while (l != r) {
+    while (arr[r] >= base && l < r) {
+      r--
+    }
+    while (arr[l] <= base && l < r) {
+      l++
+    }
+
+    if (l < r) {
+      temp = arr[l]
+      arr[l] = arr[r]
+      arr[r] = temp
+    }
+  }
+  arr[left] = arr[l]
+  arr[l] = base
+  _quickSort(arr, left, l - 1)
+  _quickSort(arr, l + 1, right)
+}
+```
+
+### 冒泡排序
+
+```js
+function bubbleSort(arr) {
+  let len = arr.length
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j + 1] = temp
+      }
+    }
+  }
+  return arr
+}
+```
