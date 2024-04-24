@@ -8,7 +8,7 @@
 
 都可以定义一个对象或函数
 
-都允许继承, interface 使用 extends,type 使用交叉类型实现继承
+都允许继承, interface 使用 extends, type 使用交叉类型实现继承
 
 - 区别
 

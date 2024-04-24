@@ -14,38 +14,6 @@
 
 ## hook
 
-### Webpack 5
-
-- beforeRun
-
-在 Webpack 编译器开始运行之前触发
-
-- run
-
-在 Webpack 编译器开始编译之前触发
-
-- emit
-
-在生成文件之前触发
-
-- afterEmit
-
-在生成文件之后触发
-
-- done
-
-当 Webpack 编译器完成编译后触发
-
-- failed
-
-当 Webpack 编译器编译失败时触发
-
-- invalid
-
-当 Webpack 编译器无效时触发
-
-- matchRun
-
 ### Webpack 4
 
 - environment
