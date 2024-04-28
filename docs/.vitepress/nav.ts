@@ -2,13 +2,13 @@ export default [
   {
     text: 'blog日常',
     items: [
-      { text: '前端', link: '/FrontEnd/' },
+      { text: '前端归档(精华)', link: '/Knowledge/' },
+      { text: '前端散记', link: '/FrontEnd/' },
       { text: '技术专题', link: '/TechnicalTopics/' },
       { text: '性能专题', link: '/Performance/' },
       { text: '读书笔记', link: '/Notes/' },
       { text: 'C++', link: '/Cpp/' },
       { text: 'Java', link: '/Java/' },
-      { text: '归档', link: '/Knowledge/' },
       { text: '其他', link: '/Other/' },
     ],
   },

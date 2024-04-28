@@ -1,6 +1,53 @@
 export default [
   {
-    text: '前端',
+    text: '前端归档(精华)',
+    collapsible: true,
+    collapsed: false,
+    items: [
+      {
+        text: '目录',
+        link: '/Knowledge/index',
+      },
+      {
+        text: '构建工具',
+        link: '/Knowledge/BuildTools',
+      },
+      {
+        text: '手写系列',
+        link: '/Knowledge/Code',
+      },
+      {
+        text: 'Typescript',
+        link: '/Knowledge/Typescript',
+      },
+      {
+        text: 'CSS',
+        link: '/Knowledge/Css',
+      },
+      {
+        text: 'JS',
+        link: '/Knowledge/Js',
+      },
+      {
+        text: 'React',
+        link: '/Knowledge/React',
+      },
+      {
+        text: 'HTTP',
+        link: '/Knowledge/Http',
+      },
+      {
+        text: '浏览器',
+        link: '/Knowledge/Browser',
+      },
+      {
+        text: '设计模式',
+        link: '/Knowledge/DesignPattern',
+      },
+    ],
+  },
+  {
+    text: '前端散记',
     collapsible: true,
     collapsed: false,
     items: [
@@ -22,20 +69,12 @@ export default [
         link: '/FrontEnd/Debounce-Throttle',
       },
       {
-        text: 'Js-accuracy',
-        link: '/FrontEnd/Js-accuracy',
-      },
-      {
         text: 'Js',
         link: '/FrontEnd/Js',
       },
       {
         text: 'pm2',
         link: '/FrontEnd/Pm2',
-      },
-      {
-        text: '字符串方法',
-        link: '/FrontEnd/String-method',
       },
       {
         text: 'WindowsTerminal',
@@ -59,10 +98,6 @@ export default [
         link: '/Resume/Tech',
       },
       {
-        text: '浏览器',
-        link: '/FrontEnd/Browser',
-      },
-      {
         text: 'Typescript 类型体操集合',
         link: '/TechnicalTopics/Typescript',
       },
@@ -77,10 +112,6 @@ export default [
       {
         text: '工程化',
         link: '/TechnicalTopics/Engineerd',
-      },
-      {
-        text: 'React',
-        link: '/TechnicalTopics/React',
       },
       {
         text: '移动端',
@@ -116,42 +147,11 @@ export default [
     ],
   },
   {
-    text: '归档',
-    collapsible: true,
-    collapsed: false,
-    items: [
-      {
-        text: '构建工具',
-        link: '/Knowledge/BuildTools',
-      },
-      {
-        text: '手写系列',
-        link: '/Knowledge/Code',
-      },
-      {
-        text: 'Typescript',
-        link: '/Knowledge/Ts',
-      },
-      {
-        text: 'CSS',
-        link: '/Knowledge/Css',
-      },
-      {
-        text: 'JS',
-        link: '/Knowledge/Js',
-      },
-    ],
-  },
-  {
     text: '技术专题',
     collapsible: true,
     collapsed: false,
     items: [
       { text: 'Git', link: '/TechnicalTopics/Git' },
-      {
-        text: '设计模式',
-        link: '/TechnicalTopics/DesignPattern',
-      },
       {
         text: 'Net',
         link: '/TechnicalTopics/Net',

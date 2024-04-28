@@ -7,4 +7,5 @@
 - [浏览器](./Browser.html)
 - [基础](./Base.html)
 - [HTTP协议](./Http.html)
+- [设计模式](./DesignPattern.html)
 - [其他](./Other.html)
