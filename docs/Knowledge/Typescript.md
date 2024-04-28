@@ -56,3 +56,53 @@ ts strictFunctionTypes 设置为 true 时, 支持函数参数的逆变, 设置�
 ### 不变
 
 非父子类型不会发生型变
+
+## 类型收窄
+
+类型收窄会触发类型保护
+
+```ts
+function padLeft(padding: number | string, input: string): string {
+  return ' '.repeat(padding) + input
+}
+```
+
+## 分布式条件类型
+
+当类型参数为联合类型时, 且在条件类型左边直接引用该类型, TS 会展开每一个类型单独传入类型运算, 最后再合并成联合类型
+
+简化了类型编程, 不需要递归提取每个类型做处理
+
+```ts
+type Union = 'a' | 'b' | 'c'
+
+type UppercaseA<Item extends string> = Item extends 'a' ? Uppercase<Item> : Item
+
+type result = UppercaseA<Union> // 'b' | 'c' | 'A'
+```
+
+## 模式匹配
+
+## 类型构造
+
+## 特殊类型
+
+### any
+
+any 类型与任何类型交叉都是 any
+
+```ts
+type isAny<T> = 'a' extends 'b' & T ? true : false
+
+type Result = isAny<any> // true
+```
+
+### never
+
+never 类型 extends 任何类型都返回 never
+
+```ts
+type IsNever<T> = [T] extends [never] ? true : false
+
+type Result = IsNever<never> // true
+```
