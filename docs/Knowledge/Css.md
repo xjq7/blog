@@ -8,6 +8,38 @@ IE 盒子模型的范围也包括 margin、border、padding、content，和标�
 
 ## 垂直居中
 
+### text-align + vertical-align + table-cell
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer {
+        width: 300px;
+        height: 300px;
+        background: red;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+      }
+
+      .inner {
+        width: 100px;
+        height: 100px;
+        background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">12345</div>
+  </body>
+</html>
+```
+
 ### absolute + (-margin)
 
 兼容性好
