@@ -168,6 +168,10 @@ export default [
         text: '编译原理',
         link: '/TechnicalTopics/CompilationPrinciple',
       },
+      {
+        text: '正则表达式',
+        link: '/TechnicalTopics/Regex',
+      },
     ],
   },
   {
