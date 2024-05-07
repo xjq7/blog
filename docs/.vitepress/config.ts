@@ -13,7 +13,7 @@ export default defineConfig({
     theme: 'monokai',
     lineNumbers: true,
     toc: {
-      level: [1, 2, 3],
+      level: [1, 2, 3, 4],
     },
   },
   lastUpdated: true,

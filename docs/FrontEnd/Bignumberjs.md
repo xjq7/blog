@@ -14,7 +14,7 @@
 
 设置小数位数
 
-```js
+```Javascript
 BigNumber.config({ DECIMAL_PLACES: 4 })
 BigNumber.random().toNumber() // 0.7793
 ```
@@ -23,7 +23,7 @@ BigNumber.random().toNumber() // 0.7793
 
 计算传入的参数和,参数类型可以是 String,Number
 
-```js
+```Javascript
 // 两数之和
 var x = BigNumber.sum('11', 23)
 x.toNumber() // 34
@@ -38,7 +38,7 @@ y.toString() // '43.9999'
 
 生成 bignumber 构造函数
 
-```js
+```Javascript
 var X = BigNumber.clone()
 var y = new X()
 y // bignumber实例
@@ -48,7 +48,7 @@ y // bignumber实例
 
 判断是否是 bignumber 实例,通过 clone 的构造函数生成的实例仍然是 bignumber 实例,但是原型与 BigNumber 原型不同
 
-```js
+```Javascript
 var y = new BigNumber(2)
 BigNumber.isBigNumber(y) // true
 y instanceof BigNumber // true
@@ -63,7 +63,7 @@ BigNumber.isBigNumber(z) // true
 
 求最大值,简写 max,min
 
-```js
+```Javascript
 var x = [2222, 3333, '4444']
 BigNumber.max(...x).toNumber() // 4444
 BigNumber.min(...x).toNumber() // 2222
@@ -73,7 +73,7 @@ BigNumber.min(...x).toNumber() // 2222
 
 生成伪随机数,传入参数决定小数位数
 
-```js
+```Javascript
 BigNumber.random().toNumber() // 0.1501651215311695
 BigNumber.random(3).toNumber() // 0.150
 ```
@@ -84,7 +84,7 @@ BigNumber.random(3).toNumber() // 0.150
 
 相反数
 
-```js
+```Javascript
 var x = new BigNumber(1.8)
 x.negated() // -1.8
 ```
@@ -93,7 +93,7 @@ x.negated() // -1.8
 
 绝对值
 
-```js
+```Javascript
 var x = new BigNumber(-0.01)
 x.abs().toNumber() // 0.01
 ```
@@ -106,7 +106,7 @@ x.abs().toNumber() // 0.01
 0:等于
 null:比较值出现 NaN
 
-```js
+```Javascript
 var x = new BigNumber(Infinity)
 var y = new BigNumber(5)
 var z = new BigNumber(5)
@@ -120,7 +120,7 @@ y.comparedTo(NaN) // null
 
 确定小数位数
 
-```js
+```Javascript
 var x = new BigNumber(1234.5678912345)
 var y = new BigNumber(1234.56)
 x.dp(2).toNumber() // 1234.56
@@ -131,7 +131,7 @@ y.dp(10).toNumber() // 1234.56
 
 加法运算
 
-```js
+```Javascript
 0.1 + 0.2 // 0.30000000000000004
 var x = new BigNumber(0.1)
 x.plus(0.2).toNumber() // 0.3
@@ -141,7 +141,7 @@ x.plus(0.2).toNumber() // 0.3
 
 减法运算
 
-```js
+```Javascript
 0.3 - 0.1 // 0.19999999999999998
 var x = new BigNumber(0.3)
 x.minus(0.1) // 0.2
@@ -151,7 +151,7 @@ x.minus(0.1) // 0.2
 
 乘法运算
 
-```js
+```Javascript
 0.6 * 3 // 1.7999999999999998
 var x = new BigNumber(0.6)
 x.times(3) // 1.8
@@ -161,7 +161,7 @@ x.times(3) // 1.8
 
 除法运算
 
-```js
+```Javascript
 var x = new BigNumber(300)
 x.div(3).toNumber() // 100
 x.div(7).dp(3).toNumber() // 42.857
@@ -171,7 +171,7 @@ x.div(7).dp(3).toNumber() // 42.857
 
 除法运算,返回整数
 
-```js
+```Javascript
 var x = new BigNumber(5)
 x.idiv(3).toNumber() // 1
 x.idiv(0.7).toNumber() // 7
@@ -181,7 +181,7 @@ x.idiv(0.7).toNumber() // 7
 
 取余
 
-```js
+```Javascript
 1 % 0.9 // 0.09999999999999998
 var x = new BigNumber(1)
 x.mod(0.9).toNumber() // 0.1
@@ -191,7 +191,7 @@ x.mod(0.9).toNumber() // 0.1
 
 幂运算
 
-```js
+```Javascript
 Math.pow(0.7, 2) // 0.48999999999999994
 var x = BigNumber(0.7)
 x.pow(2).toNumber() // 0.49
@@ -201,7 +201,7 @@ x.pow(2).toNumber() // 0.49
 
 取整,参数取值参考 Properties
 
-```js
+```Javascript
 var x = new BigNumber(123.456)
 x.integerValue().toNumber() // 123
 x.integerValue(BigNumber.ROUND_CEIL).toNumber() // 124
@@ -211,7 +211,7 @@ x.integerValue(BigNumber.ROUND_CEIL).toNumber() // 124
 
 比较两数是否相等,NaN 不等于 NaN
 
-```js
+```Javascript
 0 === 1e-324 // js中
 var x = new BigNumber(0)
 x.eq('1e-324') // false
@@ -224,7 +224,7 @@ y.eq(NaN) // false
 
 判断数字是否有效
 
-```js
+```Javascript
 var x = new BigNumber(1)
 x.isFinite() // true
 
@@ -237,7 +237,7 @@ z.isFinite() // false
 
 ### isGreaterThan(gt)
 
-```js
+```Javascript
 0.1 > 0.3 - 0.2 // true
 var x = new BigNumber(0.1)
 x.gt(BigNumber(0.3).minus(0.2)) // false
@@ -259,7 +259,7 @@ x.gt(BigNumber(0.3).minus(0.2)) // false
 
 判断是否是 NaN
 
-```js
+```Javascript
 var x = new BigNumber(NaN)
 x.isNaN() // true
 
@@ -271,7 +271,7 @@ y.isNaN() // false
 
 判断是否是正数
 
-```js
+```Javascript
 var x = new BigNumber(-0)
 x.isPositive() // false
 ```
@@ -284,7 +284,7 @@ x.isPositive() // false
 
 判断是否是 0 或者-0
 
-```js
+```Javascript
 var x = new BigNumber(-0)
 x.isZero() // true
 ```
@@ -293,7 +293,7 @@ x.isZero() // true
 
 控制小数位数,不够后面补 0
 
-```js
+```Javascript
 var x = 3.456
 var y = new BigNumber(x)
 x.toFixed().toNumber() // 3

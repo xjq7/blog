@@ -4,7 +4,7 @@
 
 ### 1. 默认绑定:根据函数调用位置
 
-```js
+```Javascript
 function baz() {
   // 当前调用栈是：baz
   bar() // <-- bar的调用位置
@@ -30,7 +30,7 @@ baz() // <-- baz 的调用位置
 
 ### 2. 隐式绑定:当函数引用有上下文对象时，隐式绑定规则会把函数中的 this 绑定到这个上下文对象。对象属性引用链中只有上一层或者说最后一层在调用中起作用。
 
-```js
+```Javascript
 //在·对象中调用,指向对象,谁调用即指向谁
 function foo() {
   console.log(this.a)
@@ -46,7 +46,7 @@ obj.foo() // 2
 
 ### 3. 显示绑定:通过 call 或者 apply 方法。
 
-```js
+```Javascript
 var foo = function () {
   console.log(this.a) //1
 }
@@ -76,7 +76,7 @@ var 存在变量提升问题, 导致 callback 引用的是全局作用域下的 
 for 循环在当前事件循环一次执行完将 i 修改为 4
 然后执行下一个事件循环的 setTimeout callback 取到了全局作用域的 i
 
-```js
+```Javascript
 for (var i = 0; i < 5; i++) {
   setTimeout(() => {
     console.log(i)
@@ -88,7 +88,7 @@ for (var i = 0; i < 5; i++) {
 
 通过闭包创建块级作用域, 可以打印 0 1 2 3 4
 
-```js
+```Javascript
 for (var i = 0; i < 5; i++) {
   ;(function () {
     setTimeout(() => {
@@ -179,7 +179,7 @@ constructor 存在于 prototype的属性上
 1. 子类共享同一份实例, 父子类数据耦合
 2. 无法传参
 
-```js
+```Javascript
 function Parent() {
   this.arr = [1, 2]
 }
@@ -204,7 +204,7 @@ console.log(c2.arr) // [1,2,3]
 
 缺点: 无法复用父类方法
 
-```js
+```Javascript
 function Parent(name) {
   this.pName = name
   this.arr = [1, 2]
@@ -239,7 +239,7 @@ console.log(c1.pName) // parent
     1. 调用了两次父类构造函数
     2. 父类属性存在子类实例以及子类实例原型中
 
-```js
+```Javascript
 function Parent(age) {
   this.age = age
   this.arr = [1, 2]
@@ -272,7 +272,7 @@ c1.say() // hello
 子类父类属性耦合
 无法传递参数
 
-```js
+```Javascript
 const obj = { a: 1 }
 function clone(o) {
   function F() {}
@@ -287,7 +287,7 @@ console.log(c1.a)
 
 在原型式继承基础上增强
 
-```js
+```Javascript
 const obj = { a: 1 }
 function clone(o) {
   function F() {}
@@ -310,7 +310,7 @@ c1.say()
 通过寄生式继承复用父类原型方法
 通过组合继承复用父类属性
 
-```js
+```Javascript
 function Parent(age) {
   this.age = age
   this.arr = [1]
@@ -409,7 +409,7 @@ Commonjs 是 nodejs 中的模块化规范
 
 CommonJS 实现会将模块的代码包装在一个IIFE中，并向该IIFE传递 exports、module 和 require，以确保模块的作用域是隔离的
 
-```js
+```Javascript
 ;(function (exports, module, require) {
   // 模块代码
 })(exports, module, require)

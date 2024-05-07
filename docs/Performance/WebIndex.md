@@ -145,7 +145,7 @@ FPS 是描述"帧"变化速度的物理量，每秒渲染多少帧的图像
 
 通过计算 requestAnimationFrame 在 1s 内的执行次数，即是帧率
 
-```js
+```Javascript
 function fps() {
   let lastTime = 0
   let frameCount = 0

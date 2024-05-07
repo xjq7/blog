@@ -80,13 +80,13 @@ mongo -uroot -proot
 
 ### 列出
 
-```js
+```Javascript
 show dbs
 ```
 
 ### 显示当前数据库
 
-```js
+```Javascript
 db
 ```
 
@@ -96,13 +96,13 @@ db
 
 创建数据库, 数据库不存在时创建并切换到 userDb
 
-```js
+```Javascript
 use userDb
 ```
 
 ### 删除
 
-```js
+```Javascript
 db.dropDatabase()
 ```
 
@@ -110,7 +110,7 @@ db.dropDatabase()
 
 ### 列出集合
 
-```js
+```Javascript
 show collections
 ```
 
@@ -118,7 +118,7 @@ show collections
 
 ### Create
 
-```js
+```Javascript
 // 单条数据插入
 db.user.insert({
   name: 'xjq',
@@ -132,7 +132,7 @@ db.user.insertMany([{ name: 'xjq1' }, { name: 'xjq2' }])
 
 ### Update
 
-```js
+```Javascript
 // 条件更新
 db.user.update(
   {
@@ -182,14 +182,14 @@ db.user.update(
 
 ### Delete
 
-```js
+```Javascript
 // 条件删除
 db.user.remove({ name: 'xjq' })
 ```
 
 ### Read
 
-```js
+```Javascript
 // 查全部
 db.userCollection.find()
 
@@ -225,7 +225,7 @@ db.userCollection.find(
 
 ### 创建用户
 
-```js
+```Javascript
 db.createUser({
   user: 'admin',
   pwd: 'admin',
@@ -276,19 +276,19 @@ roles: [{ role: 'readWrite', db: 'monitor' }],
 
 1 表示 使用 phone 字段值创建索引时，应按升序对其进行排序
 
-```js
+```Javascript
 db.userCollection.createIndex({ phone: 1 })
 ```
 
 ### 查找索引
 
-```js
+```Javascript
 db.userCollection.getIndexes()
 ```
 
 ### 删除索引
 
-```js
+```Javascript
 db.userCollection.dropIndex({ phone: 1 })
 ```
 

@@ -4,7 +4,7 @@
 
 - **两次触发事件间隔控制在 delay**
 
-```js
+```Javascript
 /**
  *
  * @param fn {Function}   实际要执行的函数
@@ -35,7 +35,7 @@ function debounce(fn, delay) {
 
 - **指定时间内只触发一次**
 
-```js
+```Javascript
 /**
  *
  * @param fn {Function}   实际要执行的函数

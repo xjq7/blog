@@ -6,17 +6,19 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "serve": "vitepress serve docs",
+    "pnpm": "pnpm"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "pnpm": "8",
     "prettier": "^3.0.3",
-    "vitepress": "1.0.0-rc.9",
+    "vitepress": "1.1.4",
     "vue": "^3.2.37"
   },
   "engines": {
-    "node": ">= 16.19.1"
+    "node": ">= 18"
   }
 }

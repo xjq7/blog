@@ -6,7 +6,7 @@
 
 - 首先安装 react-native-vector-icons 依赖
 
-```js
+```Javascript
 //添加依赖
 yarn add react-native-vector-icons
 //将资源文件链接到原生目录下,link之后可以看到  android/app/src/main/assets/fonts目录下的ttf文件
@@ -22,7 +22,7 @@ react-native run-android
   <img src="https://xjq-blog.oss-cn-shenzhen.aliyuncs.com/blog/CustomizeIconfont/officailDoc.png"/>
 </div>
 
-```js
+```Javascript
 import Icon from 'react-native-vector-icons/AntDesign'
 
 const Test = () => {
@@ -47,7 +47,7 @@ const Test = () => {
 
 根目录下新建 react-native.config.js 文件,写入以下内容
 
-```js
+```Javascript
 module.exports = {
   assets: ['./assets/fonts'],
 }
@@ -81,7 +81,7 @@ echo "}" >> $OutputFileName
 
 然后运行脚本文件生成我们需要的 json 文件
 
-```js
+```Javascript
 sudo bash ./iconfont_mapper.sh iconfont.svg
 ```
 
@@ -92,7 +92,7 @@ sudo bash ./iconfont_mapper.sh iconfont.svg
   <img src="https://xjq-blog.oss-cn-shenzhen.aliyuncs.com/blog/CustomizeIconfont/iconfontJson.png"/>
 </div>
 
-```js
+```Javascript
 import createIconSet from 'react-native-vector-icons/lib/create-icon-set'
 import glyphMap from './iconfont.json'
 
@@ -109,7 +109,7 @@ export const getImageSource = iconSet.getImageSource
 
 5. 最后就是使用我们的字体了(重新编译一下,同时检查 android 目录下是否添加了 iconfont.ttf,可以手动复制过来...)
 
-```js
+```Javascript
 import Icon from '../static/iconfont/iconfont'//这是我跟个人路径
 const Test = ()=>{
   return (

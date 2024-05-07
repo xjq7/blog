@@ -91,7 +91,7 @@
 
 下面这段 Js Token 化：
 
-```js
+```Javascript
 let a = 10
 b + 20
 ```
@@ -122,7 +122,7 @@ Literal(10)
 
 例如：
 
-```js
+```Javascript
 let b = a + 10
 ```
 
@@ -156,7 +156,7 @@ eslint 在 AST 基础上做静态检查
 
   例如：这段代码，在语法分析中并无异常，描述变量 str 赋值给 num，但在语义上来说，str 类型与 num 不兼容，可能会产生错误
 
-  ```js
+  ```Javascript
   let str: string = 1;
   let num: number = str;
   ```
@@ -165,7 +165,7 @@ eslint 在 AST 基础上做静态检查
 
   例如函数中引用的变量应该指向到哪里，在语义分析中需要确定每个变量的可见范围，以及在哪里可以访问与修改
 
-  ```js
+  ```Javascript
   let person1 = 'xjq'
 
   function play() {
@@ -287,7 +287,7 @@ JIT：
 
 JIT编译器可以根据程序运行时的上下文信息来优化，例如在循环中，某个变量值始终不变，那么编译器可以将它缓存起来，避免重复计算
 
-```js
+```Javascript
 function add(a, b) {
   return a + b
 }
@@ -304,7 +304,7 @@ console.log(z)
 
 先看看这段 js 代码经过词法分析器分析后的结果图解
 
-```js
+```Javascript
 let a = 10
 let b = a + 20
 ```
@@ -363,7 +363,7 @@ int ia = 4;
 
 包含过渡状态与终结状态
 
-```ts
+```Javascript
 // 状态机状态定义, 过度状态不是最终状态，自动生成数字
 enum DfaState {
   Initial,
@@ -383,7 +383,7 @@ enum DfaState {
 
 每个 Token 包含 类型， 对应上面的枚举状态，text 是 附加属性，例如 变量 的 text 值就是变量名
 
-```ts
+```Javascript
 class Token {
   // token 附加字段，比如 IntLiteral 需要额外存储数据
   text?: string
@@ -399,7 +399,7 @@ class Token {
 
 词法分析器：
 
-```ts
+```Javascript
 function isAlpha(ch: string) {
   return /[a-z]/i.test(ch)
 }
@@ -486,7 +486,7 @@ export function tokenize(str: string) {
 
 测试验证：
 
-```js
+```Javascript
 import { tokenize } from './index'
 
 const str = `  int a = 20;
@@ -523,7 +523,7 @@ bool bool2 = c >= d;
 
 使用 TS 代码实现上述状态机：
 
-```ts
+```Javascript
 enum DfaState {
   Initial,
   Int1,
@@ -704,7 +704,7 @@ export function tokenize(str: string) {
 
 测试验证代码:
 
-```js
+```Javascript
 import { tokenize } from '.'
 
 const str = `  int c = a + 10;
@@ -806,7 +806,7 @@ g++ -o lexer lexer.l
 
 这些规则可以处理一些操作符以及数字字面量的 Token
 
-```js
+```Javascript
 10 + 20
 20 / 2
 1234
@@ -816,7 +816,7 @@ g++ -o lexer lexer.l
 
 就拿 Excel 一些函数来当例子
 
-```js
+```Javascript
 =SUM(A1:A10)
 
 =AVERAGE(A1:A10)
@@ -918,7 +918,7 @@ int main(int argc, char** argv) {
 
 示例:
 
-```js
+```Javascript
 1 + 2
 ```
 
@@ -936,7 +936,7 @@ AST 图：
 
 [源码目录 ast1](https://github.com/xjq7/compilation-principle/tree/main/ast1)
 
-```ts
+```Javascript
 import { DfaState, Token } from '../token2'
 
 // 节点类型
@@ -1062,7 +1062,7 @@ export class AST {
 
 测试验证:
 
-```js
+```Javascript
 import { tokenize } from '../token2'
 import { AST } from './index'
 
@@ -1102,7 +1102,7 @@ AST 树：确定结合性，加法是左结合的，所以从左向右，前两�
 
 将 ast1 改为 递归处理
 
-```ts
+```Javascript
 /**
    * 加法表达式处理
    *
@@ -1136,7 +1136,7 @@ AST 树：确定结合性，加法是左结合的，所以从左向右，前两�
 
 测试验证:
 
-```ts
+```Javascript
 import { tokenize } from '../token2'
 import { AST } from './index'
 
@@ -1158,7 +1158,7 @@ console.log(JSON.stringify(ast.build(), null, 4))
 
 源码在 [ast3 目录](https://github.com/xjq7/compilation-principle/tree/main/ast3)
 
-```ts
+```Javascript
 /**
    * 加法表达式处理
    *
@@ -1214,7 +1214,7 @@ console.log(JSON.stringify(ast.build(), null, 4))
 
 源码在 [ast4 目录](https://github.com/xjq7/compilation-principle/tree/main/ast4)
 
-```ts
+```Javascript
 /**
    * 乘法表达式解析
    *
@@ -1679,7 +1679,7 @@ LR 算法是一种 "移进-规约" 的自底向上分析方法
 
 像前面的文法
 
-```js
+```Javascript
 E -> E + E
 E -> E - E
 E -> num
@@ -1703,7 +1703,7 @@ E -> num
 
 对于下面的文法, X 可以规约为 U, 也可以规约为 V, 就会产生冲突
 
-```js
+```Javascript
 U -> X
 V -> X
 U -> XY

@@ -4,7 +4,7 @@
 
 ## promise
 
-```js
+```Javascript
 function Promise(fn) {
   this.state = 'pending'
   this.value = null
@@ -135,7 +135,7 @@ Promise.race = function (promiseList) {
 
 ## isType
 
-```js
+```Javascript
 function isType(type) {
   return function (o) {
     return Object.prototype.toString.call(o) === `[object ${type}]`
@@ -145,7 +145,7 @@ function isType(type) {
 
 ## call
 
-```js
+```Javascript
 Function.prototype.call2 = function (context) {
   // 首先要获取调用call的函数，用this可以获取
   context.fn = this
@@ -157,7 +157,7 @@ Function.prototype.call2 = function (context) {
 
 ## bind
 
-```js
+```Javascript
 Function.prototype.bind2 = function (o) {
   const context = this
   return function () {
@@ -171,7 +171,7 @@ Function.prototype.bind2 = function (o) {
 
 ## new
 
-```js
+```Javascript
 function newObject() {
   var obj = Object.create(null)
   //去除参数里的构造函数
@@ -195,7 +195,7 @@ var obj = newObject(factory, 'xjq', 23)
 
 ## EventEmitter
 
-```js
+```Javascript
 class Event {
   constructor() {
     this.event = {}
@@ -271,7 +271,7 @@ e.emit('a')
 
 ## 防抖
 
-```js
+```Javascript
 function debounce(fn, delay) {
   let timer
   return function (...args) {
@@ -284,7 +284,7 @@ function debounce(fn, delay) {
 
 ## 节流
 
-```js
+```Javascript
 function throttle(fn, time) {
   let canCall = true
   return function (...args) {
@@ -300,7 +300,7 @@ function throttle(fn, time) {
 
 ## 深拷贝
 
-```js
+```Javascript
 function deepClone(obj, weakMap = new WeakMap()) {
   if (!(obj instanceof Object)) return obj
   var isArray = obj instanceof Array
@@ -320,7 +320,7 @@ function deepClone(obj, weakMap = new WeakMap()) {
 
 ## 对象合并
 
-```js
+```Javascript
 function getType(o) {
   return Object.prototype.toString.call(o)
 }
@@ -366,7 +366,7 @@ function merge(a, b) {
 
 ## 柯里化
 
-```js
+```Javascript
 const add = (args) => args.reduce((a, b) => a + b, 0)
 
 function currying(func) {
@@ -384,7 +384,7 @@ function currying(func) {
 
 ## LazyMan
 
-```js
+```Javascript
 const stepObj = {
   eat: async function ({ str }) {
     console.log(str)
@@ -448,7 +448,7 @@ function LazyMan(name) {
 
 ### 插入排序
 
-```js
+```Javascript
 function insert(arr) {
   let len = arr.length
   for (let i = 0; i < len - 1; i++) {
@@ -466,7 +466,7 @@ function insert(arr) {
 
 ### 选择排序
 
-```js
+```Javascript
 function selectSort(arr) {
   let len = arr.length
   let temp, minIdx
@@ -487,7 +487,7 @@ function selectSort(arr) {
 
 ### 归并排序
 
-```js
+```Javascript
 function mergeSort(arr) {
   _mergeSort(arr, 0, arr.length - 1)
 }
@@ -529,7 +529,7 @@ function _merge(arr, l, mid, r) {
 
 ### 快速排序
 
-```js
+```Javascript
 function quickSort(arr) {
   _quickSort(arr, 0, arr.length - 1)
 }
@@ -564,7 +564,7 @@ function _quickSort(arr, l, r) {
 
 ### 冒泡排序
 
-```js
+```Javascript
 function bubbleSort(arr) {
   let len = arr.length
   for (let i = 0; i < len - 1; i++) {
@@ -582,7 +582,7 @@ function bubbleSort(arr) {
 
 ## Redux-thunk
 
-```js
+```Javascript
 function createThunkMiddleware(extraArgument) {
   const middleware =
     ({ dispatch, getState }) =>

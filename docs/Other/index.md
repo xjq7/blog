@@ -4,7 +4,7 @@
 
 - yum 常用命令
 
-```js
+```Javascript
 //更新所有软件
 yum update
 
@@ -20,7 +20,7 @@ yum install -y firewalld firewall-config
 
 ## 管理 firewall
 
-```js
+```Javascript
 //启动防火墙:
 systemctl start firewalld
 systemctl enable firewalld

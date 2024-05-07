@@ -55,7 +55,7 @@ Renderer 根据 Reconciler 为虚拟 DOM 打的标记，同步执行对应的 DO
 
 ### Fiber 的结构
 
-```js
+```Javascript
 function FiberNode(tag: WorkTag, pendingProps: mixed, key: null | string, mode: TypeOfMode) {
   // 作为静态数据结构的属性
   this.tag = tag

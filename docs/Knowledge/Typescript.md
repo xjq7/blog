@@ -32,7 +32,7 @@ interface 可以合并重复声明
 
 ts 检查类型是安全的, 这种特性叫做逆变
 
-```ts
+```Typescript
 interface Y {
   a: string
   b: boolean
@@ -61,7 +61,7 @@ ts strictFunctionTypes 设置为 true 时, 支持函数参数的逆变, 设置�
 
 类型收窄会触发类型保护
 
-```ts
+```Typescript
 function padLeft(padding: number | string, input: string): string {
   return ' '.repeat(padding) + input
 }
@@ -73,7 +73,7 @@ function padLeft(padding: number | string, input: string): string {
 
 简化了类型编程, 不需要递归提取每个类型做处理
 
-```ts
+```Typescript
 type Union = 'a' | 'b' | 'c'
 
 type UppercaseA<Item extends string> = Item extends 'a' ? Uppercase<Item> : Item
@@ -91,7 +91,7 @@ type result = UppercaseA<Union> // 'b' | 'c' | 'A'
 
 any 类型与任何类型交叉都是 any
 
-```ts
+```Typescript
 type isAny<T> = 'a' extends 'b' & T ? true : false
 
 type Result = isAny<any> // true
@@ -101,7 +101,7 @@ type Result = isAny<any> // true
 
 never 类型 extends 任何类型都返回 never
 
-```ts
+```Typescript
 type IsNever<T> = [T] extends [never] ? true : false
 
 type Result = IsNever<never> // true

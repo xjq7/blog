@@ -8,7 +8,7 @@
 
   2.将 icon.png 放置于根目录
 
-  ```js
+  ```Javascript
   yo rn-toolbox:assets --icon icon.png
   ```
 
@@ -41,7 +41,7 @@
 
 - 检查下三方库中安卓编译输出版本跟项目编译输出版本是否一样
 
-```js
+```Javascript
 //android目录下build.gradle部分配置
 
 buildscript {
@@ -76,7 +76,7 @@ android {
 
 1. 打开 android/app/build.gradle
 
-```js
+```Javascript
 //enableProguardInReleaseBuilds改为true
 def enableProguardInReleaseBuilds = true
 //enableSeparateBuildPerCPUArchitecture改为true
