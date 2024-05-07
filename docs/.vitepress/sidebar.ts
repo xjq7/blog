@@ -164,6 +164,10 @@ export default [
         text: 'Linux',
         link: '/TechnicalTopics/Linux',
       },
+      {
+        text: '编译原理',
+        link: '/TechnicalTopics/CompilationPrinciple',
+      },
     ],
   },
   {

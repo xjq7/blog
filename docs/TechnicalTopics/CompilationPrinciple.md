@@ -1,20 +1,20 @@
-<!-- [[toc]]
+[[toc]]
 
 ## 引言
 
 为什么选择分享编译原理
 
-第一，以前我看过编译原理书籍，太难了，学不动，但这次选为分享主题，准备分享是一个深度学习的过程，对我来说不光是分享知识，同时也是克服困难的过程
+- 第一，以前我看过编译原理书籍，太难了，学不动，但这次选为分享主题，准备分享是一个深度学习的过程，对我来说不光是分享知识，同时也是克服困难的过程
 
 正则表达式也是，分享完之后好像看我挺懂，其实我就是因为不懂我就要去学习然后分享
 
-第二，实用性，如果对我们没有实用价值(用来理解我们的技术、直接运用在项目中的技术)，那在当前就没有太大的学习必要
+- 第二，实用性，如果对我们没有实用价值(用来理解我们的技术、直接运用在项目中的技术)，那在当前就没有太大的学习必要
 
 学习编译原理可以理解我们的编程语言，可以了解到一些底层库的实现原理，在下面应用场景中会有举例
 
 这篇分享的整个流程，我会从概念切入，原理实现，再到实战应用上来使用编译原理解决应用问题
 
-### 知识点：
+### 知识点
 
 通过本文你将会收获如下内容：
 
@@ -25,48 +25,53 @@
 
 ### 应用场景
 
-#### 编程语言
+- 编程语言
 
-C++, Java, Javascript
+  C++, Java, Javascript
 
-对于机器而言，代码就是一串字符，如何将这串字符想要表达的含义告诉机器
+  对于机器而言，代码就是一串字符，如何将这串字符想要表达的含义告诉机器
 
-这就是编译原理要做的事情
+  这就是编译原理要做的事情
 
-运行
+  ![](https://image.xjq.icu/2024/5/7/1715067112482_runcode%20editor.png)
+  ![](https://image.xjq.icu/2024/5/7/1715067155700_runcode%20editor2.png)
 
-要开发一门编程语言就需要学习编译原理
+  运行
 
-### 抽象语法树（AST）
+  ![](https://image.xjq.icu/2024/5/7/1715067180456_runcode%20output.png)
 
-AST 在编译原理中是属于词语法分析后的产物，也就是说实现一个 AST 解析库需要学习词法分析和语法分析，所以我这次分享深入的点就是词法、语法分析
+  要开发一门编程语言就需要学习编译原理
 
-一些 Javascript AST 解析库
+- 抽象语法树（AST）
 
-[esprima](https://github.com/jquery/esprima)
+  AST 在编译原理中是属于词语法分析后的产物，也就是说实现一个 AST 解析库需要学习词法分析和语法分析，所以我这次分享深入的点就是词法、语法分析
 
-[babel-parser](https://github.com/babel/babel/tree/master/packages/babel-parser)
+  一些 Javascript AST 解析库
 
-[acorn](https://github.com/acornjs/acorn)
+  [esprima](https://github.com/jquery/esprima)
 
-基于这些库的使用我们又能做的事情
+  [babel-parser](https://github.com/babel/babel/tree/master/packages/babel-parser)
 
-- 应用开发中，语言降级处理
-- 代码检查工具：eslint
-- 其他用途，例如 [typescript-json-schema](https://github.com/YousefED/typescript-json-schema)，将 typescript 类型 转换为 json-schema，可以在服务端实现 API 文档自动生成能力
+  [acorn](https://github.com/acornjs/acorn)
 
-### DSL 领域特定语言
+  基于这些库的使用我们又能做的事情
 
-针对特定领域开发的专用语言，通常专注于解决特定领域的问题，因此可以提供更简洁、易于理解和易于使用的语法和工具
+  - 应用开发中，语言降级处理
+  - 代码检查工具：eslint
+  - 其他用途，例如 [typescript-json-schema](https://github.com/YousefED/typescript-json-schema)，将 typescript 类型 转换为 json-schema，可以在服务端实现 API 文档自动生成能力
 
-- SQL 结构化查询语言：Mysql，ES...
-- HTML/CSS
-- 正则表达式： 字符串匹配 DSL
-- YAML/JSON：数据序列化和配置文件的DSL
-- Excel：公式表达式
-- JSX 语法
+- DSL 领域特定语言
 
-甚至我们可能在自己的领域下，也会有 DSL 语言的开发需求
+  针对特定领域开发的专用语言，通常专注于解决特定领域的问题，因此可以提供更简洁、易于理解和易于使用的语法和工具
+
+  - SQL 结构化查询语言：Mysql，ES...
+  - HTML/CSS
+  - 正则表达式： 字符串匹配 DSL
+  - YAML/JSON：数据序列化和配置文件的DSL
+  - Excel：公式表达式
+  - JSX 语法
+
+  甚至我们可能在自己的领域下，也会有 DSL 语言的开发需求
 
 ## 编译的整个阶段
 
@@ -149,31 +154,31 @@ eslint 在 AST 基础上做静态检查
 
 - 类型检查：对标识符类型进行检查，像强类型语言，会检查标识符在使用前是否声明，操作符和操作数之间类型是否兼容，Typescript 的出现就 为 Javascript 增强了这一能力，完备的类型系统
 
-例如：这段代码，在语法分析中并无异常，描述变量 str 赋值给 num，但在语义上来说，str 类型与 num 不兼容，可能会产生错误
+  例如：这段代码，在语法分析中并无异常，描述变量 str 赋值给 num，但在语义上来说，str 类型与 num 不兼容，可能会产生错误
 
-```js
-let str: string = 1;
-let num: number = str;
-```
+  ```js
+  let str: string = 1;
+  let num: number = str;
+  ```
 
 - 作用域检查：验证标识符的作用域和可见性，检查变量、函数在哪个作用域下可以访问，像外层无法访问里层作用域中的变量
 
-例如函数中引用的变量应该指向到哪里，在语义分析中需要确定每个变量的可见范围，以及在哪里可以访问与修改
+  例如函数中引用的变量应该指向到哪里，在语义分析中需要确定每个变量的可见范围，以及在哪里可以访问与修改
 
-```js
-let person1 = 'xjq'
+  ```js
+  let person1 = 'xjq'
 
-function play() {
-  let person1 = 'xjq2'
-  let person2 = 'xjq3'
-  console.log(person1)
-}
-console.log(person2)
-```
+  function play() {
+    let person1 = 'xjq2'
+    let person2 = 'xjq3'
+    console.log(person1)
+  }
+  console.log(person2)
+  ```
 
 - 错误检查和报告：检查源代码中的语义错误，并生成相应的错误信息，在我们开发中是最熟悉的，类型不匹配、变量函数未声明、作用域访问问题等，错误信息可以帮我们调试和修复代码问题
 
-![ts错误检查](https://image.xjq.icu/2024/4/26/1714124008860_ts%E9%94%99%E8%AF%AF%E6%A3%80%E6%9F%A5.png)
+  ![ts错误检查](https://image.xjq.icu/2024/4/26/1714124008860_ts%E9%94%99%E8%AF%AF%E6%A3%80%E6%9F%A5.png)
 
 语义分析是接着语法分析阶段，对抽象语法树进行进一步的处理
 
@@ -193,11 +198,11 @@ console.log(person2)
 
 1. 解释执行
 
-解释型语言，像 JavaScript、Python，生成中间代码后，可以直接解释和执行，但是运行效率比较低，因为在运行时需要逐行解释和执行
+   解释型语言，像 JavaScript、Python，生成中间代码后，可以直接解释和执行，但是运行效率比较低，因为在运行时需要逐行解释和执行
 
 2. 代码优化
 
-生成代码之后的优化工作，不同 CPU 体系的汇编语言不同，没必要在汇编代码上去做这些优化，可以基于 IR 使用统一的算法来完成，来降低编译器适配不同 CPU 的复杂性
+   生成代码之后的优化工作，不同 CPU 体系的汇编语言不同，没必要在汇编代码上去做这些优化，可以基于 IR 使用统一的算法来完成，来降低编译器适配不同 CPU 的复杂性
 
 #### 优化
 
@@ -209,60 +214,60 @@ console.log(person2)
 
 1. 常量传播
 
-它是通过识别代码中的常量表达式，将其替换为计算结果的常量值，来减少运行时的计算量
+   它是通过识别代码中的常量表达式，将其替换为计算结果的常量值，来减少运行时的计算量
 
-```cpp
-int x = 5;
-int y = x + 3;
-int z = y * 2;
-```
+   ```cpp
+   int x = 5;
+   int y = x + 3;
+   int z = y * 2;
+   ```
 
-经过优化之后
+   经过优化之后
 
-```cpp
-int z = 16;
-```
+   ```cpp
+   int z = 16;
+   ```
 
 2. 复制传播
 
-复制传播技术是识别变量复制操作，将变量的值复制到使用该变量的地方，来减少变量访问次数，可以减少内存读取操作，提高执行效率
+   复制传播技术是识别变量复制操作，将变量的值复制到使用该变量的地方，来减少变量访问次数，可以减少内存读取操作，提高执行效率
 
-在底层寻址也是耗时操作，我们要使用变量 y，先找到 y 的地址，再去找 x 的地址，可以将中间过程优化掉
+   在底层寻址也是耗时操作，我们要使用变量 y，先找到 y 的地址，再去找 x 的地址，可以将中间过程优化掉
 
-```cpp
-int x = 5;
-int y = x;
-int z = y * 2;
-```
+   ```cpp
+   int x = 5;
+   int y = x;
+   int z = y * 2;
+   ```
 
-优化后
+   优化后
 
-```cpp
-int z = x * 2;
-```
+   ```cpp
+   int z = x * 2;
+   ```
 
 3. 删除无用代码
 
-懂的都懂，一些对输出结果没有什么影响的代码，可以直接删除
+   懂的都懂，一些对输出结果没有什么影响的代码，可以直接删除
 
 4. 循环优化
 
-比如循环展开与合并，将多个循环迭代合并
+   比如循环展开与合并，将多个循环迭代合并
 
-```cpp
-int sum = 0;
-for (int i = 0; i < 100; i++) {
-sum += i;
-}
-```
+   ```cpp
+   int sum = 0;
+   for (int i = 0; i < 100; i++) {
+     sum += i;
+   }
+   ```
 
-优化为
+   优化为
 
-```
-sum = 0 + 1 + 2 + 3 + ... + 99
-```
+   ```
+   sum = 0 + 1 + 2 + 3 + ... + 99
+   ```
 
-来减少循环开销和分支开销
+   来减少循环开销和分支开销
 
 ### 目标代码生成
 
@@ -296,6 +301,8 @@ console.log(z)
 ```
 
 ## 词法分析器
+
+先看看这段 js 代码经过词法分析器分析后的结果图解
 
 ```js
 let a = 10
@@ -348,7 +355,7 @@ int ia = 4;
 
 ![状态机图解](https://image.xjq.icu/2024/4/26/1714124338100_%E7%8A%B6%E6%80%81%E6%9C%BA%E5%9B%BE%E8%A7%A3.png)
 
-代码在 token1 目录
+代码在 [token1 目录](https://github.com/xjq7/compilation-principle/tree/main/token1)
 
 使用 TS 代码实现上述状态机：
 
@@ -356,19 +363,19 @@ int ia = 4;
 
 包含过渡状态与终结状态
 
-```js
+```ts
 // 状态机状态定义, 过度状态不是最终状态，自动生成数字
 enum DfaState {
-Initial,
-Int1,
-Int2,
+  Initial,
+  Int1,
+  Int2,
 
-Assignment = 'Assignment',
+  Assignment = 'Assignment',
 
-SemiColon = 'SemiColon',
-IntLiteral = 'IntLiteral',
-Id = 'Id',
-Int = 'Int',
+  SemiColon = 'SemiColon',
+  IntLiteral = 'IntLiteral',
+  Id = 'Id',
+  Int = 'Int',
 }
 ```
 
@@ -376,103 +383,104 @@ Int = 'Int',
 
 每个 Token 包含 类型， 对应上面的枚举状态，text 是 附加属性，例如 变量 的 text 值就是变量名
 
-```js
+```ts
 class Token {
-// token 附加字段，比如 IntLiteral 需要额外存储数据
-text?: string;
-// 状态类别，对应状态机中的终结状态
-type: DfaState;
+  // token 附加字段，比如 IntLiteral 需要额外存储数据
+  text?: string
+  // 状态类别，对应状态机中的终结状态
+  type: DfaState
 
-constructor(type: DfaState, text?: string) {
-if (text) this.text = text;
-this.type = type;
+  constructor(type: DfaState, text?: string) {
+    if (text) this.text = text
+    this.type = type
+  }
 }
-}
+```
 
 词法分析器：
 
+```ts
 function isAlpha(ch: string) {
-return /[a-z]/i.test(ch);
+  return /[a-z]/i.test(ch)
 }
 
 function isNumber(ch: string) {
-return /\d/.test(ch);
+  return /\d/.test(ch)
 }
 
 function isBlank(ch: string) {
-return /\s|\n/.test(ch);
+  return /\s|\n/.test(ch)
 }
 
 export function tokenize(str: string) {
-let state: DfaState = DfaState.Initial;
+  let state: DfaState = DfaState.Initial
 
-const tokens: Token[] = [];
+  const tokens: Token[] = []
 
-// 临时变量， 用于存储一些字面量字符
-let text = '';
+  // 临时变量， 用于存储一些字面量字符
+  let text = ''
 
-// 每次解析完一个 token 后需要重置 状态 跟临时变量
-const push = function (...items: Token[]) {
-text = '';
-state = DfaState.Initial;
-return tokens.push(...items);
-};
+  // 每次解析完一个 token 后需要重置 状态 跟临时变量
+  const push = function (...items: Token[]) {
+    text = ''
+    state = DfaState.Initial
+    return tokens.push(...items)
+  }
 
-for (let i = 0; i < str.length; i++) {
-const ch = str[i];
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i]
 
     switch (state) {
       // 初始状态
       case DfaState.Initial:
         if (isAlpha(ch)) {
           if (ch === 'i') {
-            state = DfaState.Int1;
+            state = DfaState.Int1
           } else {
-            state = DfaState.Id;
+            state = DfaState.Id
           }
-          text += ch;
+          text += ch
         } else if (isNumber(ch)) {
-          text += ch;
-          state = DfaState.IntLiteral;
+          text += ch
+          state = DfaState.IntLiteral
         } else if (ch === '=') {
-          push(new Token(DfaState.Assignment));
+          push(new Token(DfaState.Assignment))
         }
-        break;
+        break
       case DfaState.Int1:
         if (ch === 'n') {
-          state = DfaState.Int2;
+          state = DfaState.Int2
         } else {
-          state = DfaState.Id;
+          state = DfaState.Id
         }
-        text += ch;
-        break;
+        text += ch
+        break
       case DfaState.Int2:
         if (ch === 't') {
-          push(new Token(DfaState.Int));
+          push(new Token(DfaState.Int))
         } else {
-          state = DfaState.Id;
-          text += ch;
+          state = DfaState.Id
+          text += ch
         }
       case DfaState.Id:
         if (ch === ';') {
-          push(new Token(DfaState.Id, text));
-          push(new Token(DfaState.SemiColon));
+          push(new Token(DfaState.Id, text))
+          push(new Token(DfaState.SemiColon))
         } else if (isBlank(ch)) {
-          push(new Token(DfaState.Id, text));
+          push(new Token(DfaState.Id, text))
         }
-        break;
+        break
       case DfaState.IntLiteral:
         if (isBlank(ch) || ch === ';') {
-          push(new Token(DfaState.IntLiteral, text));
+          push(new Token(DfaState.IntLiteral, text))
         } else {
-          text += ch;
+          text += ch
         }
-        break;
+        break
       default:
     }
-
-}
-return tokens;
+  }
+  return tokens
 }
 ```
 
@@ -511,11 +519,11 @@ bool bool2 = c >= d;
 
 ![状态图分析](https://image.xjq.icu/2024/4/26/1714124666070_%E7%8A%B6%E6%80%81%E5%9B%BE%E5%88%86%E6%9E%90.png)
 
-代码在 token2 目录
+代码在 [token2 目录](https://github.com/xjq7/compilation-principle/tree/main/token2)
 
 使用 TS 代码实现上述状态机：
 
-```js
+```ts
 enum DfaState {
   Initial,
   Int1,
@@ -741,11 +749,11 @@ flex 文件分成三个主要部分
 
 主要还是规则部分，需要为想要提取的 Token 编写正则表达式
 
-代码在 flex1 目录
+代码在 [flex1 目录](https://github.com/xjq7/compilation-principle/tree/main/flex1)
 
 新建 lexer.l 文件
 
-```
+```cpp
 %{
 #include <iostream>
 using namespace std;
@@ -762,22 +770,22 @@ int yylval;
 %}
 
 %%
-[0-9]+ { yylval = atoi(yytext); return INTEGER; }
-[\+\-\*/\(\)] { return yytext[0]; }
-[ \t\n] { /_ ignore whitespace _/ }
-. { cerr << "Invalid token: " << yytext << endl; }
+[0-9]+          { yylval = atoi(yytext); return INTEGER; }
+[\+\-\*/\(\)]   { return yytext[0]; }
+[ \t\n]         { /* ignore whitespace */ }
+.               { cerr << "Invalid token: " << yytext << endl; }
 %%
 
-int main(int argc, char\*\* argv) {
-int token;
-while ((token = yylex())) {
-cout << "Token: " << token;
-if (token == INTEGER) {
-cout << ", Value: " << yylval;
-}
-cout << endl;
-}
-return 0;
+int main(int argc, char** argv) {
+    int token;
+    while ((token = yylex())) {
+        cout << "Token: " << token;
+        if (token == INTEGER) {
+            cout << ", Value: " << yylval;
+        }
+        cout << endl;
+    }
+    return 0;
 }
 ```
 
@@ -825,11 +833,11 @@ g++ -o lexer lexer.l
 - 双引号中的定义为 STRING 字面量
 - 3、10 定义为 INTEGER 字面量
 
-代码在 flex2 目录
+代码在 [flex2 目录](https://github.com/xjq7/compilation-principle/tree/main/flex2)
 
 修改 lexer.l 文件，加入对应 Token 解析规则
 
-```
+```cpp
 %{
 #include <iostream>
 #include <string>
@@ -845,55 +853,54 @@ string yylstr;
 
 %{
 #define INTEGER 257
-#define STRING 258
-#define SUM 260
+#define STRING  258
+#define SUM     260
 #define AVERAGE 261
-#define IF 262
-#define LEFT 263
-#define COMMA 264
-#define ID 265
+#define IF      262
+#define LEFT    263
+#define COMMA   264
+#define ID      265
 %}
 
 %%
-SUM { return SUM; }
-AVERAGE { return AVERAGE; }
-IF { return IF; }
-LEFT { return LEFT; }
-, { return COMMA; }
-[a-zA-Z\_][a-zA-Z0-9_]_ { yylstr = yytext; return ID; }
-\"[^\"\n]+\" { yylstr = yytext; return STRING; }
-[0-9]+ { yylval = atoi(yytext); return INTEGER; }
-[\+\-\*/\(\)] { return yytext[0]; }
-[ \t\n] { /_ ignore whitespace \*/ }
-. { cerr << "Invalid token: " << yytext << endl; }
+SUM                     { return SUM; }
+AVERAGE                 { return AVERAGE; }
+IF                      { return IF; }
+LEFT                    { return LEFT; }
+,                       { return COMMA; }
+[a-zA-Z_][a-zA-Z0-9_]*  { yylstr = yytext; return ID; }
+\"[^\"\n]+\"            { yylstr = yytext; return STRING; }
+[0-9]+                  { yylval = atoi(yytext); return INTEGER; }
+[\+\-\*/\(\)]           { return yytext[0]; }
+[ \t\n]                 { /* ignore whitespace */ }
+.                       { cerr << "Invalid token: " << yytext << endl; }
 %%
 
-int main(int argc, char\*\* argv) {
-int token;
-while ((token = yylex())) {
-switch(token){
-case IF:
-case LEFT:
-case SUM:
-case AVERAGE:
-case COMMA:
-cout << "Token: " << token;
-break;
-case INTEGER:
-cout << "Token: " << token;
-cout << ", Value: " << yylval;
-break;
-case STRING:
-case ID:
-cout << "Token: " << token;
-cout << ", Value: " << yylstr;
-break;
+int main(int argc, char** argv) {
+    int token;
+    while ((token = yylex())) {
+        switch(token){
+          case IF:
+          case LEFT:
+          case SUM:
+          case AVERAGE:
+          case COMMA:
+            cout << "Token: " << token;
+            break;
+          case INTEGER:
+            cout << "Token: " << token;
+            cout << ", Value: " << yylval;
+            break;
+          case STRING:
+          case ID:
+            cout << "Token: " << token;
+            cout << ", Value: " << yylstr;
+            break;
 
         }
         cout << endl;
     }
     return 0;
-
 }
 ```
 
@@ -927,10 +934,10 @@ AST 图：
 
 代码实现:
 
-源码目录 ast1
+[源码目录 ast1](https://github.com/xjq7/compilation-principle/tree/main/ast1)
 
-```js
-import { DfaState, Token } from '../token2';
+```ts
+import { DfaState, Token } from '../token2'
 
 // 节点类型
 enum ASTNodeType {
@@ -946,11 +953,11 @@ enum ASTNodeType {
  * @class TokenReader
  */
 class TokenReader {
-  tokens: Token[];
-  pos = 0;
+  tokens: Token[]
+  pos = 0
 
   constructor(tokens: Token[]) {
-    this.tokens = tokens;
+    this.tokens = tokens
   }
 
   /**
@@ -960,7 +967,7 @@ class TokenReader {
    * @memberof TokenReader
    */
   peek() {
-    return this.tokens[this.pos];
+    return this.tokens[this.pos]
   }
 
   /**
@@ -970,7 +977,7 @@ class TokenReader {
    * @memberof TokenReader
    */
   read() {
-    return this.tokens[this.pos++];
+    return this.tokens[this.pos++]
   }
 }
 
@@ -981,34 +988,34 @@ class TokenReader {
  * @class ASTNode
  */
 class ASTNode {
-  type: ASTNodeType;
-  text?: string;
-  children?: (ASTNode | null | undefined)[];
+  type: ASTNodeType
+  text?: string
+  children?: (ASTNode | null | undefined)[]
 
   constructor(type: ASTNodeType, text?: string) {
-    this.type = type;
-    this.text = text;
+    this.type = type
+    this.text = text
   }
 
   addChild(child?: ASTNode | null) {
-    if (!this.children) this.children = [];
-    this.children.push(child);
+    if (!this.children) this.children = []
+    this.children.push(child)
   }
 }
 
 export class AST {
-  tokenReader: TokenReader;
-  error: string[] = [];
-  warn: string[] = [];
+  tokenReader: TokenReader
+  error: string[] = []
+  warn: string[] = []
 
   constructor(tokens: Token[]) {
-    this.tokenReader = new TokenReader(tokens);
+    this.tokenReader = new TokenReader(tokens)
   }
 
   build() {
-    const root = new ASTNode(ASTNodeType.Program);
-    root.addChild(this.additive(this.tokenReader));
-    return root;
+    const root = new ASTNode(ASTNodeType.Program)
+    root.addChild(this.additive(this.tokenReader))
+    return root
   }
 
   /**
@@ -1019,97 +1026,59 @@ export class AST {
    * @memberof AST
    */
   additive(tokenReader: TokenReader) {
-    let child1;
-    const peekToken = tokenReader.peek();
+    let child1
+    const peekToken = tokenReader.peek()
     if (peekToken && peekToken.type === DfaState.IntLiteral) {
-      const token = tokenReader.read();
-      child1 = new ASTNode(ASTNodeType.IntLiteral, token.text);
+      const token = tokenReader.read()
+      child1 = new ASTNode(ASTNodeType.IntLiteral, token.text)
     }
 
     if (child1) {
-      const peekToken = tokenReader.peek();
+      const peekToken = tokenReader.peek()
       if (peekToken && peekToken.type === DfaState.Plus) {
-        tokenReader.read();
-        let child2;
-        const peekToken = tokenReader.peek();
+        tokenReader.read()
+        let child2
+        const peekToken = tokenReader.peek()
         if (peekToken && peekToken.type === DfaState.IntLiteral) {
-          const token = tokenReader.read();
-          child2 = new ASTNode(ASTNodeType.IntLiteral, token.text);
+          const token = tokenReader.read()
+          child2 = new ASTNode(ASTNodeType.IntLiteral, token.text)
         }
 
         if (child2) {
-          const node = new ASTNode(ASTNodeType.AdditiveExpression);
-          node.addChild(child1);
-          node.addChild(child2);
-          child1 = node;
+          const node = new ASTNode(ASTNodeType.AdditiveExpression)
+          node.addChild(child1)
+          node.addChild(child2)
+          child1 = node
         } else {
-          throw new Error('无法解析加法表达式!');
+          throw new Error('无法解析加法表达式!')
         }
       }
-      return child1;
+      return child1
     }
-    return null;
+    return null
   }
 }
 ```
 
-- 加法表达式处理
--
-- @param {TokenReader} tokenReader
-- @return {\*}
-- @memberof AST
-  \*/
-  additive(tokenReader: TokenReader) {
-  let child1;
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.IntLiteral) {
-  const token = tokenReader.read();
-  child1 = new ASTNode(ASTNodeType.IntLiteral, token.text);
-  }
-
-  if (child1) {
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.Plus) {
-  tokenReader.read();
-  let child2;
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.IntLiteral) {
-  const token = tokenReader.read();
-  child2 = new ASTNode(ASTNodeType.IntLiteral, token.text);
-  }
-
-        if (child2) {
-          const node = new ASTNode(ASTNodeType.AdditiveExpression);
-          node.addChild(child1);
-          node.addChild(child2);
-          child1 = node;
-        } else {
-          throw new Error('无法解析加法表达式!');
-        }
-      }
-      return child1;
-
-  }
-  return null;
-
-}
-}
-
 测试验证:
 
-import { tokenize } from '../token2';
-import { AST } from './index';
+```js
+import { tokenize } from '../token2'
+import { AST } from './index'
 
-let str = '1 + 1;';
+let str = '1 + 1;'
 
-const tokens = tokenize(str);
-console.log(tokens);
-const ast = new AST(tokens);
-console.log(JSON.stringify(ast.build(), null, 4));
+const tokens = tokenize(str)
+console.log(tokens)
+const ast = new AST(tokens)
+console.log(JSON.stringify(ast.build(), null, 4))
+```
 
 输出:
 
-递归下降分析
+![预测分析输出](https://image.xjq.icu/2024/5/7/1715064247115_%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E8%BE%93%E5%87%BA.png)
+
+### 递归下降分析
 
 递归下降算法是一种自顶向下的语法分析方法，它的基本思想是将语法规则转化为一组递归函数，每个函数对应一个非终结符号，并依次处理输入的符号流
 
@@ -1117,36 +1086,40 @@ console.log(JSON.stringify(ast.build(), null, 4));
 
 1 + 1 + 2 这种属于 exp + number，我们需要递归对 exp 进行处理
 
-递归分析加法表达式
+#### 递归分析加法表达式
 
-代码在 ast2 目录中
+代码在 [ast2 目录](https://github.com/xjq7/compilation-principle/tree/main/ast2)中
 
 多个值的加法表达式
 
+```
 1 + 2 + 3;
+```
 
 AST 树：确定结合性，加法是左结合的，所以从左向右，前两个字面量先结合
 
+![ast 分析分解](https://image.xjq.icu/2024/5/7/1715064331305_ast%20%E5%88%86%E6%9E%90%E5%88%86%E8%A7%A3.png)
+
 将 ast1 改为 递归处理
 
-/\*\*
-
-- 加法表达式处理
--
-- @param {TokenReader} tokenReader
-- @return {\*}
-- @memberof AST
-  \*/
+```ts
+/**
+   * 加法表达式处理
+   *
+   * @param {TokenReader} tokenReader
+   * @return {*}
+   * @memberof AST
+   */
   additive(tokenReader: TokenReader): any {
-  let left = this.primary(tokenReader);
+    let left = this.primary(tokenReader);
 
-  let rootNode: ASTNode | null = left;
-  if (left) {
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.Plus) {
-  const node = new ASTNode(ASTNodeType.AdditiveExpression);
-  tokenReader.read();
-  const right = this.additive(tokenReader);
+    let rootNode: ASTNode | null = left;
+    if (left) {
+      const peekToken = tokenReader.peek();
+      if (peekToken && peekToken.type === DfaState.Plus) {
+        const node = new ASTNode(ASTNodeType.AdditiveExpression);
+        tokenReader.read();
+        const right = this.additive(tokenReader);
 
         if (right) {
           node.addChild(left);
@@ -1156,51 +1129,54 @@ AST 树：确定结合性，加法是左结合的，所以从左向右，前两�
           throw new Error('无法解析加法表达式!');
         }
       }
-
+    }
+    return rootNode;
   }
-  return rootNode;
-
-}
+```
 
 测试验证:
 
-import { tokenize } from '../token2';
-import { AST } from './index';
+```ts
+import { tokenize } from '../token2'
+import { AST } from './index'
 
-let str = '1 + 1 + 3;';
+let str = '1 + 1 + 3;'
 
-const tokens = tokenize(str);
-console.log(tokens);
-const ast = new AST(tokens);
-console.log(JSON.stringify(ast.build(), null, 4));
+const tokens = tokenize(str)
+console.log(tokens)
+const ast = new AST(tokens)
+console.log(JSON.stringify(ast.build(), null, 4))
+```
 
 输出：
 
-转迭代处理结合性问题
+![](https://image.xjq.icu/2024/5/7/1715064403118_%E9%80%92%E5%BD%92%E5%88%86%E6%9E%90%E8%BE%93%E5%87%BA.png)
+
+#### 转迭代处理结合性问题
 
 迭代中先处理左结合表达式
 
-源码在 ast3 目录
+源码在 [ast3 目录](https://github.com/xjq7/compilation-principle/tree/main/ast3)
 
-/\*\*
-
-- 加法表达式处理
--
-- @param {TokenReader} tokenReader
-- @return {\*}
-- @memberof AST
-  \*/
+```ts
+/**
+   * 加法表达式处理
+   *
+   * @param {TokenReader} tokenReader
+   * @return {*}
+   * @memberof AST
+   */
   additive(tokenReader: TokenReader): any {
-  let left = this.primary(tokenReader);
+    let left = this.primary(tokenReader);
 
-  let rootNode: ASTNode | null = left;
-  if (left) {
-  while (true) {
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.Plus) {
-  const node = new ASTNode(ASTNodeType.AdditiveExpression);
-  tokenReader.read();
-  const right = this.primary(tokenReader);
+    let rootNode: ASTNode | null = left;
+    if (left) {
+      while (true) {
+        const peekToken = tokenReader.peek();
+        if (peekToken && peekToken.type === DfaState.Plus) {
+          const node = new ASTNode(ASTNodeType.AdditiveExpression);
+          tokenReader.read();
+          const right = this.primary(tokenReader);
 
           if (right) {
             node.addChild(left);
@@ -1217,44 +1193,45 @@ console.log(JSON.stringify(ast.build(), null, 4));
           break;
         }
       }
-
+    }
+    return rootNode;
   }
-  return rootNode;
-
-}
+```
 
 输出示例:
 
-案例分析：乘法表达式
+![](https://image.xjq.icu/2024/5/7/1715064466940_%E8%BD%AC%E8%BF%AD%E4%BB%A3%E8%BE%93%E5%87%BA.png)
 
-代码在 ast4 目录中
+### 案例分析：乘法表达式
 
 乘法表达式处理大体相似，不过它的优先级高于加法表达式
 
 所以在处理加法表达式之前先去处理乘法表达式
 
+```
 1 + 3 \* 5 + 7;
+```
 
-源码在 ast4 目录
+源码在 [ast4 目录](https://github.com/xjq7/compilation-principle/tree/main/ast4)
 
-/\*\*
-
-- 乘法表达式解析
--
-- @param {\*} tokenReader
-- @return {\*} {(ASTNode | null)}
-- @memberof AST
-  \*/
+```ts
+/**
+   * 乘法表达式解析
+   *
+   * @param {*} tokenReader
+   * @return {*}  {(ASTNode | null)}
+   * @memberof AST
+   */
   multiplicative(tokenReader: TokenReader): ASTNode | null {
-  let left = this.primary(tokenReader);
+    let left = this.primary(tokenReader);
 
-  let root: ASTNode | null = left;
-  if (left) {
-  while (true) {
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.Star) {
-  tokenReader.read();
-  const right = this.primary(tokenReader);
+    let root: ASTNode | null = left;
+    if (left) {
+      while (true) {
+        const peekToken = tokenReader.peek();
+        if (peekToken && peekToken.type === DfaState.Star) {
+          tokenReader.read();
+          const right = this.primary(tokenReader);
 
           if (right) {
             const node = new ASTNode(ASTNodeType.MultiplicativeExpression);
@@ -1269,31 +1246,28 @@ console.log(JSON.stringify(ast.build(), null, 4));
           break;
         }
       }
-
+    }
+    return root;
   }
-  return root;
 
-}
-
-/\*\*
-
-- 加法表达式处理
--
-- @param {TokenReader} tokenReader
-- @return {\*}
-- @memberof AST
-  \*/
+  /**
+   * 加法表达式处理
+   *
+   * @param {TokenReader} tokenReader
+   * @return {*}
+   * @memberof AST
+   */
   additive(tokenReader: TokenReader): ASTNode | null {
-  let left = this.multiplicative(tokenReader);
+    let left = this.multiplicative(tokenReader);
 
-  let rootNode: ASTNode | null = left;
-  if (left) {
-  while (true) {
-  const peekToken = tokenReader.peek();
-  if (peekToken && peekToken.type === DfaState.Plus) {
-  const node = new ASTNode(ASTNodeType.AdditiveExpression);
-  tokenReader.read();
-  const right = this.multiplicative(tokenReader);
+    let rootNode: ASTNode | null = left;
+    if (left) {
+      while (true) {
+        const peekToken = tokenReader.peek();
+        if (peekToken && peekToken.type === DfaState.Plus) {
+          const node = new ASTNode(ASTNodeType.AdditiveExpression);
+          tokenReader.read();
+          const right = this.multiplicative(tokenReader);
 
           if (right) {
             node.addChild(left);
@@ -1310,13 +1284,14 @@ console.log(JSON.stringify(ast.build(), null, 4));
           break;
         }
       }
-
+    }
+    return rootNode;
   }
-  return rootNode;
-
-}
+```
 
 输出示例:
+
+![](https://image.xjq.icu/2024/5/7/1715064551030_%E4%B9%98%E6%B3%95%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E6%9E%90%E8%BE%93%E5%87%BA.png)
 
 另外还有 减法、除法的，这里就不去一一实现了，我们简单实现了一下从 Token 构造 AST 语法树的思路
 
@@ -1330,7 +1305,7 @@ console.log(JSON.stringify(ast.build(), null, 4));
 
 在实际应用中我们用上下文无关文法去描述语言语法
 
-语法分析器
+### 语法分析器
 
 开源语法分析器
 
@@ -1351,9 +1326,11 @@ mysql 的 sql 语法解析就用到了 Bison
 
 select_item_list 非终结符 是解析 select 参数列表
 
-源码位置
+[源码位置](https://github.com/mysql/mysql-server/blob/trunk/sql/sql_yacc.yy)
 
-上下文无关文法
+![](https://image.xjq.icu/2024/5/7/1715064649925_mysql%20%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8.png)
+
+### 上下文无关文法
 
 上下文无关文法（Context-Free Grammar，CFG）是一种用于描述形式语言结构的形式语法
 
@@ -1361,7 +1338,7 @@ select_item_list 非终结符 是解析 select 参数列表
 
 在CFG中，语法规则只涉及到单个非终结符的替换，而不考虑其所处的上下文环境，因此称为上下文无关文法
 
-为什么？
+#### 为什么？
 
 CFG可以描述复杂的语言结构，包括嵌套结构、递归结构和条件分支等。
 
@@ -1371,7 +1348,7 @@ CFG可以描述复杂的语言结构，包括嵌套结构、递归结构和条�
 
 也就是说，大部分编译器的实现都是涉及 CFG 语法的，另外如果要自己实现 DSL 语言，需要先用 CFG 语法描述你的语言结构
 
-BNF 文法
+#### BNF 文法
 
 BNF 是 用来表示 CFG 的形式化语言
 
@@ -1381,13 +1358,17 @@ BNF 是 用来表示 CFG 的形式化语言
 
 中间是 文法写法 ::=
 
+```
 S ::= A + B
 S ::= C + B
 B ::= D
-文法类比
+```
+
+#### 文法类比
 
 用我们使用的语言类比文法
 
+```
 <句子> ∷＝<主语> <谓语> <宾语>
 <主语> ∷＝<名词>
 <主语> ∷＝<代词>
@@ -1400,9 +1381,11 @@ B ::= D
 <动词> ∷＝ 做
 <名词> ∷＝ 饭
 <名词> ∷＝ 菜
+```
 
 上述文法可以推导出
 
+```
 <句子> => <主语> <谓语> <宾语>
 => <代词> <谓语> <宾语>
 => 我 <谓语> <宾语>
@@ -1410,29 +1393,38 @@ B ::= D
 => 我吃<宾语>
 => 我吃<名词>
 => 我吃饭
+```
 
 语法形式化的最终目的在于将语法分析的问题将装换成形式化的推导过程
 
-Bison
+### Bison
 
 bison 是一个词法分析器生成工具, 它将上下文无关文法转换为解析该语法的 C、C++代码
 
 联合使用 flex 和 bison 可以实现一个编译器或解释器
 
-案例分析：加法表达式
+### 案例分析：加法表达式
 
-代码在 bison1 目录
+代码在 [bison1 目录](https://github.com/xjq7/compilation-principle/tree/main/bison1)
 
 示例
+
+```
 3 + 5 - 2;
 3 + 5;
 3;
 3 - 2 + 5 - 1;
+```
+
 文法
+
+```cpp
 exp ::= INT
 | exp Plus INT
 | exp Minus INT
-词法分析
+```
+
+#### 词法分析
 
 编写词法分析文件 calc.l
 
@@ -1440,6 +1432,7 @@ exp ::= INT
 
 第二部分%%包裹, 是 Token 正则匹配, 每个正则右边可以做一些逻辑处理, 比如值的存储
 
+```cpp
 %option noyywrap
 
 %{
@@ -1450,47 +1443,48 @@ exp ::= INT
 
 %%
 
-[ \t] ; // ignore all whitespace
-[0-9]+ {yylval.ival = atoi(yytext); return INT;}
-\n {return NEWLINE;}
-"+" {return PLUS;}
-"-" {return MINUS;}
-"exit" {return QUIT;}
+[ \t]	; // ignore all whitespace
+[0-9]+		{yylval.ival = atoi(yytext); return INT;}
+\n		{return NEWLINE;}
+"+"		{return PLUS;}
+"-"		{return MINUS;}
+"exit"		{return QUIT;}
 
 %%
+```
 
-语法分析
-
-编写语法分析文件 calc.y
+#### 语法分析
 
 第一部分同样也是头文件区
 
 第二部分:
 
+```
 token: 非终结符声明
 
 type: 非终结符类型声明
 
 left: 结合性规则, left 为左结合
+```
 
 第三部分是文法, 由 %% 包裹
 
 底部是一些模板代码, 也可以编写一些运行时代码
 
-$$
-: 规则左侧的值
+```
+$$: 规则左侧的值
 
 $n: 规则右侧第 n 个 token 的值
 
 @$: 左侧位置信息
 
 @n: 右侧第 n 个 token 的位置信息
+```
 
+编写语法分析文件 calc.y
 
-
-
+```cpp
 %{
-// 头文件定义区
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -1544,35 +1538,40 @@ void yyerror(const char* s) {
 	cout << "Parse error: " << s << endl;
 	exit(1);
 }
+```
 
 编译
 
 Makefile 文件
 
+```makefile
 all: calc
 
-calc.tab.cpp calc.tab.h:	calc.y
-	bison -d -o calc.tab.cpp calc.y
+calc.tab.cpp calc.tab.h: calc.y
+bison -d -o calc.tab.cpp calc.y
 
 lex.yy.cpp: calc.l calc.tab.hpp
-	flex -o calc.lex.cpp calc.l
+flex -o calc.lex.cpp calc.l
 
 calc: lex.yy.cpp calc.tab.cpp calc.tab.hpp
-	g++ -std=c++11 -o calc calc.tab.cpp calc.lex.cpp
+g++ -std=c++11 -o calc calc.tab.cpp calc.lex.cpp
 
 clean:
-	rm calc calc.tab.cpp calc.lex.cpp calc.tab.h calc.output
+rm calc calc.tab.cpp calc.lex.cpp calc.tab.h calc.output
+```
 
+编译并运行
 
-
-
-
-执行 make 命令生成 可执行文件 calc
-
-运行 ./calc 测试验证
+```sh
+# 编译
+make
+# 执行
+./calc
+```
 
 可以输入一些测试表达式,验证结果
 
+```cpp
 // example1
 1+2
 
@@ -1581,12 +1580,15 @@ clean:
 
 // example3
 1+9+2+4-5+2-9
+```
 
 example3 执行结果
 
+![](https://image.xjq.icu/2024/5/7/1715065708057_example3%20%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C.png)
+
 体验过文法生成编译器过程之后, 再来了解下不同的语法分析器所使用算法对我们文法的要求的区别
 
-LL 算法
+### LL 算法
 
 LL算法（Left-to-Right, Leftmost derivation）是一种自顶向下的语法分析算法，它使用预测分析法来进行语法分析。LL算法从起始符号开始，通过预测下一个产生式来构建语法分析树，直到达到输入串的结束
 
@@ -1594,32 +1596,37 @@ LL算法的优点是易于理解和实现，适用于一些具有相对简单结
 
 LL算法的局限性在于它对文法的要求较高，要求文法是LL文法，不能包含左递归，并且需要消除冲突和二义性
 
-文法二义性
+#### 文法二义性
 
 文法二义性指的是语法规则的定义中存在多个解析树的情况，导致解析结果不唯一
 
 举个例子：
 
+```
 E -> E + E
-E -> E * E
+E -> E \* E
 E -> num
+```
 
 解析方式一：
 
 先乘后加
 
+```
 E
 |
 E + E
 |   |
 E   E * E
     |   |
-    num num
+   num num
+```
 
 解析方式二：
 
 先加后乘
 
+```
      E
      |
     E * E
@@ -1629,26 +1636,28 @@ E   E * E
  num num
   |   |
   2   4
+```
 
 如何解决二义性的问题
 
-在文法上消除二义性，调整产生式顺序、引入优先级和结合性规则等
-引入括号或其他限定符明确表达式的结构，消除二义性
+1. 在文法上消除二义性，调整产生式顺序、引入优先级和结合性规则等
+2. 引入括号或其他限定符明确表达式的结构，消除二义性
 
 所以说 LL 算法实现的语法分析器对文法要求比较高
 
-自顶向下-自底向上
-自顶向下
+### 自顶向下-自底向上
+
+#### 自顶向下
 
 先考虑总体，在考虑细节，将复杂问题分解为若干子问题逐步细化
 
 在做递归分析的时候，我们是先识别整体，再逐步细化分析出当前整体的各个组成部分
 
-自底向上
+#### 自底向上
 
 由简单到复杂，逐层向上构造，先从最基础的部分着手，一步步构造出整体
 
-LR 算法
+### LR 算法
 
 LR 算法是一种 "移进-规约" 的自底向上分析方法
 
@@ -1658,19 +1667,23 @@ LR 算法是一种 "移进-规约" 的自底向上分析方法
 
 规约(Reduce): 当分析栈顶部的符号与某个产生式的右部匹配时，执行规约操作
 
-移进规约
+#### 移进规约
 
 举个例子：
 
 用移进-规约方法分析 abbcde
 
-移进-规约冲突
+![](https://image.xjq.icu/2024/5/7/1715065851456_%E7%A7%BB%E8%BF%9B%E8%A7%84%E7%BA%A6.png)
+
+#### 移进-规约冲突
 
 像前面的文法
 
+```js
 E -> E + E
 E -> E - E
 E -> num
+```
 
 在处理 1 + 2 - 3 时
 
@@ -1686,60 +1699,62 @@ E -> num
 
 在 bison5 目录中编译会查看移进规约冲突错误信息
 
-规约-规约冲突
+#### 规约-规约冲突
 
 对于下面的文法, X 可以规约为 U, 也可以规约为 V, 就会产生冲突
 
+```js
 U -> X
 V -> X
 U -> XY
 V -> Y
-案例分析：乘法表达式
+```
 
-代码在 bison2 目录
+### 案例分析：乘法表达式
 
-词法分析
+代码在 [bison2 目录](https://github.com/xjq7/compilation-principle/tree/main/bison2)
 
-补充 *、/  Token 的匹配
+#### 词法分析
 
-"*"		{return MULTIPLY;}
-"/"		{return DIVIDE;}
-"("   	{return LPAREN;}
-")"   	{return RPAREN;}
+补充 \*、/  Token 的匹配
 
+```cpp
+"*" {return MULTIPLY;}
+"/" {return DIVIDE;}
+"(" {return LPAREN;}
+")" {return RPAREN;}
+```
 
+#### 文法
 
-
-文法
+```cpp
 exp ::= term
-  | exp PLUS term
-  | exp MINUS term
+| exp PLUS term
+| exp MINUS term
 
 term ::= factor
-  | term MULTIPLY factor
-  | term DIVIDE factor
+| term MULTIPLY factor
+| term DIVIDE factor
 
 factor: INT
+```
 
-
-
-
-语法分析
+#### 语法分析
 
 新增 token 定义, 结合性约束
 
+```cpp
 %token LPAREN RPAREN
 %token PLUS MINUS MULTIPLY DIVIDE
 
 %left PLUS MINUS MULTIPLY DIVIDE
-
-
-
+```
 
 处理乘除法与加减法优先级,需要加入一层非终结符文法
 
+```cpp
 exp:
-  term	{ $$ = $1; }
+term { $$ = $1; }
   | exp PLUS term  { $$ = $1 + $3; }
   | exp MINUS term  { $$ = $1 - $3; }
 ;
@@ -1747,18 +1762,25 @@ exp:
 term: factor { $$ = $1; }
   | term MULTIPLY factor { $$ = $1 * $3; }
   | term DIVIDE factor { $$ = $1 / $3; }
-;  
-
-factor: INT  { $$ = $1; }
-  | LPAREN exp RPAREN { $$ = $2; }
 ;
 
-执行 make 命令生成 可执行文件 calc
+factor: INT { $$ = $1; }
+  | LPAREN exp RPAREN { $$ = $2; }
+;
+```
 
-运行 ./calc 测试验证
+编译并运行
+
+```sh
+# 编译
+make
+# 执行
+./calc
+```
 
 输入一些测试表达式,验证结果
 
+```cpp
 // example1
 1+2*3/2
 
@@ -1767,25 +1789,33 @@ factor: INT  { $$ = $1; }
 
 // example3
 10-20*(3+2)+100/2
+```
 
 example3 执行结果
 
-案例分析:  SQL 解析
+![](https://image.xjq.icu/2024/5/7/1715066061874_example3%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png)
 
-代码在 bison3 目录中
+### 案例分析:  SQL 解析
 
-查询语句示例
+代码在 [bison3 目录](https://github.com/xjq7/compilation-principle/tree/main/bison3)中
+
+#### 查询语句示例
+
+```sql
 select name from user;
 
 select name,age from user;
-词法分析
+```
 
-代码在 bison3 目录中
+### 词法分析
+
+代码在 [bison3 目录](https://github.com/xjq7/compilation-principle/tree/main/bison3)中
 
 关键字：select、from
 
-变量识别：[a-zA-Z0-9_][a-zA-Z0-9]+
+变量识别：[a-zA-Z0-9\_][a-zA-Z0-9]+
 
+```cpp
 %%
 select    {return SELECT;}
 from      {return FROM;}
@@ -1798,35 +1828,44 @@ exit		  {return QUIT;}
 \n        {return NEWLINE;}
 [ \t]	; // ignore all whitespace
 %%
-文法
+```
+
+#### 文法
+
+```cpp
 query ::= SELECT columns FROM table
 
 columns ::= column
-  | columns ',' column
+| columns ',' column
 
 column ::= ID
 
 table ::= ID
-语法分析
+```
+
+#### 语法分析
 
 头文件:
 
 引入了 string 包, vector 数组
 
+```cpp
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <vector>
 using namespace std;
+```
 
 token 定义:
 
 union 为 语法分析结果中的变量类型
 
+```cpp
 %union {
-  std::string* strval;
-  std::vector<std::string>* strs;
-  int ival;
+std::string* strval;
+std::vector<std::string>* strs;
+int ival;
 }
 
 %token SELECT FROM ID COMMA
@@ -1834,12 +1873,11 @@ union 为 语法分析结果中的变量类型
 
 %type <strval> table column ID
 %type <strs> columns
-
-
-
+```
 
 文法部分:
 
+```cpp
 query: SELECT columns FROM table {
   cout << "table:" << endl;
   cout << "\t" << *$4 << endl;
@@ -1860,31 +1898,50 @@ columns: column { $$ = new vector<string>(); $$->push_back(*$1); delete $1; }
 column: { $$ = nullptr; }
   | ID { $$ = $1; }
 ;
+```
 
-make 命令编译
+编译并运行
 
-./calc 执行
+```sh
+# 编译
+make
+# 执行
+./calc
+```
 
 测试验证:
 
+```sh
 # example1
+
 select name,age from user
 
 # example2
+
 select account,pwd from user
 
 # example3
+
 select name,age,id, from user
+```
 
 example3 执行结果
 
-案例分析：条件查询
+![](https://image.xjq.icu/2024/5/7/1715066261265_example3%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C2.png)
 
-代码在 bison4 目录中
+### 案例分析：条件查询
+
+代码在 [bison4 目录](https://github.com/xjq7/compilation-principle/tree/main/bison4)中
 
 示例
+
+```sql
 select id from user where name="xjq" and age="18"
+```
+
 文法
+
+```cpp
 conditions ::=
   | WHERE condition_exp
 
@@ -1894,25 +1951,33 @@ condition_exp ::= condition
 condition ::= ID '=' factor
 
 factor ::= STRING
+```
+
 词法分析
 
 条件查询相关 Token, 这里只支持 字符串查询
 
+```cpp
 where     {return WHERE;}
 and       {return AND;}
 =         {return ASSIGNMENT;}
 \"[^\"\n]+\"      {yylval.strval = new string(yytext);return STRING;}
+```
+
 语法分析
 
 类型定义: 结构体存储条件属性与值
 
+```cpp
 struct Cond {
   std::string attr;
   std::string value;
 };
+```
 
 conds 数组存储多个条件
 
+```cpp
 %union {
   std::string *strval;
   std::vector<std::string*>* strs;
@@ -1930,9 +1995,11 @@ conds 数组存储多个条件
 %type <strs> columns
 %type <conds> condition_expr conditions
 %type <cond> condition
+```
 
 文法:
 
+```cpp
 query: SELECT columns FROM table conditions {
   cout << "table:" << endl;
   cout << "\t" << *$4 << endl;
@@ -1978,13 +2045,20 @@ condition: ID ASSIGNMENT factor {
 
 factor: STRING { $$ = $1; }
 ;
+```
 
-make 编译
+编译并运行
 
-./calc 执行
+```sh
+# 编译
+make
+# 执行
+./calc
+```
 
 测试验证:
 
+```sh
 # example1
 select id from user where name="xjq"
 
@@ -1993,82 +2067,86 @@ select id from user where name="xjq" and age="18"
 
 # example3
 select id, from user where name="xjq" and age="18" and weight="106"
+```
 
 example3 执行结果
 
-扩展：正则的局限性
+![](https://image.xjq.icu/2024/5/7/1715066769036_example3%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C3.png)
 
-语法推导举个例子：一个表达式语法应该可能包含 +、-、*、/ 以及变量跟字面量等 Token，同时它们在语句中的位置也有一定规则，如何去描述这种规则是我们进行语法分析的第一步
+### 扩展：正则的局限性
+
+语法推导举个例子：一个表达式语法应该可能包含 +、-、\*、/ 以及变量跟字面量等 Token，同时它们在语句中的位置也有一定规则，如何去描述这种规则是我们进行语法分析的第一步
 
 比如这些事合法的表达式
 
+```cpp
 a + 3 * 2
+```
 
 这些就是非法的表达式，在语法分析阶段，需要给出错误，以及对应错误信息
 
-
-
-
+```cpp
 3 ** 2 ++
 3 / 2 +
 * 3
+```
 
 我们之前在词法分析中用正则表达式去描述 Token 很方便，但是在语法分析中会遇到一些问题
 
 词法描述
 
+```cpp
 // Token: Number
 [0-9]+
 
 // Token: Id
 [a-zA-Z0-9_][a-zA-Z0-9_]*
+```
 
 在语法分析里面，我们尝试去描述下面这些表达式
 
+```cpp
 (109+2)
 (1+(250+1))
 (2+((20+5)-9))
+```
 
 因为 状态机 只能维护有限数量的状态，所以这种多层括号嵌套的情况，正则已经没办法处理了
 
-总结
+## 总结
 
-源代码 github 地址
+[源代码 github 地址](https://github.com/xjq7/compilation-principle.git)
 
-作业
-1. 词法分析
+## 作业
+
+#### 1. 词法分析
 
 使用自己熟悉的语言实现一个词法分析器, 能够解析下面的表达式
 
+```cpp
 1+2
 1+2-3
 1+2*3-1
 1+2*(3+2)+10/2
-2. 语法分析
+```
+
+#### 2. 语法分析
 
 使用自己熟悉的语言实现一个语法分析器, 能够解析加减乘除表达式, 得到 它们的 AST 结构
 
+```cpp
 1+2
 1+2-3
 1+2*3-1
 1+2*3+100/2
-
-
-
-
-参考文献
-
-极客时间 编译原理之美
-
-书籍-现代编译原理- C 语言描述
-
-书籍-flex与bison中文版
-
-rhb_blog:博客-编译原理
-
-
-$$
-
 ```
 
-``` -->
+## 参考文献
+
+[极客时间 编译原理之美](https://time.geekbang.org/column/intro/100034101?tab=catalog)
+
+[书籍-现代编译原理- C 语言描述](https://book.douban.com/subject/30191414/)
+
+[书籍-flex与bison中文版](https://book.douban.com/subject/6109479/)
+
+[rhb_blog:博客-编译原理](https://rshawshank.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/)
