@@ -363,6 +363,12 @@ var levelOrder = function (root) {
 };
 ```
 
+#### 相关的一些题目
+
+- [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/description/)
+
+  使用BFS 找出最深一层的节点集合, 然后求和
+
 ## 树
 
 ## 数组
