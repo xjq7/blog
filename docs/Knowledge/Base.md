@@ -13,7 +13,192 @@
 
 ## 二叉树
 
-## 多叉树
+### 前序遍历
+
+前序遍历是一种深度优先搜索的遍历方式, 遍历顺序为 根结点 -> 左子树 -> 右子树 的顺序
+
+示例 1:
+
+```
+        1
+      /   \
+    2       3
+  /  \     /  \
+ 4    5   6    7
+
+
+遍历输出为 [1,2,4,5,3,6,7]
+```
+
+示例 2:
+
+```
+        1
+      /   \
+    2       3
+   / \
+  4   5
+ / \
+6   7
+
+遍历输出为 [1,2,4,6,7,5,3]
+```
+
+#### 递归
+
+```Js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+function preOrder(root, queue=[]){
+  if(!root)return queue;
+  queue.push(root.val)
+  preOrder(root.left,queue);
+  preOrder(root.right,queue);
+  return queue;
+}
+```
+
+#### 迭代
+
+利用栈先进后出的性质 实现迭代方式遍历
+
+先入栈右子树
+
+```Js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+function preOrder(root){
+  if(!root)return [];
+
+  const ans = [];
+  const stack = [root];
+  while (stack.length) {
+      const top = stack.pop();
+      ans.push(top.val);
+      if (top.right) stack.push(top.right);
+      if (top.left) stack.push(top.left);
+  }
+
+  return ans;
+}
+```
+
+### 中序遍历
+
+中序遍历是一种深度优先搜索的遍历方式, 遍历顺序为 左子树 -> 根结点 -> 右子树
+
+示例 1:
+
+```
+        1
+      /   \
+    2       3
+  /  \     /  \
+ 4    5   6    7
+
+
+遍历输出为 [4,2,5,1,6,3,7]
+```
+
+示例 2:
+
+```
+        1
+      /   \
+    2       3
+   / \
+  4   5
+ / \
+6   7
+
+遍历输出为 [6,4,7,2,5,1,3]
+```
+
+#### 递归
+
+```Js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root, ans = []) {
+    if (!root) return ans;
+
+    inorderTraversal(root.left, ans);
+    ans.push(root.val);
+    inorderTraversal(root.right, ans);
+    return ans;
+};
+```
+
+#### 迭代
+
+```Js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+    if (!root) return [];
+
+    const ans = [];
+    const stack = [];
+    let current = root;
+
+    while (current || stack.length) {
+        while (current) {
+            stack.push(current);
+            current = current.left;
+        }
+
+        const top = stack.pop();
+        ans.push(top.val);
+        current = top.right;
+    }
+
+    return ans;
+};
+```
+
+### 后序遍历
+
+## 树
 
 ## 数组
 
