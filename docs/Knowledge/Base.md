@@ -6,7 +6,7 @@
 
 ### 最短路径
 
-- [2385. 感染二叉树需要的总时间](https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/)
+- :yellow_circle: [2385. 感染二叉树需要的总时间](https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/)
 
 先走 深搜 构造无向图
 然后从 start 节点开始走 广搜 寻找最短路径
@@ -15,13 +15,15 @@
 
 ### 前序遍历
 
-[144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
+:green_circle: [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
 
 前序遍历是一种深度优先搜索的遍历方式, 遍历顺序为 根结点 -> 左子树 -> 右子树 的顺序
 
 示例 1:
 
 ```
+example 1
+
         1
       /   \
     2       3
@@ -35,6 +37,8 @@
 示例 2:
 
 ```
+example 2
+
         1
       /   \
     2       3
@@ -107,13 +111,15 @@ function preOrder(root){
 
 ### 中序遍历
 
-[94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/)
+:green_circle: [94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/)
 
 中序遍历是一种深度优先搜索的遍历方式, 遍历顺序为 左子树 -> 根结点 -> 右子树
 
 示例 1:
 
 ```
+example 1
+
         1
       /   \
     2       3
@@ -127,6 +133,8 @@ function preOrder(root){
 示例 2:
 
 ```
+example 2
+
         1
       /   \
     2       3
@@ -202,13 +210,15 @@ var inorderTraversal = function (root) {
 
 ### 后序遍历
 
-[145. 二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
+:green_circle: [145. 二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
 
 后序遍历是一种深度优先搜索的遍历方式, 遍历顺序为 左子树 -> 右子树 -> 根结点
 
 示例 1:
 
 ```
+example 1
+
         1
       /   \
     2       3
@@ -222,6 +232,8 @@ var inorderTraversal = function (root) {
 示例 2:
 
 ```
+example 2
+
         1
       /   \
     2       3
@@ -297,13 +309,15 @@ var postorderTraversal = function (root) {
 
 ### 层序遍历
 
-[102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
+:yellow_circle: [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/)
 
 层序遍历是一种广度优先搜索的遍历方式, 从根节点开始, 按层访问树的节点
 
 示例 1:
 
 ```
+example 1
+
         1
       /   \
     2       3
@@ -317,6 +331,8 @@ var postorderTraversal = function (root) {
 示例 2:
 
 ```
+example 2
+
         1
       /   \
     2       3
@@ -365,9 +381,41 @@ var levelOrder = function (root) {
 
 #### 相关的一些题目
 
-- [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/description/)
+- :yellow_circle: [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/description/)
 
-  使用BFS 找出最深一层的节点集合, 然后求和
+  使用 BFS 找出最深一层的节点集合, 然后求和
+
+- :yellow_circle: [2583. 二叉树中的第 K 大层和](https://leetcode.cn/problems/kth-largest-sum-in-a-binary-tree/description/)
+
+  使用 BFS 计算每一层的和, 然后排序
+
+### 二叉搜索树
+
+二叉搜索树（Binary Search Tree，BST）具有以下特性
+
+- 节点左子树中所有节点都小于该节点的值
+- 节点右子树中所有节点都大于该节点的值
+- 左子树和右子树也分别是二叉搜索树
+
+二叉搜索树 支持高效搜索、插入、删除操作
+
+搜索操作的时间复杂度为 O(log n), n 是树中节点数量
+
+示例 1:
+
+```
+example 1
+
+        8
+      /   \
+    6       10
+  /  \     /  \
+ 5    7   9    11
+
+```
+
+- :green_circle: [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
+- :yellow_circle: [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/description/)
 
 ## 树
 

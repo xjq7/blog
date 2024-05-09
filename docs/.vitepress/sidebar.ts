@@ -33,6 +33,10 @@ export default [
         link: '/Knowledge/React',
       },
       {
+        text: '数据结构与算法',
+        link: '/Knowledge/Base',
+      },
+      {
         text: 'HTTP',
         link: '/Knowledge/Http',
       },
