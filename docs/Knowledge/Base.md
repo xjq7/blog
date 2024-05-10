@@ -468,6 +468,54 @@ example 1
   }
   ```
 
+- [1382. 将二叉搜索树变平衡](https://leetcode.cn/problems/balance-a-binary-search-tree/description/)
+
+  通过中序遍历获取升序数组, 然后以中间点为 根 递归生成树
+
+  ```Js
+  /**
+   * Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+  /**
+   * @param {TreeNode} root
+  * @return {TreeNode}
+  */
+  var balanceBST = function (root) {
+      const arr = [];
+      const stack = [];
+      let current = root;
+
+      while (current || stack.length) {
+          while (current) {
+              stack.push(current);
+              current = current.left;
+          }
+
+          current = stack.pop();
+          arr.push(current.val);
+          current = current.right;
+      }
+
+      function build(start, end) {
+          if (start > end) return null;
+          const mid = start + Math.floor((end - start) / 2);
+
+          const node = new TreeNode(arr[mid]);
+
+          node.left = build(start, mid - 1);
+          node.right = build(mid + 1, end);
+          return node;
+      }
+
+      return build(0, arr.length - 1);
+  };
+  ```
+
 ## 树
 
 ## 数组
