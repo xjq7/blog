@@ -69,10 +69,6 @@ export default [
         link: '/FrontEnd/Customize-iconfont',
       },
       {
-        text: 'Debounce-Throttle',
-        link: '/FrontEnd/Debounce-Throttle',
-      },
-      {
         text: 'Js',
         link: '/FrontEnd/Js',
       },
@@ -108,10 +104,6 @@ export default [
       {
         text: 'HTML',
         link: '/TechnicalTopics/Html',
-      },
-      {
-        text: 'JS',
-        link: '/TechnicalTopics/Js',
       },
       {
         text: '工程化',
