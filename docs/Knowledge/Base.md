@@ -417,6 +417,57 @@ example 1
 - :green_circle: [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
 - :yellow_circle: [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/description/)
 
+  DFS
+
+### 二叉平衡树
+
+二叉平衡树是一种特殊的二叉搜索树, 在最坏的情况下搜索时间复杂度也是 O(log n)
+
+- 树中每个节点左子树跟右子树高度差不超过 1
+- 左子树与右子树也分别是二叉平衡树
+
+示例 1
+
+```
+example 1
+
+        8
+      /   \
+    6       10
+  /  \
+ 5    7
+
+```
+
+- :green_circle: [LCR 176. 判断是否为平衡二叉树](https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/description/)
+
+  递归获取左右子树高度差做计算, 同时递归判断左右子树是否也是平衡树
+
+  ```Js
+  /**
+   * Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+  /**
+   * @param {TreeNode} root
+  * @return {boolean}
+  */
+  var isBalanced = function (root) {
+      if (!root) return true;
+      return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
+  };
+
+  function height(root) {
+      if (!root) return 0;
+
+      return Math.max(height(root.left) + 1, height(root.right) + 1);
+  }
+  ```
+
 ## 树
 
 ## 数组
