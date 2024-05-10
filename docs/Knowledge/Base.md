@@ -568,6 +568,41 @@ example 1
   };
   ```
 
+- :yellow_circle: [15. 三数之和](https://leetcode.cn/problems/3sum/description/)
+
+  暴力解法三重循环 O(n^3) 会超时, 通过排序 + 双指针 优化第二第三重循环, 左指针右指针向中间收拢, 找出和为 0 的组合, 同时去除重复组合
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number[][]}
+  */
+  var threeSum = function (nums) {
+      nums = nums.sort((a, b) => a - b);
+      const ans = [];
+
+      for (let i = 0; i < nums.length - 2; i++) {
+          if (nums[i] > 0) break;
+          if (i > 0 && nums[i] === nums[i - 1]) continue;
+          let l = i + 1, r = nums.length - 1;
+          while (l < r) {
+              const sum = nums[l] + nums[r] + nums[i];
+              if (sum < 0) {
+                  while (l < r && nums[l] === nums[++l]);
+              } else if (sum > 0) {
+                  while (l < r && nums[r] === nums[--r]);
+              } else {
+                  ans.push([nums[i], nums[l], nums[r]]);
+                  while (l < r && nums[l] === nums[++l]);
+                  while (l < r && nums[r] === nums[--r]);
+              }
+          }
+
+      }
+      return ans;
+  };
+  ```
+
 ## 哈希表
 
 n 数之和
