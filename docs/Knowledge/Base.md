@@ -518,8 +518,6 @@ example 1
 
 ## 树
 
-## 数组
-
 ## 链表
 
 ### 双链表
@@ -532,6 +530,43 @@ example 1
 # 算法
 
 ## 双指针
+
+双指针通过两个指针在数组或链表中移动, 以解决一些特定类型的问题
+
+- 快慢指针: 快指针移动速度快, 慢指针移动速度慢, 常用于解决链表成环检测、链表中点、链表是否相交等问题
+- 左右指针: 左右指针分别位于数组两端, 移动左指针、右指针或同时移动, 常用于解决数组或字符串的搜索、反转、滑动窗口等问题
+- 对撞指针: 对撞指针指向数组两端, 并向中间移动, 常用于解决需要同时考虑两端情况的问题, 例如有序数组的两数之和、反转数组等
+
+双指针在 优化时间复杂度的问题时非常有用, 通常能在 O(n) 时间复杂度内解决问题, 例如将 O(n²) 降低到 O(n)
+
+- :green_circle: [88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/description/)
+
+  这里因为是原地操作, 通过逆序遍历省去临时数组的使用, 从尾部逐个对比移动 i, j 指针, 实时将对比中较大的数覆盖到 nums1 中
+
+  ```Js
+  /**
+  * @param {number[]} nums1
+  * @param {number} m
+  * @param {number[]} nums2
+  * @param {number} n
+  * @return {void} Do not return anything, modify nums1 in-place instead.
+  */
+  var merge = function (nums1, m, nums2, n) {
+      let i = m - 1, j = n - 1;
+
+      while (i >= 0 || j >= 0) {
+          if (i === -1) {
+              nums1[i + j + 1] = nums2[j--];
+          } else if (j === -1) {
+              i--;
+          } else if (nums1[i] >= nums2[j]) {
+              nums1[i+j+1] = nums1[i--];
+          }else {
+              nums1[i+j+1] = nums2[j--];
+          }
+      }
+  };
+  ```
 
 ## 哈希表
 
