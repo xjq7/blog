@@ -417,9 +417,106 @@ example 1
 - :green_circle: [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
 - :yellow_circle: [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/description/)
 
-## 树
+  DFS
 
-## 数组
+### 二叉平衡树
+
+二叉平衡树是一种特殊的二叉搜索树, 在最坏的情况下搜索时间复杂度也是 O(log n)
+
+- 树中每个节点左子树跟右子树高度差不超过 1
+- 左子树与右子树也分别是二叉平衡树
+
+示例 1
+
+```
+example 1
+
+        8
+      /   \
+    6       10
+  /  \
+ 5    7
+
+```
+
+- :green_circle: [LCR 176. 判断是否为平衡二叉树](https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/description/)
+
+  递归获取左右子树高度差做计算, 同时递归判断左右子树是否也是平衡树
+
+  ```Js
+  /**
+   * Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+  /**
+   * @param {TreeNode} root
+  * @return {boolean}
+  */
+  var isBalanced = function (root) {
+      if (!root) return true;
+      return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
+  };
+
+  function height(root) {
+      if (!root) return 0;
+
+      return Math.max(height(root.left) + 1, height(root.right) + 1);
+  }
+  ```
+
+- [1382. 将二叉搜索树变平衡](https://leetcode.cn/problems/balance-a-binary-search-tree/description/)
+
+  通过中序遍历获取升序数组, 然后以中间点为 根 递归生成树
+
+  ```Js
+  /**
+   * Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+  /**
+   * @param {TreeNode} root
+  * @return {TreeNode}
+  */
+  var balanceBST = function (root) {
+      const arr = [];
+      const stack = [];
+      let current = root;
+
+      while (current || stack.length) {
+          while (current) {
+              stack.push(current);
+              current = current.left;
+          }
+
+          current = stack.pop();
+          arr.push(current.val);
+          current = current.right;
+      }
+
+      function build(start, end) {
+          if (start > end) return null;
+          const mid = start + Math.floor((end - start) / 2);
+
+          const node = new TreeNode(arr[mid]);
+
+          node.left = build(start, mid - 1);
+          node.right = build(mid + 1, end);
+          return node;
+      }
+
+      return build(0, arr.length - 1);
+  };
+  ```
+
+## 树
 
 ## 链表
 
@@ -433,6 +530,43 @@ example 1
 # 算法
 
 ## 双指针
+
+双指针通过两个指针在数组或链表中移动, 以解决一些特定类型的问题
+
+- 快慢指针: 快指针移动速度快, 慢指针移动速度慢, 常用于解决链表成环检测、链表中点、链表是否相交等问题
+- 左右指针: 左右指针分别位于数组两端, 移动左指针、右指针或同时移动, 常用于解决数组或字符串的搜索、反转、滑动窗口等问题
+- 对撞指针: 对撞指针指向数组两端, 并向中间移动, 常用于解决需要同时考虑两端情况的问题, 例如有序数组的两数之和、反转数组等
+
+双指针在 优化时间复杂度的问题时非常有用, 通常能在 O(n) 时间复杂度内解决问题, 例如将 O(n²) 降低到 O(n)
+
+- :green_circle: [88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/description/)
+
+  这里因为是原地操作, 通过逆序遍历省去临时数组的使用, 从尾部逐个对比移动 i, j 指针, 实时将对比中较大的数覆盖到 nums1 中
+
+  ```Js
+  /**
+  * @param {number[]} nums1
+  * @param {number} m
+  * @param {number[]} nums2
+  * @param {number} n
+  * @return {void} Do not return anything, modify nums1 in-place instead.
+  */
+  var merge = function (nums1, m, nums2, n) {
+      let i = m - 1, j = n - 1;
+
+      while (i >= 0 || j >= 0) {
+          if (i === -1) {
+              nums1[i + j + 1] = nums2[j--];
+          } else if (j === -1) {
+              i--;
+          } else if (nums1[i] >= nums2[j]) {
+              nums1[i+j+1] = nums1[i--];
+          }else {
+              nums1[i+j+1] = nums2[j--];
+          }
+      }
+  };
+  ```
 
 ## 哈希表
 
