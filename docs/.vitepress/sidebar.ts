@@ -168,6 +168,10 @@ export default [
         text: '正则表达式',
         link: '/TechnicalTopics/Regex',
       },
+      {
+        text: 'Canvas',
+        link: '/TechnicalTopics/Canvas',
+      },
     ],
   },
   {
