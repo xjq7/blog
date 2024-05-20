@@ -106,3 +106,47 @@ type IsNever<T> = [T] extends [never] ? true : false
 
 type Result = IsNever<never> // true
 ```
+
+## 内置类型
+
+- Pick
+
+分布式条件类型
+
+```Ts
+type Pick<T, K extends keyof U> = { K: T[K]  }
+```
+
+- Exclude
+
+分布式条件类型
+
+```Ts
+type Exclude<T, U> = T extends U ? never : T
+```
+
+- Partial
+
+```Ts
+type Partial<T> = { [K in keyof T]?: T[K] }
+```
+
+- Required
+
+-? 剔除可选
+
+```Ts
+type Required<T> = { [K in keyof T]-?: T[K] }
+```
+
+- Readonly
+
+```Ts
+type Required<T> = { readonly [K in keyof T]: T[K] }
+```
+
+- Record
+
+```Ts
+type Record<T extends string| number | symbol, U> = { [K in T]: U }
+```
