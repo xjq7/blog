@@ -15,10 +15,13 @@
   "devDependencies": {
     "pnpm": "^8.15.8",
     "prettier": "^3.0.3",
-    "vitepress": "1.1.4",
+    "vitepress": "^1.2.0",
     "vue": "^3.2.37"
   },
   "engines": {
     "node": ">= 18"
+  },
+  "dependencies": {
+    "markdown-it-mathjax3": "^4.3.2"
   }
 }

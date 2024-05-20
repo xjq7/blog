@@ -10,6 +10,7 @@ export default defineConfig({
   base: '/',
   head: [['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]],
   markdown: {
+    math: true,
     lineNumbers: true,
     toc: {
       level: [1, 2, 3, 4],

@@ -150,3 +150,37 @@ type Required<T> = { readonly [K in keyof T]: T[K] }
 ```Ts
 type Record<T extends string| number | symbol, U> = { [K in T]: U }
 ```
+
+- Omit
+
+```Ts
+type Omit<T, U> = Pick<T, Exclude<keyof T, U>>
+```
+
+- Extract
+
+```Ts
+type Extract<T, U> = T extends U ? T : never
+```
+
+- Parameters
+
+infer 推断参数
+
+```Ts
+type Parameters<T extends (...args: any)=> any> = T extends (...args: infer P)=> any ? P : never
+```
+
+- ReturnType
+
+```Ts
+type ReturnType<T> = T extends (...args: any)=> infer R ? R: never
+```
+
+## 体操
+
+- DeepReadonly
+
+```Ts
+type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: DeepReadonly<T[K]> }
+```
