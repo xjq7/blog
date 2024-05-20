@@ -48,6 +48,10 @@ export default [
         text: '设计模式',
         link: '/Knowledge/DesignPattern',
       },
+      {
+        text: '抽象思想',
+        link: '/Knowledge/Abstract',
+      },
     ],
   },
   {

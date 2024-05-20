@@ -10,4 +10,5 @@
 - [设计模式](./DesignPattern.html)
 - [小程序](./Miniprogram.html)
 - [面试反问](./Reverse.html)
+- [抽象思想](./Abstract.html)
 - [其他](./Other.html)
