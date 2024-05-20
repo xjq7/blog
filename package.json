@@ -15,7 +15,7 @@
   "devDependencies": {
     "pnpm": "^8.15.8",
     "prettier": "^3.0.3",
-    "vitepress": "^1.2.0",
+    "vitepress": "^1.1.4",
     "vue": "^3.2.37"
   },
   "engines": {
