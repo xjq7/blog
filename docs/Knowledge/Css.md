@@ -4,7 +4,15 @@
 
 标准 W3C 盒子模型的范围包括 margin、border、padding、content，并且 content 部分不包含其他部分
 
+```css
+box-sizing: content-box;
+```
+
 IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading
+
+```css
+box-sizing: border-box;
+```
 
 ## 垂直居中
 
@@ -379,3 +387,24 @@ devicePixelRatio 的官方定义：设备物理像素和设备独立像素的比
 3. 行内块元素不会导致文本换行，可以在同一行内显示多个行内块元素
 
 ## 选择器
+
+- id选择器(#id)
+- 类选择器(.classname)
+- 标签选择器(div)
+- 后代选择器(div p)
+- 相邻后代选择器(子选择器)(ul>li)
+- 兄弟选择器(li~a)
+- 相邻兄弟选择器(li+a)
+- 属性选择器(a[rel="external"])
+- 伪类选择器(a:hover)(li:nth-child)
+- 通配符选择器(\*)
+
+## 伪元素和伪类
+
+Css 引入伪类和伪元素是为了格式化文档树以外的信息
+
+伪类用于当已有的元素处于某个状态时, 为其添加对应样式, 比如 :hover
+
+伪元素用于创建一些不在文档树种的元素, 并且可以设置样式, 比如 ::before 在一个元素前添加一些文本, 视图上可以看到这些文本, 但实际不在文档树中
+
+## CSS 哪些属性可以继承

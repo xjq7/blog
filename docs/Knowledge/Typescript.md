@@ -184,3 +184,9 @@ type ReturnType<T> = T extends (...args: any)=> infer R ? R: never
 ```Ts
 type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: DeepReadonly<T[K]> }
 ```
+
+- UnionToIntersection
+
+```Ts
+type UnionToIntersection<T> = T extends unknow ? (args: U) => any extends (args: infer I) => any ? I : never : never
+```
