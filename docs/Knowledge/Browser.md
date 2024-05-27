@@ -165,3 +165,11 @@ UI 界面都选择采用 GPU 来绘制
 ## 其他
 
 script defer async
+
+## SEO 优化
+
+- 合理的 title、description、keywords
+- 语义化 HTML 代码
+- 重要内容放在前面
+- 非装饰性图片加 alt
+- 提升加载速度
