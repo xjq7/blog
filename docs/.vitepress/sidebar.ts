@@ -192,7 +192,8 @@ export default [
     collapsible: true,
     collapsed: false,
     items: [
-      { text: '读书笔记', link: '/Notes/' },
+      { text: '目录', link: '/Notes/' },
+      { text: '读书笔记', link: '/Notes/Read' },
       { text: '刷题日记', link: '/Notes/Algorithm' },
       { text: '英语速记', link: '/Notes/English' },
     ],
