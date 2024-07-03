@@ -48,3 +48,51 @@
 - 交互
 - 用户
 - 业务
+
+## React-native 旧架构
+
+![架构图](https://image.xjq.icu/2024/7/3/1719995368426_react-native-architecture.svg)
+
+RN 以 React 技术为开发基础, 通过 Metro 打包器构建成 JS Bundle, jsbundle 运行在 JSC 引擎中, 通过 Bridge 传递布局及相关渲染数据
+
+最后由 Yoga 与 Native UI 模块管理布局和渲染工作
+
+### Metro Bundler
+
+Metro 是专为 React Native 提供的 JS 构建工具, 提供开发服务和打包功能
+
+### Hermes
+
+Hermes 引擎是 RN 优化后的 JS 引擎
+
+相对于 JSC 的优化:
+
+- 优化了启动时间, 支持字节码编译, 能跳过 JS 引擎生成字节码的步骤
+- 降低内存的使用, 针对新架构, 优化了引擎的 GC
+- Android 端 APK 体积变小
+
+### Yoga
+
+Yoga 是 C++ 实现的 基于 Flexbox 的跨平台布局引擎
+
+## React Native 新架构
+
+[!新架构图](https://image.xjq.icu/2024/7/3/1720000605227_react-native-new-architecture.svg)
+
+新架构 JSI 取代 JS bridge, 他为 JS 引擎提供 API, JS 能直接调用原生(Java/Objc)函数
+
+### JSI
+
+JSI 的优势是 JS线程和 Native Modules 的完全同步,
+
+老架构 Bridge 的消息队列在高频通信时容易阻塞队列, 导致事件响应不及时和 UI 卡帧现象
+
+数据序列化与反序列化对于性能也有影响, 同时他也是异步的
+
+### Fabric Native UI
+
+Fabric 通过 JSI 暴露的 Native 函数与 JS 进行通信, 提升了数据传递性能与效率
+
+### Turbo Modules
+
+Turbo Modules 可以按需加载原生模块, 原来的 Native Modules 需要在启动时加载所有原生模块, 而 Turbo Modules 是懒加载的, 提升了应用的启动时间
