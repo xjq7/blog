@@ -12,7 +12,27 @@ Android 使用 Charles 抓包
 
 ### 本地调试
 
-通过将移动端网络代理到本地 结合 whistle 来实现本地开发的调试
+将线上 H5 里的资源代理到本地启动的服务上, 直接本地调试
+
+我这里演示的是 ios 端的代理配置
+
+1. 先将 WIFI 代理配置好
+
+   ![](https://image.xjq.icu/2024/7/10/1720608110014_%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240710184141.png)
+
+   这里端口填的 8899, [whistle](https://github.com/avwo/whistle) 默认端口是 8899
+
+2. 电脑安装 [whistle](https://github.com/avwo/whistle), 按照官方 README 教程安装
+
+3. 本地 w2 start --init 启动之后, 需要在手机端安装 whistle 的证书, 才能抓包 https
+
+   浏览器访问 http://127.0.0.1:8899/#network 进入 whistle 配置界面, 点击顶部 HTTPS 栏弹出证书下载页面, 扫码下载后安装并信任证书
+
+4. 代理配置编写
+
+   ![](https://image.xjq.icu/2024/7/10/1720608505663_Snipaste_2024-07-10_18-48-16.png)
+
+   点击 Rules 编写规则, 比如将 https://www.baidu.com/a.js 替换为 http://127.0.0.1:8080/a.js
 
 ## Nodejs
 
