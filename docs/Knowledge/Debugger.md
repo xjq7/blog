@@ -61,3 +61,59 @@ Android 使用 Charles 抓包
 ```
 
 debug 模式启动程序
+
+## debugger 日记
+
+### iscroll 输入框聚焦中页面无法滚动到顶部
+
+这是一个客户提出来的 缺陷单子, 活动页有个 输入框在长页面靠下方
+
+在唤起输入框之后, 页面没法往上拉到最上面, 没法去查看这个表单其他项目的输入内容
+
+客户希望能唤起输入框之后, 页面能正常滚动到长页面最顶部
+
+我看了下 我们页面滚动的实现使用的 iscroll, iscroll 已经 8 年没更新过了
+
+项目里是 clone 过来魔改过的, 在本地调试 iscroll 代码
+
+具体原因是因为 iscroll 滚动实现是通过 translate 偏移做的, 键盘唤起之后, 页面视口高度发生了变化
+
+window.innerHeight 变小了, 差值正是键盘高度
+
+研究下来的改动方案: 拉到顶有个回弹动画, 将这个回弹的极限距离加长为键盘高度, 通过魔改 iscroll 就能解决长页滚动不全的问题
+
+键盘唤起事件, 在 android 端可以通过监听 resize 事件变化做到
+
+但 ios 不行, 键盘唤起时 resize 事件没触发
+
+后又换了一种实现方式, 通过 focusin、focusout 事件监听键盘的唤起收起
+
+另外仍存在一个问题, 直接在 focusin 事件里获取 innerHeight 并不是变小之后的, 因为键盘展开有延迟, 高度变化也是有延迟的
+
+所以再通过 触发事件来捕捉键盘展开后用户的第一次触屏交互, 在这个节点去获取键盘高度
+
+完整代码如下:
+
+```js
+// 初始视口高度
+let innerHeight = window.innerHeight
+
+document.addEventListener('focusin', (event) => {
+  const touchstartListener = () => {
+    // 键盘高度
+    this.keyboardImpactHeight = innerHeight - window.innerHeight
+    document.removeEventListener('touchstart', touchstartListener)
+  }
+
+  document.addEventListener('touchstart', touchstartListener)
+})
+
+document.addEventListener('focusout', (event) => {
+  const touchstartListener = () => {
+    this.keyboardImpactHeight = innerHeight - window.innerHeight
+    document.removeEventListener('touchstart', touchstartListener)
+  }
+
+  document.addEventListener('touchstart', touchstartListener)
+})
+```

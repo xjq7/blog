@@ -49,6 +49,10 @@ export default [
         link: '/Knowledge/DesignPattern',
       },
       {
+        text: '调试',
+        link: '/Knowledge/Debugger',
+      },
+      {
         text: '抽象思想',
         link: '/Knowledge/Abstract',
       },
