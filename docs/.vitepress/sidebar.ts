@@ -56,6 +56,10 @@ export default [
         text: '抽象思想',
         link: '/Knowledge/Abstract',
       },
+      {
+        text: '性能优化专题',
+        link: '/Knowledge/Performance',
+      },
     ],
   },
   {

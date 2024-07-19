@@ -11,4 +11,5 @@
 - [小程序](./Miniprogram.html)
 - [面试反问](./Reverse.html)
 - [抽象思想](./Abstract.html)
+- [性能优化专题](./Performance.html)
 - [其他](./Other.html)

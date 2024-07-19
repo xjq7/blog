@@ -230,3 +230,61 @@ Taro 3 为解释型架构, 通过在小程序端模拟实现 DOM、BOM API来让
 - 单测
 
   编写公共组件的单元测试用例
+
+## Git flow
+
+Git Flow 是 Git 的分支管理模型, 帮助团队规范化工作流程
+
+包含 功能开发、发布准备和版本管理等
+
+### 主要分支
+
+- master
+
+master 代表生产环境代码, 只包含经过测试和验证的稳定版本
+
+每个提交到 master 分支的版本都应该是可部署和生产环境可用的
+
+- develop 分支
+
+develop 分支是开发分支, 用于集成各个功能分支代码
+
+### 支持性分支
+
+- feature 分支
+
+每个功能从 master 分支创建一个 feature 分支
+
+对应每个人也有个独立分支 feature-name, 功能开发完成后, 在 开发环境验证通过后合入 develop 分支(目前我们采用的流程)
+
+- release 分支
+
+release 分支是预发布分支, 经验证通过后归档至 master 分支
+
+- hotfix 分支
+
+hotfix 分支用于紧急修复生产环境 bug, 从 master 分支创建, 修复完成后合入 master
+
+修复完成之后也会打 版本 tag
+
+### Git flow 流程
+
+- 功能开发
+
+  1. 从 master 分支创建 feature 功能分支以及 feature-xxx-name 个人分支
+  2. 功能开发完成后, 合入 develop 分支并部署 dev 环境验证
+  3. 验证通过后将个人分支并入 功能分支, 并准备验证其他环境例如测试环境
+  4. 准备发布阶段: 将功能分支合入 release 分支, 进行最终测试和准备发布
+  5. 发布版本: 完成测试后, 将 release 分支归档 master 分支和其他环境分支, 并打上版本 tag
+
+- bug 修复
+
+  1. 从 master 分支创建 hotfix 分支以及 hotfix-xxx-name 个人分支
+  2. 代码修复后合入 develop 分支并部署 dev 环境验证
+  3. 验证通过后自动合入 hotfix 分支并部署其他环境
+  4. 准备发布阶段: 将功能分支合入 release 分支, 进行最终测试和准备发布
+  5. 发布版本: 完成测试后, 将 release 分支归档 master 分支和其他环境分支, 并打上版本 tag
+
+- 持续集成
+
+定期将功能分支合入 develop 分支, 发布新版本
