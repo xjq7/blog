@@ -306,7 +306,7 @@ function deepClone(obj, weakMap = new WeakMap()) {
   var isArray = obj instanceof Array
   var res = isArray ? [] : {}
   if (!isArray) {
-    if (weakMap.get(obj)) return {}
+    if (weakMap.get(obj)) return obj
     weakMap.set(obj, {}.toString.call(obj))
   }
   for (var key in obj) {
