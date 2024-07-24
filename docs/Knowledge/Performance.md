@@ -69,6 +69,8 @@ Chrome 浏览器开发工具中的一个功能板块, 用于分析网页性能, 
 
 ### 性能分析
 
+包含多个维度的性能数据分析
+
 #### CPU
 
 第一栏表示各项任务对 CPU 使用率
@@ -120,6 +122,8 @@ Chrome 浏览器开发工具中的一个功能板块, 用于分析网页性能, 
   requestAnimationFrame(_calFps)
 })()
 ```
+
+运行结果
 
 ![](https://image.xjq.icu/2024/7/24/1721791391652_Snipaste_2024-07-24_11-23-04.png)
 
@@ -180,3 +184,32 @@ Chrome 浏览器开发工具中的一个功能板块, 用于分析网页性能, 
 ## 优化
 
 ### 重排
+
+浏览器因为页面结构或者样式的变化而重新计算元素位置和大小, 导致整个页面布局发生改成
+
+- 添加或删除可见的 DOM 元素
+- 修改元素样式属性(宽高、边距、定位等)
+- 计算样式属性, 获取这些属性时, 导致重排
+
+  ```
+  clientWidth、clientHeight、clientTop、clientLeft
+  offsetWidth、offsetHeight、offsetTop、offsetLeft
+  scrollWidth、scrollHeight、scrollTop、scrollLeft
+  scrollIntoView()、scrollIntoViewIfNeeded()
+  getComputedStyle()
+  getBoundingClientRect()
+  scrollTo()
+  ```
+
+- 内容发生变化, 比如文本变化或图片被另一个不同尺寸的图片所替代
+- 浏览器的窗口尺寸变化
+- 激活CSS伪类(例如：:hover)
+- 字体大小发生变化
+
+### 重绘
+
+浏览器根据元素样式信息重新绘制, 而不涉及布局变更
+
+- 修改元素背景色、文字颜色等
+- 修改阴影、边框等效果
+- 改变 visibility、 opacity 会影响元素可见性和透明度
