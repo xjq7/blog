@@ -181,30 +181,64 @@ Chrome 浏览器开发工具中的一个功能板块, 用于分析网页性能, 
 
 ### CSS 选择器性能分析
 
+## 优化维度
+
+### 应用层
+
+- 文件上传之分片上传
+- 构建
+
+  - 按需加载, 构建的分包, 实际运行过程中使用到才会加载
+  - 资源压缩, 使用 terser 插件压缩资源
+  - tree shaking 优化, 通过标记 sideEffects 来选择剔除一些死区代码
+
+- 虚拟长列表
+- 框架使用最佳实践
+
+  React 组件开发中运用 useMemo, useCallback 优化
+
+### 动画性能优化
+
+- requestAnimationFrame
+
+  通知浏览器执行一个动画, 浏览器会在下一次重绘之前调用执行, 使用 requestAnimationFrame 代替 setTimeout 执行动画可以优化动画性能
+
+- 避免重排
+
+  浏览器因为页面结构或者样式的变化而重新计算元素位置和大小, 导致整个页面布局发生改成
+
+  - 添加或删除可见的 DOM 元素
+  - 修改元素样式属性(宽高、边距、定位等)
+  - 计算样式属性, 获取这些属性时, 导致重排
+
+    ```
+    clientWidth、clientHeight、clientTop、clientLeft
+    offsetWidth、offsetHeight、offsetTop、offsetLeft
+    scrollWidth、scrollHeight、scrollTop、scrollLeft
+    scrollIntoView()、scrollIntoViewIfNeeded()
+    getComputedStyle()
+    getBoundingClientRect()
+    scrollTo()
+    ```
+
+  - 内容发生变化, 比如文本变化或图片被另一个不同尺寸的图片所替代
+  - 浏览器的窗口尺寸变化
+  - 激活CSS伪类(例如：:hover)
+  - 字体大小发生变化
+
+- will-change
+
+### JS 性能优化
+
+通过 DevTools 分析 Js 运行性能, 找出长任务并优化
+
+### 网络层
+
+- http 缓存
+- http/2 优化
+- 资源预加载
+
 ## 优化
-
-### 重排
-
-浏览器因为页面结构或者样式的变化而重新计算元素位置和大小, 导致整个页面布局发生改成
-
-- 添加或删除可见的 DOM 元素
-- 修改元素样式属性(宽高、边距、定位等)
-- 计算样式属性, 获取这些属性时, 导致重排
-
-  ```
-  clientWidth、clientHeight、clientTop、clientLeft
-  offsetWidth、offsetHeight、offsetTop、offsetLeft
-  scrollWidth、scrollHeight、scrollTop、scrollLeft
-  scrollIntoView()、scrollIntoViewIfNeeded()
-  getComputedStyle()
-  getBoundingClientRect()
-  scrollTo()
-  ```
-
-- 内容发生变化, 比如文本变化或图片被另一个不同尺寸的图片所替代
-- 浏览器的窗口尺寸变化
-- 激活CSS伪类(例如：:hover)
-- 字体大小发生变化
 
 ### 重绘
 
