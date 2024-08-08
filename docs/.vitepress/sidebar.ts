@@ -1,6 +1,6 @@
 export default [
   {
-    text: '前端归档(精华)',
+    text: '前端',
     collapsible: true,
     collapsed: false,
     items: [
@@ -63,7 +63,7 @@ export default [
     ],
   },
   {
-    text: '前端散记',
+    text: '技术散记',
     collapsible: true,
     collapsed: false,
     items: [
@@ -85,20 +85,12 @@ export default [
         link: '/FrontEnd/Js',
       },
       {
-        text: 'pm2',
-        link: '/FrontEnd/Pm2',
-      },
-      {
         text: 'WindowsTerminal',
         link: '/FrontEnd/WindowsTerminal',
       },
       {
         text: 'Vscode',
         link: '/FrontEnd/Vscode',
-      },
-      {
-        text: '移动端真机调试',
-        link: '/FrontEnd/MobileDebug',
       },
       {
         text: '记录图床项目部署',
@@ -120,10 +112,6 @@ export default [
       {
         text: '工程化',
         link: '/TechnicalTopics/Engineerd',
-      },
-      {
-        text: '移动端',
-        link: '/TechnicalTopics/Mobile',
       },
     ],
   },
@@ -184,15 +172,6 @@ export default [
         text: 'Canvas',
         link: '/TechnicalTopics/Canvas',
       },
-    ],
-  },
-  {
-    text: '性能专题',
-    collapsible: true,
-    collapsed: false,
-    items: [
-      { text: 'Rail 模型', link: '/Performance/Rail' },
-      { text: 'Web 性能指标', link: '/Performance/WebIndex' },
     ],
   },
   {
