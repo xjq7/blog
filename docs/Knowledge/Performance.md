@@ -197,7 +197,7 @@ rail 代表 Web 应用生命周期的四个不同方面:响应,动画,空闲和�
 
 - 准则
 
-  有关各种动画优化策略,参阅 [/rendering-performance](https://web.dev/rendering-performance/)
+  有关各种动画优化策略,参阅 [rendering-performance](https://web.dev/rendering-performance/)
 
 ### 空闲: 最大限度增加空闲时间
 
