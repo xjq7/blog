@@ -60,6 +60,10 @@ export default [
         text: '性能优化专题',
         link: '/Knowledge/Performance',
       },
+      {
+        text: '前端工程化',
+        link: '/Knowledge/Engineer',
+      },
     ],
   },
   {
