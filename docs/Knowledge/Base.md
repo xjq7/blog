@@ -603,9 +603,134 @@ example 1
   };
   ```
 
+- :yellow_circle: [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
+
+  设立快慢指针, 让快指针先走 n 步, 然后移动慢指针找到要移除节点的位置, 这里我使用虚拟头节点, 找到要移除节点的前一个节点
+
+  ```Js
+  /**
+   * Definition for singly-linked list.
+  * function ListNode(val, next) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.next = (next===undefined ? null : next)
+  * }
+  */
+  /**
+  * @param {ListNode} head
+  * @param {number} n
+  * @return {ListNode}
+  */
+  var removeNthFromEnd = function (head, n) {
+    let front = (end = res = new ListNode());
+
+    front.next = end.next = head;
+    while (n--) {
+      front = front.next;
+    }
+
+    while (front && front.next) {
+      front = front.next;
+      end = end.next;
+    }
+
+    end.next = end.next.next;
+    return res.next;
+  };
+
+  ```
+
+## 二分查找
+
+- :yellow_circle: [33.搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/description/)
+
+  逻辑梳理有点复杂, 条件判断较多, 核心是利用单调性, 来判断二分继续往左还是往右找, 例如: 如果当前 mid 偏大, 左边是单调递增
+  则判断左端点是否也偏大, 偏大则向右查找, 否则向左, 其他情况略...
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @param {number} target
+  * @return {number}
+  */
+  var search = function (nums, target) {
+      let i = 0, j = nums.length - 1
+      let mid
+      while (i <= j) {
+          mid = Math.floor((j - i) / 2) + i
+          if (nums[mid] === target) {
+              return mid
+          }
+          if (nums[mid] > nums[i]) {
+              if (nums[mid] > target) {
+                  if (nums[i] > target) {
+                      i = mid + 1
+                  } else {
+                      j = mid - 1
+                  }
+              } else {
+                  i = mid + 1
+              }
+          } else if (nums[mid] < nums[i]) {
+              if (nums[mid] > target) {
+                  j = mid - 1
+              } else {
+                  if (nums[j] < target) {
+                      j = mid - 1
+                  } else {
+                      i = mid + 1
+                  }
+              }
+          } else {
+              i = mid + 1
+          }
+      }
+      return -1
+  };
+  ```
+
 ## 哈希表
 
 n 数之和
+
+## 回溯
+
+- :yellow_circle: [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/description/)
+
+  回溯过程中限制左括号数量小于右括号数量即可
+
+  ```Js
+  /**
+   * @param {number} n
+  * @return {string[]}
+  */
+  var generateParenthesis = function (n) {
+    const ans = [];
+
+    const store = [n, n];
+
+    const dfs = (tmp) => {
+      if (!store[0] && !store[1]) {
+        ans.push(tmp);
+        return;
+      }
+
+      if (store[0]) {
+        store[0]--;
+        dfs(tmp + '(');
+        store[0]++;
+      }
+
+      if (store[0] < store[1]) {
+        store[1]--;
+        dfs(tmp + ')');
+        store[1]++;
+      }
+    };
+    dfs('');
+    return ans;
+  };
+
+  ```
 
 ## 单调栈
 
@@ -620,3 +745,29 @@ djb2 是一个产生随机分布的的哈希函数
 使用乘数 33 的主要原理是：将一个数左移一位，相当于将这个数乘以 2，左移 n 位相当于将这个数乘以 2 的 n 次方。而使用位运算的速度远远快于乘法运算，因此在哈希算法中使用位运算可以显著提高计算速度和效率
 
 同时，33 作为乘数的选择也是有一定道理的。首先，33 是一个奇数，这可以确保在哈希过程中使用的乘数不会与偶数相关的信息发生冲突。其次，33 可以写成 2 的五次方再加上 1，即 33=2^5+1。这意味着在哈希过程中，可以将原始哈希值左移 5 位，再加上原始哈希值，相当于将原始哈希值乘以 33，从而得到更好的哈希值
+
+## 动态规划
+
+- :yellow_circle: [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/)
+
+  找到 状态转移方程, 打劫第 i 家的收益最大化, 根据条件限制应该为 打劫第 i-2 家的收益加上 第 i 家 跟 打劫第 i-1 家的最大收益做比较, 最后结果返回 dp 的最后一项即可
+
+  也就是 dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1])
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number}
+  */
+  var rob = function (nums) {
+      const dp = new Array(nums.length + 10).fill(0)
+      dp[0] = nums[0]
+      dp[1] = Math.max(nums[0], nums[1])
+
+      for (let i = 2; i < nums.length; i++) {
+          dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
+      }
+
+      return dp[nums.length - 1]
+  };
+  ```
