@@ -391,7 +391,7 @@ var levelOrder = function (root) {
 
 ### 二叉搜索树
 
-二叉搜索树（Binary Search Tree，BST）具有以下特性
+二叉搜索树（Binary Search Tree, BST）具有以下特性
 
 - 节点左子树中所有节点都小于该节点的值
 - 节点右子树中所有节点都大于该节点的值
@@ -740,19 +740,23 @@ djb2 是一个产生随机分布的的哈希函数
 
 ### 参数 33 的选择
 
-在 DJB2 哈希算法中，使用乘数 33 作为哈希算法的参数，是为了利用位运算的性质，避免乘法运算，从而提高计算速度和效率
+在 DJB2 哈希算法中, 使用乘数 33 作为哈希算法的参数, 是为了利用位运算的性质, 避免乘法运算, 从而提高计算速度和效率
 
-使用乘数 33 的主要原理是：将一个数左移一位，相当于将这个数乘以 2，左移 n 位相当于将这个数乘以 2 的 n 次方。而使用位运算的速度远远快于乘法运算，因此在哈希算法中使用位运算可以显著提高计算速度和效率
+使用乘数 33 的主要原理是：将一个数左移一位, 相当于将这个数乘以 2, 左移 n 位相当于将这个数乘以 2 的 n 次方。而使用位运算的速度远远快于乘法运算, 因此在哈希算法中使用位运算可以显著提高计算速度和效率
 
-同时，33 作为乘数的选择也是有一定道理的。首先，33 是一个奇数，这可以确保在哈希过程中使用的乘数不会与偶数相关的信息发生冲突。其次，33 可以写成 2 的五次方再加上 1，即 33=2^5+1。这意味着在哈希过程中，可以将原始哈希值左移 5 位，再加上原始哈希值，相当于将原始哈希值乘以 33，从而得到更好的哈希值
+同时, 33 作为乘数的选择也是有一定道理的。首先, 33 是一个奇数, 这可以确保在哈希过程中使用的乘数不会与偶数相关的信息发生冲突。其次, 33 可以写成 2 的五次方再加上 1, 即 33=2^5+1。这意味着在哈希过程中, 可以将原始哈希值左移 5 位, 再加上原始哈希值, 相当于将原始哈希值乘以 33, 从而得到更好的哈希值
 
 ## 动态规划
+
+动态规划（英语：Dynamic programming, 简称DP）是一种在数学、管理科学、计算机科学、经济学和生物信息学中使用的, 通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法
+
+动态规划适用于有重叠子问题和最优子结构性质的问题, 动态规划方法耗时远少于朴素解法
 
 - :yellow_circle: [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/)
 
   找到 状态转移方程, 打劫第 i 家的收益最大化, 根据条件限制应该为 打劫第 i-2 家的收益加上 第 i 家 跟 打劫第 i-1 家的最大收益做比较, 最后结果返回 dp 的最后一项即可
 
-  也就是 dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1])
+  也就是 dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1])
 
   ```Js
   /**
@@ -769,5 +773,74 @@ djb2 是一个产生随机分布的的哈希函数
       }
 
       return dp[nums.length - 1]
+  };
+  ```
+
+- :yellow_circle: [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+
+  动态规划解法: 状态转移方程 dp[j] = max(dp[i] + 1, dp[j])
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number}
+  */
+  var lengthOfLIS = function (nums) {
+      const n = nums.length
+      const dp = new Array(n).fill(1)
+
+      let ans = 1
+
+      for (let i = 0; i < n; i++) {
+          for (let j = i + 1; j < n; j++) {
+              if (nums[j] > nums[i]) {
+                  dp[j] = Math.max(dp[i] + 1, dp[j])
+                  if (dp[j] > ans) ans = dp[j]
+              }
+          }
+      }
+
+      return ans
+  };
+  ```
+
+  二分查找解法: 我们维护一个单调递增的序列 arr, 存储当前最长子序列, 遍历数组元素, 大于 arr 元素则扩充 arr
+  小于则用二分找到该元素插入点 更新序列 arr, 最终最大长度则是 arr 序列长度
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number}
+  */
+  var lengthOfLIS = function (nums) {
+      const n = nums.length
+      const arr = new Array(n)
+
+      arr[0] = nums[0]
+
+      let len = 0
+
+      for (let i = 1; i < n; i++) {
+          if (nums[i] > arr[len]) {
+              arr[++len] = nums[i]
+          } else {
+              let l = 0, r = len, pos = 0
+
+              while (l <= r) {
+                  let mid = l + Math.floor((r - l) / 2)
+                  if (arr[mid] >= nums[i]) {
+                      r = mid - 1
+                      pos = mid
+                  } else {
+                      pos = mid + 1
+                      l = mid + 1
+                  }
+              }
+              arr[pos] = nums[i]
+
+          }
+      }
+
+      return len + 1
   };
   ```
