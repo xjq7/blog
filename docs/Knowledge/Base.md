@@ -844,3 +844,37 @@ djb2 是一个产生随机分布的的哈希函数
       return len + 1
   };
   ```
+
+- :yellow_circle: [221. 最大正方形](https://leetcode.cn/problems/maximal-square/description/)
+
+  dp[i][j] 代表 以 i,j 索引的二维矩阵为右下角的最大边长, 状态转移方程 dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1
+
+  当前元素 为 '1' 可根据靠左上角的三个邻近元素去推断当前元素能组成多大的正方形
+
+  ```Js
+  /**
+   * @param {character[][]} matrix
+  * @return {number}
+  */
+  var maximalSquare = function (matrix) {
+      const m = matrix.length
+      const n = matrix[0].length
+
+      let edge = 0;
+
+      for (let i = 0; i < m; i++) {
+          for (let j = 0; j < n; j++) {
+              if (matrix[i][j] === '1') {
+                  if (i !== 0 && j !== 0) {
+                      matrix[i][j] = Math.min(Math.min(matrix[i - 1][j], matrix[i][j - 1]), matrix[i - 1][j - 1]) + 1
+                  }
+                  if (matrix[i][j] > edge) {
+                      edge = matrix[i][j]
+                  }
+              }
+          }
+      }
+
+      return edge * edge
+  };
+  ```
