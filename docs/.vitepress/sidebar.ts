@@ -64,6 +64,10 @@ export default [
         text: '前端工程化',
         link: '/Knowledge/Engineer',
       },
+      {
+        text: '扫盲',
+        link: '/Knowledge/Literacy',
+      },
     ],
   },
   {

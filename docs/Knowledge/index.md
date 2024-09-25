@@ -13,4 +13,5 @@
 - [抽象思想](./Abstract.html)
 - [性能优化专题](./Performance.html)
 - [前端工程化](./Engineer.html)
+- [扫盲](./Literacy.html)
 - [其他](./Other.html)
