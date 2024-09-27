@@ -878,3 +878,29 @@ djb2 是一个产生随机分布的的哈希函数
       return edge * edge
   };
   ```
+
+- :yellow_circle: [53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/)
+
+  状态转移方程: dp[i] = max(dp[i-1]+nums[i], nums[i]), 如果 i 之前的最大值 dp[i-1] 加上当前元素还没有 nums[i] 大
+  那更新 dp[i] 为 nums[i], 也就是抛弃 i 之前的数字, 因为加上它们 结果反而更小了
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number}
+  */
+  var maxSubArray = function(nums) {
+      const n = nums.length;
+      const dp = new Array(n).fill(0);
+      dp[0] = nums[0];
+
+      let ans = dp[0];
+
+      for(let i=1;i<n;i++){
+          dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
+          ans = Math.max(ans, dp[i]);
+      }
+
+      return ans
+  };
+  ```

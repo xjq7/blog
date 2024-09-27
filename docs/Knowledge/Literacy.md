@@ -49,6 +49,9 @@
     // 允许从没有设置默认导出的模块中默认导入, 不影响代码输出, 仅作为类型检查
     "allowSyntheticDefaultImports": false,
 
+    // 通过为导入内容创建命名空间, 实现 CommonJS 和 ES 模块之间的互操作性
+    "esModuleInterop": false,
+
     // 不报告执行不到的代码错误
     "allowUnreachableCode": false,
 

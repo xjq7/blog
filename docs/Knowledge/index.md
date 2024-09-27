@@ -14,4 +14,5 @@
 - [性能优化专题](./Performance.html)
 - [前端工程化](./Engineer.html)
 - [扫盲](./Literacy.html)
+- [架构](./Architect.html)
 - [其他](./Other.html)

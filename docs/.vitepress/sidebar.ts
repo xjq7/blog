@@ -68,6 +68,10 @@ export default [
         text: '扫盲',
         link: '/Knowledge/Literacy',
       },
+      {
+        text: '架构',
+        link: '/Knowledge/Architect',
+      },
     ],
   },
   {
