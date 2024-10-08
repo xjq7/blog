@@ -904,3 +904,37 @@ djb2 是一个产生随机分布的的哈希函数
       return ans
   };
   ```
+
+- :yellow_circle: [309. 买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
+
+  含冷冻期的状态稍微复杂些, 在每个索引下有 持有、非持有冷冻期、非持有非冷冻期三种状态, 用 dp[i][0]、dp[i][1]、dp[i][2] 来表示
+
+  状态转移方程:
+
+  持有状态更新: dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])
+  非持有冷冻期状态更新: dp[i][1] = dp[i-1][0] + prices[i]
+  非持有非冷冻期状态更新: dp[i][2] = max(dp[i-1][1], dp[i-1][2])
+
+  ```Js
+  /**
+   * @param {number[]} prices
+  * @return {number}
+  */
+  var maxProfit = function (prices) {
+      const n = prices.length
+
+      const dp = new Array(n)
+      for (let i = 0; i < n; i++) {
+          dp[i] = new Array(3).fill(0)
+      }
+
+      dp[0][0] = -prices[0]
+      for (let i = 1; i < n; i++) {
+          dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[i])
+          dp[i][1] = dp[i - 1][0] + prices[i]
+          dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2])
+      }
+
+      return Math.max(dp[n - 1][1], dp[n - 1][2])
+  };
+  ```
