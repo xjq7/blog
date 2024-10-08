@@ -936,5 +936,52 @@ djb2 是一个产生随机分布的的哈希函数
       }
 
       return Math.max(dp[n - 1][1], dp[n - 1][2])
+  ```
+
+## BFS
+
+广度优先搜索
+
+- :yellow_circle: [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/description/)
+
+  ```Js
+  /**
+   * @param {character[][]} grid
+  * @return {number}
+  */
+  var numIslands = function (grid) {
+      const m = grid.length, n = grid[0].length
+
+      let ans = 0
+
+      const rects = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+
+      const bfs = (i, j) => {
+          grid[i][j] = '0'
+          rects.forEach((rect) => {
+              i += rect[0]
+              j += rect[1]
+              if (i >= 0 && j >= 0 && i < m && j < n && grid[i][j] === '1') {
+                  grid[i][j] = '0'
+                  bfs(i, j)
+              }
+              i -= rect[0]
+              j -= rect[1]
+          })
+
+      }
+
+      for (let i = 0; i < m; i++) {
+          for (let j = 0; j < n; j++) {
+              if (grid[i][j] === '0') {
+                  continue
+              }
+
+              ans++
+              bfs(i, j)
+          }
+      }
+
+      return ans
   };
   ```
