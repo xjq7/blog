@@ -985,3 +985,44 @@ djb2 是一个产生随机分布的的哈希函数
       return ans
   };
   ```
+
+## 前缀和
+
+- :yellow_circle: [238. 除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/)
+
+  预先计算 左、右前缀和, l[i] 代表 i 左边所有数字的乘积, r[i] 代表 i 右边所有数字的乘积
+
+  遍历修改 nums[i] = l[i] \* r[i], 这里 0 索引和 n-1 索引需要特殊处理, 因为没有 l[0] 和 r[n-1]
+
+  ```Js
+  /**
+   * @param {number[]} nums
+  * @return {number[]}
+  */
+  var productExceptSelf = function (nums) {
+      const n = nums.length
+      const l = new Array(n).fill(1)
+      const r = new Array(n).fill(1)
+
+      l[1] = nums[0]
+      r[n - 2] = nums[n - 1]
+      for (let i = 1; i < n; i++) {
+          l[i] = nums[i - 1] * l[i - 1]
+      }
+      for (let i = n - 2; i >= 0; i--) {
+          r[i] = nums[i + 1] * r[i + 1]
+      }
+
+      for (let i = 0; i < n; i++) {
+          if (i === 0) {
+              nums[i] = r[i]
+          } else if (i === n - 1) {
+              nums[i] = l[i]
+          } else {
+              nums[i] = l[i] * r[i]
+          }
+      }
+
+      return nums
+  };
+  ```
