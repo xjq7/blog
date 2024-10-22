@@ -938,6 +938,51 @@ djb2 是一个产生随机分布的的哈希函数
       return Math.max(dp[n - 1][1], dp[n - 1][2])
   ```
 
+- :yellow_circle: [337. 打家劫舍 III](https://leetcode.cn/problems/house-robber-iii/)
+
+  树形 dp, 问题求解最大收益, 分析状态转移方程, 从根节点出发, 每个节点能获取到的最大收益, 分为偷当前节点 checked 和不偷当前节点 unchecked 两种状态
+
+  当前 unchecked1 第一种情况为 两个叶子节点 left 和 right checked 最大值之和, unchecked1 = left.checked + right.checked
+
+  unchecked2 第二种情况为 两个叶子节点 left 和 right unchecked 最大值之和, unchecked2 = left.unchecked + right.unchecked
+
+  最终 unchecked = max(unchecked1, unchecked2)
+
+  当前 checked 为 当前节点值与两个叶子节点 left 和 right 的 unchecked 值之和, checked = left.unchecked + right.unchecked + val
+
+  另外还需要 使用 贪心 与 unchecked 对比取最大值, 保证当前状态为最优
+
+  ```Js
+  /**
+   * Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+  /**
+   * @param {TreeNode} root
+  * @return {number}
+  */
+  var rob = function (root) {
+      const dfs = (node) => {
+          if (!node) return [0, 0]
+
+          const l = dfs(node.left)
+          const r = dfs(node.right)
+
+          const unchecked = Math.max(l[0] + r[0], l[1] + r[1])
+          const checked = Math.max(node.val + r[0] + l[0], unchecked)
+          return [unchecked, checked]
+      }
+
+      const result = dfs(root)
+
+      return Math.max(result[0], result[1])
+  };
+  ```
+
 ## BFS
 
 广度优先搜索
