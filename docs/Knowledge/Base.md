@@ -6,7 +6,7 @@
 
 ### 最短路径
 
-- :yellow_circle: [2385. 感染二叉树需要的总时间](https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/)
+#### :yellow_circle: [2385. 感染二叉树需要的总时间](https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/)
 
 先走 深搜 构造无向图
 然后从 start 节点开始走 广搜 寻找最短路径
@@ -381,13 +381,13 @@ var levelOrder = function (root) {
 
 #### 相关的一些题目
 
-- :yellow_circle: [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/description/)
+:yellow_circle: [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/description/)
 
-  使用 BFS 找出最深一层的节点集合, 然后求和
+使用 BFS 找出最深一层的节点集合, 然后求和
 
-- :yellow_circle: [2583. 二叉树中的第 K 大层和](https://leetcode.cn/problems/kth-largest-sum-in-a-binary-tree/description/)
+:yellow_circle: [2583. 二叉树中的第 K 大层和](https://leetcode.cn/problems/kth-largest-sum-in-a-binary-tree/description/)
 
-  使用 BFS 计算每一层的和, 然后排序
+使用 BFS 计算每一层的和, 然后排序
 
 ### 二叉搜索树
 
@@ -414,10 +414,11 @@ example 1
 
 ```
 
-- :green_circle: [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
-- :yellow_circle: [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/description/)
+:green_circle: [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
 
-  DFS
+:yellow_circle: [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/description/)
+
+DFS
 
 ### 二叉平衡树
 
@@ -439,82 +440,82 @@ example 1
 
 ```
 
-- :green_circle: [LCR 176. 判断是否为平衡二叉树](https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/description/)
+#### :green_circle: [LCR 176. 判断是否为平衡二叉树](https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/description/)
 
-  递归获取左右子树高度差做计算, 同时递归判断左右子树是否也是平衡树
+递归获取左右子树高度差做计算, 同时递归判断左右子树是否也是平衡树
 
-  ```Js
-  /**
-   * Definition for a binary tree node.
-  * function TreeNode(val, left, right) {
-  *     this.val = (val===undefined ? 0 : val)
-  *     this.left = (left===undefined ? null : left)
-  *     this.right = (right===undefined ? null : right)
-  * }
-  */
-  /**
-   * @param {TreeNode} root
-  * @return {boolean}
-  */
-  var isBalanced = function (root) {
-      if (!root) return true;
-      return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
-  };
+```Js
+/**
+ * Definition for a binary tree node.
+* function TreeNode(val, left, right) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.left = (left===undefined ? null : left)
+*     this.right = (right===undefined ? null : right)
+* }
+*/
+/**
+ * @param {TreeNode} root
+* @return {boolean}
+*/
+var isBalanced = function (root) {
+    if (!root) return true;
+    return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
+};
 
-  function height(root) {
-      if (!root) return 0;
+function height(root) {
+    if (!root) return 0;
 
-      return Math.max(height(root.left) + 1, height(root.right) + 1);
-  }
-  ```
+    return Math.max(height(root.left) + 1, height(root.right) + 1);
+}
+```
 
-- [1382. 将二叉搜索树变平衡](https://leetcode.cn/problems/balance-a-binary-search-tree/description/)
+#### [1382. 将二叉搜索树变平衡](https://leetcode.cn/problems/balance-a-binary-search-tree/description/)
 
-  通过中序遍历获取升序数组, 然后以中间点为 根 递归生成树
+通过中序遍历获取升序数组, 然后以中间点为 根 递归生成树
 
-  ```Js
-  /**
-   * Definition for a binary tree node.
-  * function TreeNode(val, left, right) {
-  *     this.val = (val===undefined ? 0 : val)
-  *     this.left = (left===undefined ? null : left)
-  *     this.right = (right===undefined ? null : right)
-  * }
-  */
-  /**
-   * @param {TreeNode} root
-  * @return {TreeNode}
-  */
-  var balanceBST = function (root) {
-      const arr = [];
-      const stack = [];
-      let current = root;
+```Js
+/**
+ * Definition for a binary tree node.
+* function TreeNode(val, left, right) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.left = (left===undefined ? null : left)
+*     this.right = (right===undefined ? null : right)
+* }
+*/
+/**
+ * @param {TreeNode} root
+* @return {TreeNode}
+*/
+var balanceBST = function (root) {
+    const arr = [];
+    const stack = [];
+    let current = root;
 
-      while (current || stack.length) {
-          while (current) {
-              stack.push(current);
-              current = current.left;
-          }
+    while (current || stack.length) {
+        while (current) {
+            stack.push(current);
+            current = current.left;
+        }
 
-          current = stack.pop();
-          arr.push(current.val);
-          current = current.right;
-      }
+        current = stack.pop();
+        arr.push(current.val);
+        current = current.right;
+    }
 
-      function build(start, end) {
-          if (start > end) return null;
-          const mid = start + Math.floor((end - start) / 2);
+    function build(start, end) {
+        if (start > end) return null;
+        const mid = start + Math.floor((end - start) / 2);
 
-          const node = new TreeNode(arr[mid]);
+        const node = new TreeNode(arr[mid]);
 
-          node.left = build(start, mid - 1);
-          node.right = build(mid + 1, end);
-          return node;
-      }
+        node.left = build(start, mid - 1);
+        node.right = build(mid + 1, end);
+        return node;
+    }
 
-      return build(0, arr.length - 1);
-  };
-  ```
+    return build(0, arr.length - 1);
+};
+```
 
 ## 树
 
@@ -539,154 +540,154 @@ example 1
 
 双指针在 优化时间复杂度的问题时非常有用, 通常能在 O(n) 时间复杂度内解决问题, 例如将 O(n²) 降低到 O(n)
 
-- :green_circle: [88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/description/)
+### :green_circle: [88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/description/)
 
-  这里因为是原地操作, 通过逆序遍历省去临时数组的使用, 从尾部逐个对比移动 i, j 指针, 实时将对比中较大的数覆盖到 nums1 中
+这里因为是原地操作, 通过逆序遍历省去临时数组的使用, 从尾部逐个对比移动 i, j 指针, 实时将对比中较大的数覆盖到 nums1 中
 
-  ```Js
-  /**
-  * @param {number[]} nums1
-  * @param {number} m
-  * @param {number[]} nums2
-  * @param {number} n
-  * @return {void} Do not return anything, modify nums1 in-place instead.
-  */
-  var merge = function (nums1, m, nums2, n) {
-      let i = m - 1, j = n - 1;
+```Js
+/**
+* @param {number[]} nums1
+* @param {number} m
+* @param {number[]} nums2
+* @param {number} n
+* @return {void} Do not return anything, modify nums1 in-place instead.
+*/
+var merge = function (nums1, m, nums2, n) {
+    let i = m - 1, j = n - 1;
 
-      while (i >= 0 || j >= 0) {
-          if (i === -1) {
-              nums1[i + j + 1] = nums2[j--];
-          } else if (j === -1) {
-              i--;
-          } else if (nums1[i] >= nums2[j]) {
-              nums1[i+j+1] = nums1[i--];
-          }else {
-              nums1[i+j+1] = nums2[j--];
-          }
-      }
-  };
-  ```
-
-- :yellow_circle: [15. 三数之和](https://leetcode.cn/problems/3sum/description/)
-
-  暴力解法三重循环 O(n^3) 会超时, 通过排序 + 双指针 优化第二第三重循环, 左指针右指针向中间收拢, 找出和为 0 的组合, 同时去除重复组合
-
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number[][]}
-  */
-  var threeSum = function (nums) {
-      nums = nums.sort((a, b) => a - b);
-      const ans = [];
-
-      for (let i = 0; i < nums.length - 2; i++) {
-          if (nums[i] > 0) break;
-          if (i > 0 && nums[i] === nums[i - 1]) continue;
-          let l = i + 1, r = nums.length - 1;
-          while (l < r) {
-              const sum = nums[l] + nums[r] + nums[i];
-              if (sum < 0) {
-                  while (l < r && nums[l] === nums[++l]);
-              } else if (sum > 0) {
-                  while (l < r && nums[r] === nums[--r]);
-              } else {
-                  ans.push([nums[i], nums[l], nums[r]]);
-                  while (l < r && nums[l] === nums[++l]);
-                  while (l < r && nums[r] === nums[--r]);
-              }
-          }
-
-      }
-      return ans;
-  };
-  ```
-
-- :yellow_circle: [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
-
-  设立快慢指针, 让快指针先走 n 步, 然后移动慢指针找到要移除节点的位置, 这里我使用虚拟头节点, 找到要移除节点的前一个节点
-
-  ```Js
-  /**
-   * Definition for singly-linked list.
-  * function ListNode(val, next) {
-  *     this.val = (val===undefined ? 0 : val)
-  *     this.next = (next===undefined ? null : next)
-  * }
-  */
-  /**
-  * @param {ListNode} head
-  * @param {number} n
-  * @return {ListNode}
-  */
-  var removeNthFromEnd = function (head, n) {
-    let front = (end = res = new ListNode());
-
-    front.next = end.next = head;
-    while (n--) {
-      front = front.next;
+    while (i >= 0 || j >= 0) {
+        if (i === -1) {
+            nums1[i + j + 1] = nums2[j--];
+        } else if (j === -1) {
+            i--;
+        } else if (nums1[i] >= nums2[j]) {
+            nums1[i+j+1] = nums1[i--];
+        }else {
+            nums1[i+j+1] = nums2[j--];
+        }
     }
+};
+```
 
-    while (front && front.next) {
-      front = front.next;
-      end = end.next;
+### :yellow_circle: [15. 三数之和](https://leetcode.cn/problems/3sum/description/)
+
+暴力解法三重循环 O(n^3) 会超时, 通过排序 + 双指针 优化第二第三重循环, 左指针右指针向中间收拢, 找出和为 0 的组合, 同时去除重复组合
+
+```Js
+/**
+ * @param {number[]} nums
+* @return {number[][]}
+*/
+var threeSum = function (nums) {
+    nums = nums.sort((a, b) => a - b);
+    const ans = [];
+
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (nums[i] > 0) break;
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+        let l = i + 1, r = nums.length - 1;
+        while (l < r) {
+            const sum = nums[l] + nums[r] + nums[i];
+            if (sum < 0) {
+                while (l < r && nums[l] === nums[++l]);
+            } else if (sum > 0) {
+                while (l < r && nums[r] === nums[--r]);
+            } else {
+                ans.push([nums[i], nums[l], nums[r]]);
+                while (l < r && nums[l] === nums[++l]);
+                while (l < r && nums[r] === nums[--r]);
+            }
+        }
+
     }
+    return ans;
+};
+```
 
-    end.next = end.next.next;
-    return res.next;
-  };
+### :yellow_circle: [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
 
-  ```
+设立快慢指针, 让快指针先走 n 步, 然后移动慢指针找到要移除节点的位置, 这里我使用虚拟头节点, 找到要移除节点的前一个节点
+
+```Js
+/**
+ * Definition for singly-linked list.
+* function ListNode(val, next) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.next = (next===undefined ? null : next)
+* }
+*/
+/**
+* @param {ListNode} head
+* @param {number} n
+* @return {ListNode}
+*/
+var removeNthFromEnd = function (head, n) {
+  let front = (end = res = new ListNode());
+
+  front.next = end.next = head;
+  while (n--) {
+    front = front.next;
+  }
+
+  while (front && front.next) {
+    front = front.next;
+    end = end.next;
+  }
+
+  end.next = end.next.next;
+  return res.next;
+};
+
+```
 
 ## 二分查找
 
-- :yellow_circle: [33.搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/description/)
+### :yellow_circle: [33.搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/description/)
 
-  逻辑梳理有点复杂, 条件判断较多, 核心是利用单调性, 来判断二分继续往左还是往右找, 例如: 如果当前 mid 偏大, 左边是单调递增
-  则判断左端点是否也偏大, 偏大则向右查找, 否则向左, 其他情况略...
+逻辑梳理有点复杂, 条件判断较多, 核心是利用单调性, 来判断二分继续往左还是往右找, 例如: 如果当前 mid 偏大, 左边是单调递增
+则判断左端点是否也偏大, 偏大则向右查找, 否则向左, 其他情况略...
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @param {number} target
-  * @return {number}
-  */
-  var search = function (nums, target) {
-      let i = 0, j = nums.length - 1
-      let mid
-      while (i <= j) {
-          mid = Math.floor((j - i) / 2) + i
-          if (nums[mid] === target) {
-              return mid
-          }
-          if (nums[mid] > nums[i]) {
-              if (nums[mid] > target) {
-                  if (nums[i] > target) {
-                      i = mid + 1
-                  } else {
-                      j = mid - 1
-                  }
-              } else {
-                  i = mid + 1
-              }
-          } else if (nums[mid] < nums[i]) {
-              if (nums[mid] > target) {
-                  j = mid - 1
-              } else {
-                  if (nums[j] < target) {
-                      j = mid - 1
-                  } else {
-                      i = mid + 1
-                  }
-              }
-          } else {
-              i = mid + 1
-          }
-      }
-      return -1
-  };
-  ```
+```Js
+/**
+ * @param {number[]} nums
+* @param {number} target
+* @return {number}
+*/
+var search = function (nums, target) {
+    let i = 0, j = nums.length - 1
+    let mid
+    while (i <= j) {
+        mid = Math.floor((j - i) / 2) + i
+        if (nums[mid] === target) {
+            return mid
+        }
+        if (nums[mid] > nums[i]) {
+            if (nums[mid] > target) {
+                if (nums[i] > target) {
+                    i = mid + 1
+                } else {
+                    j = mid - 1
+                }
+            } else {
+                i = mid + 1
+            }
+        } else if (nums[mid] < nums[i]) {
+            if (nums[mid] > target) {
+                j = mid - 1
+            } else {
+                if (nums[j] < target) {
+                    j = mid - 1
+                } else {
+                    i = mid + 1
+                }
+            }
+        } else {
+            i = mid + 1
+        }
+    }
+    return -1
+};
+```
 
 ## 哈希表
 
@@ -694,43 +695,43 @@ n 数之和
 
 ## 回溯
 
-- :yellow_circle: [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/description/)
+### :yellow_circle: [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/description/)
 
-  回溯过程中限制左括号数量小于右括号数量即可
+回溯过程中限制左括号数量小于右括号数量即可
 
-  ```Js
-  /**
-   * @param {number} n
-  * @return {string[]}
-  */
-  var generateParenthesis = function (n) {
-    const ans = [];
+```Js
+/**
+ * @param {number} n
+* @return {string[]}
+*/
+var generateParenthesis = function (n) {
+  const ans = [];
 
-    const store = [n, n];
+  const store = [n, n];
 
-    const dfs = (tmp) => {
-      if (!store[0] && !store[1]) {
-        ans.push(tmp);
-        return;
-      }
+  const dfs = (tmp) => {
+    if (!store[0] && !store[1]) {
+      ans.push(tmp);
+      return;
+    }
 
-      if (store[0]) {
-        store[0]--;
-        dfs(tmp + '(');
-        store[0]++;
-      }
+    if (store[0]) {
+      store[0]--;
+      dfs(tmp + '(');
+      store[0]++;
+    }
 
-      if (store[0] < store[1]) {
-        store[1]--;
-        dfs(tmp + ')');
-        store[1]++;
-      }
-    };
-    dfs('');
-    return ans;
+    if (store[0] < store[1]) {
+      store[1]--;
+      dfs(tmp + ')');
+      store[1]++;
+    }
   };
+  dfs('');
+  return ans;
+};
 
-  ```
+```
 
 ## 单调栈
 
@@ -752,322 +753,322 @@ djb2 是一个产生随机分布的的哈希函数
 
 动态规划适用于有重叠子问题和最优子结构性质的问题, 动态规划方法耗时远少于朴素解法
 
-- :yellow_circle: [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/)
+### :yellow_circle: [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/)
 
-  找到 状态转移方程, 打劫第 i 家的收益最大化, 根据条件限制应该为 打劫第 i-2 家的收益加上 第 i 家 跟 打劫第 i-1 家的最大收益做比较, 最后结果返回 dp 的最后一项即可
+找到 状态转移方程, 打劫第 i 家的收益最大化, 根据条件限制应该为 打劫第 i-2 家的收益加上 第 i 家 跟 打劫第 i-1 家的最大收益做比较, 最后结果返回 dp 的最后一项即可
 
-  也就是 dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1])
+也就是 dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1])
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number}
-  */
-  var rob = function (nums) {
-      const dp = new Array(nums.length + 10).fill(0)
-      dp[0] = nums[0]
-      dp[1] = Math.max(nums[0], nums[1])
+```Js
+/**
+ * @param {number[]} nums
+* @return {number}
+*/
+var rob = function (nums) {
+    const dp = new Array(nums.length + 10).fill(0)
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0], nums[1])
 
-      for (let i = 2; i < nums.length; i++) {
-          dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
-      }
+    for (let i = 2; i < nums.length; i++) {
+        dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
+    }
 
-      return dp[nums.length - 1]
-  };
-  ```
+    return dp[nums.length - 1]
+};
+```
 
-- :yellow_circle: [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+### :yellow_circle: [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
 
-  动态规划解法: 状态转移方程 dp[j] = max(dp[i] + 1, dp[j])
+动态规划解法: 状态转移方程 dp[j] = max(dp[i] + 1, dp[j])
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number}
-  */
-  var lengthOfLIS = function (nums) {
-      const n = nums.length
-      const dp = new Array(n).fill(1)
+```Js
+/**
+ * @param {number[]} nums
+* @return {number}
+*/
+var lengthOfLIS = function (nums) {
+    const n = nums.length
+    const dp = new Array(n).fill(1)
 
-      let ans = 1
+    let ans = 1
 
-      for (let i = 0; i < n; i++) {
-          for (let j = i + 1; j < n; j++) {
-              if (nums[j] > nums[i]) {
-                  dp[j] = Math.max(dp[i] + 1, dp[j])
-                  if (dp[j] > ans) ans = dp[j]
-              }
-          }
-      }
+    for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+            if (nums[j] > nums[i]) {
+                dp[j] = Math.max(dp[i] + 1, dp[j])
+                if (dp[j] > ans) ans = dp[j]
+            }
+        }
+    }
 
-      return ans
-  };
-  ```
+    return ans
+};
+```
 
-  二分查找解法: 我们维护一个单调递增的序列 arr, 存储当前最长子序列, 遍历数组元素, 大于 arr 元素则扩充 arr
-  小于则用二分找到该元素插入点 更新序列 arr, 最终最大长度则是 arr 序列长度
+二分查找解法: 我们维护一个单调递增的序列 arr, 存储当前最长子序列, 遍历数组元素, 大于 arr 元素则扩充 arr
+小于则用二分找到该元素插入点 更新序列 arr, 最终最大长度则是 arr 序列长度
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number}
-  */
-  var lengthOfLIS = function (nums) {
-      const n = nums.length
-      const arr = new Array(n)
+```Js
+/**
+ * @param {number[]} nums
+* @return {number}
+*/
+var lengthOfLIS = function (nums) {
+    const n = nums.length
+    const arr = new Array(n)
 
-      arr[0] = nums[0]
+    arr[0] = nums[0]
 
-      let len = 0
+    let len = 0
 
-      for (let i = 1; i < n; i++) {
-          if (nums[i] > arr[len]) {
-              arr[++len] = nums[i]
-          } else {
-              let l = 0, r = len, pos = 0
+    for (let i = 1; i < n; i++) {
+        if (nums[i] > arr[len]) {
+            arr[++len] = nums[i]
+        } else {
+            let l = 0, r = len, pos = 0
 
-              while (l <= r) {
-                  let mid = l + Math.floor((r - l) / 2)
-                  if (arr[mid] >= nums[i]) {
-                      r = mid - 1
-                      pos = mid
-                  } else {
-                      pos = mid + 1
-                      l = mid + 1
-                  }
-              }
-              arr[pos] = nums[i]
+            while (l <= r) {
+                let mid = l + Math.floor((r - l) / 2)
+                if (arr[mid] >= nums[i]) {
+                    r = mid - 1
+                    pos = mid
+                } else {
+                    pos = mid + 1
+                    l = mid + 1
+                }
+            }
+            arr[pos] = nums[i]
 
-          }
-      }
+        }
+    }
 
-      return len + 1
-  };
-  ```
+    return len + 1
+};
+```
 
-- :yellow_circle: [221. 最大正方形](https://leetcode.cn/problems/maximal-square/description/)
+### :yellow_circle: [221. 最大正方形](https://leetcode.cn/problems/maximal-square/description/)
 
-  dp[i][j] 代表 以 i,j 索引的二维矩阵为右下角的最大边长, 状态转移方程 dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1
+dp[i][j] 代表 以 i,j 索引的二维矩阵为右下角的最大边长, 状态转移方程 dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1
 
-  当前元素 为 '1' 可根据靠左上角的三个邻近元素去推断当前元素能组成多大的正方形
+当前元素 为 '1' 可根据靠左上角的三个邻近元素去推断当前元素能组成多大的正方形
 
-  ```Js
-  /**
-   * @param {character[][]} matrix
-  * @return {number}
-  */
-  var maximalSquare = function (matrix) {
-      const m = matrix.length
-      const n = matrix[0].length
+```Js
+/**
+ * @param {character[][]} matrix
+* @return {number}
+*/
+var maximalSquare = function (matrix) {
+    const m = matrix.length
+    const n = matrix[0].length
 
-      let edge = 0;
+    let edge = 0;
 
-      for (let i = 0; i < m; i++) {
-          for (let j = 0; j < n; j++) {
-              if (matrix[i][j] === '1') {
-                  if (i !== 0 && j !== 0) {
-                      matrix[i][j] = Math.min(Math.min(matrix[i - 1][j], matrix[i][j - 1]), matrix[i - 1][j - 1]) + 1
-                  }
-                  if (matrix[i][j] > edge) {
-                      edge = matrix[i][j]
-                  }
-              }
-          }
-      }
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (matrix[i][j] === '1') {
+                if (i !== 0 && j !== 0) {
+                    matrix[i][j] = Math.min(Math.min(matrix[i - 1][j], matrix[i][j - 1]), matrix[i - 1][j - 1]) + 1
+                }
+                if (matrix[i][j] > edge) {
+                    edge = matrix[i][j]
+                }
+            }
+        }
+    }
 
-      return edge * edge
-  };
-  ```
+    return edge * edge
+};
+```
 
-- :yellow_circle: [53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/)
+### :yellow_circle: [53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/)
 
-  状态转移方程: dp[i] = max(dp[i-1]+nums[i], nums[i]), 如果 i 之前的最大值 dp[i-1] 加上当前元素还没有 nums[i] 大
-  那更新 dp[i] 为 nums[i], 也就是抛弃 i 之前的数字, 因为加上它们 结果反而更小了
+状态转移方程: dp[i] = max(dp[i-1]+nums[i], nums[i]), 如果 i 之前的最大值 dp[i-1] 加上当前元素还没有 nums[i] 大
+那更新 dp[i] 为 nums[i], 也就是抛弃 i 之前的数字, 因为加上它们 结果反而更小了
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number}
-  */
-  var maxSubArray = function(nums) {
-      const n = nums.length;
-      const dp = new Array(n).fill(0);
-      dp[0] = nums[0];
+```Js
+/**
+ * @param {number[]} nums
+* @return {number}
+*/
+var maxSubArray = function(nums) {
+    const n = nums.length;
+    const dp = new Array(n).fill(0);
+    dp[0] = nums[0];
 
-      let ans = dp[0];
+    let ans = dp[0];
 
-      for(let i=1;i<n;i++){
-          dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
-          ans = Math.max(ans, dp[i]);
-      }
+    for(let i=1;i<n;i++){
+        dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
+        ans = Math.max(ans, dp[i]);
+    }
 
-      return ans
-  };
-  ```
+    return ans
+};
+```
 
-- :yellow_circle: [309. 买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
+### :yellow_circle: [309. 买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
 
-  含冷冻期的状态稍微复杂些, 在每个索引下有 持有、非持有冷冻期、非持有非冷冻期三种状态, 用 dp[i][0]、dp[i][1]、dp[i][2] 来表示
+含冷冻期的状态稍微复杂些, 在每个索引下有 持有、非持有冷冻期、非持有非冷冻期三种状态, 用 dp[i][0]、dp[i][1]、dp[i][2] 来表示
 
-  状态转移方程:
+状态转移方程:
 
-  持有状态更新: dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])
-  非持有冷冻期状态更新: dp[i][1] = dp[i-1][0] + prices[i]
-  非持有非冷冻期状态更新: dp[i][2] = max(dp[i-1][1], dp[i-1][2])
+持有状态更新: dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])
+非持有冷冻期状态更新: dp[i][1] = dp[i-1][0] + prices[i]
+非持有非冷冻期状态更新: dp[i][2] = max(dp[i-1][1], dp[i-1][2])
 
-  ```Js
-  /**
-   * @param {number[]} prices
-  * @return {number}
-  */
-  var maxProfit = function (prices) {
-      const n = prices.length
+```Js
+/**
+ * @param {number[]} prices
+* @return {number}
+*/
+var maxProfit = function (prices) {
+    const n = prices.length
 
-      const dp = new Array(n)
-      for (let i = 0; i < n; i++) {
-          dp[i] = new Array(3).fill(0)
-      }
+    const dp = new Array(n)
+    for (let i = 0; i < n; i++) {
+        dp[i] = new Array(3).fill(0)
+    }
 
-      dp[0][0] = -prices[0]
-      for (let i = 1; i < n; i++) {
-          dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[i])
-          dp[i][1] = dp[i - 1][0] + prices[i]
-          dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2])
-      }
+    dp[0][0] = -prices[0]
+    for (let i = 1; i < n; i++) {
+        dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][2] - prices[i])
+        dp[i][1] = dp[i - 1][0] + prices[i]
+        dp[i][2] = Math.max(dp[i - 1][1], dp[i - 1][2])
+    }
 
-      return Math.max(dp[n - 1][1], dp[n - 1][2])
-  ```
+    return Math.max(dp[n - 1][1], dp[n - 1][2])
+```
 
-- :yellow_circle: [337. 打家劫舍 III](https://leetcode.cn/problems/house-robber-iii/)
+### :yellow_circle: [337. 打家劫舍 III](https://leetcode.cn/problems/house-robber-iii/)
 
-  树形 dp, 问题求解最大收益, 分析状态转移方程, 从根节点出发, 每个节点能获取到的最大收益, 分为偷当前节点 checked 和不偷当前节点 unchecked 两种状态
+树形 dp, 问题求解最大收益, 分析状态转移方程, 从根节点出发, 每个节点能获取到的最大收益, 分为偷当前节点 checked 和不偷当前节点 unchecked 两种状态
 
-  当前 unchecked1 第一种情况为 两个叶子节点 left 和 right checked 最大值之和, unchecked1 = left.checked + right.checked
+当前 unchecked1 第一种情况为 两个叶子节点 left 和 right checked 最大值之和, unchecked1 = left.checked + right.checked
 
-  unchecked2 第二种情况为 两个叶子节点 left 和 right unchecked 最大值之和, unchecked2 = left.unchecked + right.unchecked
+unchecked2 第二种情况为 两个叶子节点 left 和 right unchecked 最大值之和, unchecked2 = left.unchecked + right.unchecked
 
-  最终 unchecked = max(unchecked1, unchecked2)
+最终 unchecked = max(unchecked1, unchecked2)
 
-  当前 checked 为 当前节点值与两个叶子节点 left 和 right 的 unchecked 值之和, checked = left.unchecked + right.unchecked + val
+当前 checked 为 当前节点值与两个叶子节点 left 和 right 的 unchecked 值之和, checked = left.unchecked + right.unchecked + val
 
-  另外还需要 使用 贪心 与 unchecked 对比取最大值, 保证当前状态为最优
+另外还需要 使用 贪心 与 unchecked 对比取最大值, 保证当前状态为最优
 
-  ```Js
-  /**
-   * Definition for a binary tree node.
-  * function TreeNode(val, left, right) {
-  *     this.val = (val===undefined ? 0 : val)
-  *     this.left = (left===undefined ? null : left)
-  *     this.right = (right===undefined ? null : right)
-  * }
-  */
-  /**
-   * @param {TreeNode} root
-  * @return {number}
-  */
-  var rob = function (root) {
-      const dfs = (node) => {
-          if (!node) return [0, 0]
+```Js
+/**
+ * Definition for a binary tree node.
+* function TreeNode(val, left, right) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.left = (left===undefined ? null : left)
+*     this.right = (right===undefined ? null : right)
+* }
+*/
+/**
+ * @param {TreeNode} root
+* @return {number}
+*/
+var rob = function (root) {
+    const dfs = (node) => {
+        if (!node) return [0, 0]
 
-          const l = dfs(node.left)
-          const r = dfs(node.right)
+        const l = dfs(node.left)
+        const r = dfs(node.right)
 
-          const unchecked = Math.max(l[0] + r[0], l[1] + r[1])
-          const checked = Math.max(node.val + r[0] + l[0], unchecked)
-          return [unchecked, checked]
-      }
+        const unchecked = Math.max(l[0] + r[0], l[1] + r[1])
+        const checked = Math.max(node.val + r[0] + l[0], unchecked)
+        return [unchecked, checked]
+    }
 
-      const result = dfs(root)
+    const result = dfs(root)
 
-      return Math.max(result[0], result[1])
-  };
-  ```
+    return Math.max(result[0], result[1])
+};
+```
 
 ## BFS
 
 广度优先搜索
 
-- :yellow_circle: [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/description/)
+### :yellow_circle: [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/description/)
 
-  ```Js
-  /**
-   * @param {character[][]} grid
-  * @return {number}
-  */
-  var numIslands = function (grid) {
-      const m = grid.length, n = grid[0].length
+```Js
+/**
+ * @param {character[][]} grid
+* @return {number}
+*/
+var numIslands = function (grid) {
+    const m = grid.length, n = grid[0].length
 
-      let ans = 0
+    let ans = 0
 
-      const rects = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    const rects = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
-      const bfs = (i, j) => {
-          grid[i][j] = '0'
-          rects.forEach((rect) => {
-              i += rect[0]
-              j += rect[1]
-              if (i >= 0 && j >= 0 && i < m && j < n && grid[i][j] === '1') {
-                  grid[i][j] = '0'
-                  bfs(i, j)
-              }
-              i -= rect[0]
-              j -= rect[1]
-          })
+    const bfs = (i, j) => {
+        grid[i][j] = '0'
+        rects.forEach((rect) => {
+            i += rect[0]
+            j += rect[1]
+            if (i >= 0 && j >= 0 && i < m && j < n && grid[i][j] === '1') {
+                grid[i][j] = '0'
+                bfs(i, j)
+            }
+            i -= rect[0]
+            j -= rect[1]
+        })
 
-      }
+    }
 
-      for (let i = 0; i < m; i++) {
-          for (let j = 0; j < n; j++) {
-              if (grid[i][j] === '0') {
-                  continue
-              }
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (grid[i][j] === '0') {
+                continue
+            }
 
-              ans++
-              bfs(i, j)
-          }
-      }
+            ans++
+            bfs(i, j)
+        }
+    }
 
-      return ans
-  };
-  ```
+    return ans
+};
+```
 
 ## 前缀和
 
-- :yellow_circle: [238. 除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/)
+### :yellow_circle: [238. 除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/)
 
-  预先计算 左、右前缀和, l[i] 代表 i 左边所有数字的乘积, r[i] 代表 i 右边所有数字的乘积
+预先计算 左、右前缀和, l[i] 代表 i 左边所有数字的乘积, r[i] 代表 i 右边所有数字的乘积
 
-  遍历修改 nums[i] = l[i] \* r[i], 这里 0 索引和 n-1 索引需要特殊处理, 因为没有 l[0] 和 r[n-1]
+遍历修改 nums[i] = l[i] \* r[i], 这里 0 索引和 n-1 索引需要特殊处理, 因为没有 l[0] 和 r[n-1]
 
-  ```Js
-  /**
-   * @param {number[]} nums
-  * @return {number[]}
-  */
-  var productExceptSelf = function (nums) {
-      const n = nums.length
-      const l = new Array(n).fill(1)
-      const r = new Array(n).fill(1)
+```Js
+/**
+ * @param {number[]} nums
+* @return {number[]}
+*/
+var productExceptSelf = function (nums) {
+    const n = nums.length
+    const l = new Array(n).fill(1)
+    const r = new Array(n).fill(1)
 
-      l[1] = nums[0]
-      r[n - 2] = nums[n - 1]
-      for (let i = 1; i < n; i++) {
-          l[i] = nums[i - 1] * l[i - 1]
-      }
-      for (let i = n - 2; i >= 0; i--) {
-          r[i] = nums[i + 1] * r[i + 1]
-      }
+    l[1] = nums[0]
+    r[n - 2] = nums[n - 1]
+    for (let i = 1; i < n; i++) {
+        l[i] = nums[i - 1] * l[i - 1]
+    }
+    for (let i = n - 2; i >= 0; i--) {
+        r[i] = nums[i + 1] * r[i + 1]
+    }
 
-      for (let i = 0; i < n; i++) {
-          if (i === 0) {
-              nums[i] = r[i]
-          } else if (i === n - 1) {
-              nums[i] = l[i]
-          } else {
-              nums[i] = l[i] * r[i]
-          }
-      }
+    for (let i = 0; i < n; i++) {
+        if (i === 0) {
+            nums[i] = r[i]
+        } else if (i === n - 1) {
+            nums[i] = l[i]
+        } else {
+            nums[i] = l[i] * r[i]
+        }
+    }
 
-      return nums
-  };
-  ```
+    return nums
+};
+```
