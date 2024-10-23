@@ -96,7 +96,23 @@ export default defineConfig({
   description: 'xjq 代码库 随手记 博客',
   appearance: true,
   base: '/',
-  head: [['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]],
+  head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    [
+      'script',
+      {},
+      `
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?afb28b6abfbaefe0b1ad053d3f29007e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+`,
+    ],
+  ],
   markdown: {
     math: true,
     lineNumbers: true,
