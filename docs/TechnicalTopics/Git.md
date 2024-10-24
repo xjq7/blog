@@ -56,6 +56,14 @@ git config core.filemode false
 
 # 去除ssl校验
 git config --global http.sslVerify false
+
+# 配置合并策略
+# 默认合并策略, 会引入新的 commit
+git config pull.rebase false
+# 变基合并
+git config pull.rebase true
+# 仅快进合并策略
+git config pull.ff only
 ```
 
 ## 源管理
