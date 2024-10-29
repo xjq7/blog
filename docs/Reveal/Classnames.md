@@ -19,6 +19,8 @@ classNames('a', ['b', { c: true, d: false }]) // 'a b c'
 
 ## 分析
 
+版本: 2.5.1
+
 循环处理 函数参数 arguments
 
 ```Js

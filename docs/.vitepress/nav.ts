@@ -40,7 +40,7 @@ export default [
     text: '友链',
     items: [
       { text: '天真的小窝', link: 'http://bin.zmide.com/' },
-      { text: 'Lexmin0412', link: 'https://home.cellerchan.top/' },
+      { text: 'Lexmin0412', link: 'https://lexmin.cn/' },
       { text: '1874', link: 'https://1874.cool/' },
       { text: 'tools.fun 工具导航', link: 'https://tools.fun/' },
       { text: '勤为径苦作舟', link: 'https://blog.zhjh.top/' },
