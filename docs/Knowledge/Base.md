@@ -984,6 +984,45 @@ var rob = function (root) {
 };
 ```
 
+### :yellow_circle: - [2944. 购买水果需要的最少金币数](https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/description/)
+
+    动态规划问题, 获取所有水果需要的最少金币可以转化为 获取到 第 i 个水果所需要的最少金币, 用 dp[i]来表示, 这里因为题目条件从 索引 1 开始的
+
+    所以我们 dp[1] = prices[0] 起步, dp[2] 在 第一个购买后就能自动获取 dp[2] = dp[1]
+
+    分析状态转移方程, 根据题中条件, 获取 第 i 个 所用的最少金币 可以推断的状态转移方程为 可以往前推导
+
+    从 i/2 到 i 位置 取索引 j, dp[i] = min(dp[i], prices[j] + dp[j - 1])
+
+    比如第 6 个水果, i/2==3, 买第 3, 4, 5 个就可以免费获得 第 6 个, 那我们比较 (prices[3] + d[3]), (prices[4] + d[4]), (prices[5] + d[5]), ((prices[6] + dp[6])) (这里因为 dp 是从 1 开始的, 所以索引跟 prices 索引一致), 得到 dp[7] 的值
+
+    最终我们从 2 到 n 依次更新 dp 状态
+
+    ```Js
+    /**
+     * @param {number[]} prices
+     * @return {number}
+     */
+    var minimumCoins = function (prices) {
+        const n = prices.length
+        const dp = new Array(n + 1).fill(Number.MAX_SAFE_INTEGER)
+
+        dp[1] = prices[0]
+        dp[2] = dp[1]
+
+        let ans = Number.MAX_SAFE_INTEGER
+
+        for (let i = 2; i < n; i++) {
+            let k = i + 1
+            for (let j = Math.ceil(k / 2); j <= k; j++) {
+                dp[k] = Math.min(dp[k], prices[j-1] + dp[j - 1])
+            }
+        }
+
+        return dp[n]
+    };
+    ```
+
 ## BFS
 
 广度优先搜索
