@@ -78,7 +78,11 @@ export default [
     text: '原理分析',
     collapsible: true,
     collapsed: false,
-    items: [{ text: 'classnames', link: '/Reveal/Classnames' }],
+    items: [
+      { text: 'classnames', link: '/Reveal/Classnames' },
+      { text: 'rollup', link: '/Reveal/Rollup' },
+      { text: 'pnpm', link: '/Reveal/Pnpm' },
+    ],
   },
   {
     text: '技术散记',
