@@ -126,7 +126,8 @@ var _hmt = _hmt || [];
     sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/xjq7' }],
     footer: {
-      message: 'Released under the MIT License.',
+      message:
+        '<img style="margin:0 auto;height:60px;"  src="https://count.getloli.com/@xjq7?name=xjq7&theme=booru-qualityhentais&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto" alt=":name" />',
       copyright: 'Copyright © 2019-present xjq',
     },
     siteTitle: 'xjq',
