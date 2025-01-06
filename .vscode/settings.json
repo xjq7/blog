@@ -3,5 +3,11 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.workingDirectories": [{ "mode": "auto" }]
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "commentTranslate.targetLanguage": "zh-CN",
+  "commentTranslate.source": "Bing"
 }

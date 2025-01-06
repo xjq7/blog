@@ -133,3 +133,5 @@ git pull
 yarn build
 nginx -s reload
 ```
+
+github action DEPLOY_KEY 是 服务器 ssh id_rsa
