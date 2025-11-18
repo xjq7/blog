@@ -597,3 +597,49 @@ function createThunkMiddleware(extraArgument) {
   return middleware
 }
 ```
+
+## 交易手续费计算
+
+```Javascript
+// 每个级别的单价和对应的订单数量
+const levels = [
+	[30, 5],
+	[15, 20],
+	[10, 50],
+	[9, 100],
+	[8, 200],
+];
+
+function calc(orderCount) {
+	let fee = 0;
+
+	let currentLevel = 0;
+	let orderedCount = 0;
+
+	while (true) {
+		const [price, levelOrderCount] = levels[currentLevel >= levels.length ? levels.length - 1 : currentLevel];
+
+		if (currentLevel >= levels.length || orderCount < levelOrderCount) {
+			fee += price * (orderCount - orderedCount);
+			break;
+		}
+
+		fee += price * (levelOrderCount - orderedCount);
+		orderedCount += levelOrderCount - orderedCount;
+		currentLevel++;
+	}
+
+	return fee;
+}
+
+console.log(calc(30), 30 * 5 + 15 * 15 + 10 * 10);
+console.log(calc(80), 30 * 5 + 15 * 15 + 10 * 30 + 30 * 9);
+console.log(calc(120), 30 * 5 + 15 * 15 + 10 * 30 + 50 * 9 + 20 * 8);
+console.log(calc(220), 30 * 5 + 15 * 15 + 10 * 30 + 50 * 9 + 120 * 8);
+```
+
+## 异步并发调度器
+
+```Javascript
+
+```
