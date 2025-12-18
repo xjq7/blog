@@ -602,6 +602,14 @@ function createThunkMiddleware(extraArgument) {
 
 ```Javascript
 // 每个级别的单价和对应的订单数量
+// 例如：[30, 5] 表示 30 元每 5 个订单
+// 例如：[15, 20] 超过 6-20 中间这 15 个订单按 15 元计算
+// 例如：[10, 50] 超过 21-50 中间这 30 个订单按 10 元计算
+// 例如：[9, 100] 超过 51-100 中间这 50 个订单按 9 元计算
+// 例如：[8, 200] 超过 101-200 中间这 100 个订单按 8 元计算
+// 超过 200 的都按 8 元计算
+
+// 你要写一个函数, 给你一个订单数, 计算要给多少交易手续费
 const levels = [
 	[30, 5],
 	[15, 20],
@@ -628,6 +636,7 @@ function calc(orderCount) {
 		orderedCount += levelOrderCount - orderedCount;
 		currentLevel++;
 	}
+  
 
 	return fee;
 }
